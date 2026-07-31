@@ -591,8 +591,6 @@ def education_pilot_out_of_scope(request: SearchRequest) -> SearchResponse:
         query=request.query,
         summary=(
             "Esta versão-piloto responde somente sobre Educação no orçamento federal. "
-            "O tema consultado ficará fora do piloto até que Talita autorize a inclusão "
-            "de uma nova área."
         ),
         insufficient_evidence=True,
         evidence=[],
