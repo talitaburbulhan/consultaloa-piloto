@@ -1,0 +1,15 @@
+{
+  "parent_organization_code": "seguridade_social",
+  "records": [
+    {
+      "year": 2022,
+      "code": "40201",
+      "name": "Instituto Nacional do Seguro Social",
+      "category": "autarquia_previdenciaria",
+      "original_value": "14.315.056.267",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 312,
+      "printed_page": 306
+    }
+  ]
+}

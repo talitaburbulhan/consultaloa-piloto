@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+node_modules/
+.pnpm-store/
+.next/
+.next-render-validation/
+coverage/
+storage/
+*.egg-info/
+.tool-home/

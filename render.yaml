@@ -1,0 +1,53 @@
+services:
+  - type: pserv
+    runtime: python
+    name: loa-piloto-api
+    region: oregon
+    plan: starter
+    buildCommand: pip install .
+    startCommand: bash scripts/start_render_api.sh
+    healthCheckPath: /health
+    disk:
+      name: loa-piloto-dados
+      mountPath: /var/data
+      sizeGB: 2
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////var/data/loa.db
+      - key: STORAGE_DIR
+        value: /var/data
+      - key: SOURCE_DIR
+        value: /var/data/dados
+      - key: ENVIRONMENT
+        value: production
+      - key: PILOT_EDUCATION_ONLY
+        value: "true"
+      - key: AUTH_REQUIRED
+        value: "true"
+      - key: EDITOR_EMAILS
+        sync: false
+      - key: REVIEWER_EMAILS
+        sync: false
+      - key: CLOUDFLARE_ACCESS_TEAM_DOMAIN
+        sync: false
+      - key: CLOUDFLARE_ACCESS_AUDIENCE
+        sync: false
+  - type: web
+    runtime: node
+    name: loa-piloto-web
+    region: oregon
+    plan: starter
+    rootDir: apps/web
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    startCommand: pnpm start -- -p $PORT
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: /api
+      - key: API_INTERNAL_HOSTPORT
+        fromService:
+          type: pserv
+          name: loa-piloto-api
+          property: hostport

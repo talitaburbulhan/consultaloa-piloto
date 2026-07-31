@@ -1,0 +1,325 @@
+version: 1
+
+entities:
+  bolsa_familia:
+    label: Programa Bolsa Família
+    aliases:
+      - bolsa família
+      - bolsa familia
+      - programa bolsa família
+      - programa bolsa familia
+      - transferência direta e condicionada de renda
+    search_terms:
+      - Bolsa Família
+      - Transferência Direta e Condicionada de Renda
+      - programa 5128
+  saude:
+    label: Saúde
+    aliases: [saúde, saude, sus, sistema único de saúde]
+    search_terms: [Saúde, Sistema Único de Saúde, SUS]
+    ambiguous_scope: true
+  frgps:
+    label: Fundo do Regime Geral de Previdência Social
+    aliases:
+      - fundo do regime geral de previdência social
+      - fundo do regime geral de previdencia social
+      - frgps
+      - fundo da previdência social
+      - fundo da previdencia social
+    search_terms:
+      - Fundo do Regime Geral de Previdência Social
+      - FRGPS
+  inss:
+    label: Instituto Nacional do Seguro Social
+    aliases:
+      - inss
+      - instituto nacional do seguro social
+      - instituto do seguro social
+    search_terms:
+      - Instituto Nacional do Seguro Social
+      - INSS
+  previc:
+    label: Superintendência Nacional de Previdência Complementar
+    aliases:
+      - previc
+      - superintendência nacional de previdência complementar
+      - superintendencia nacional de previdencia complementar
+    search_terms:
+      - Superintendência Nacional de Previdência Complementar
+      - Previc
+  fnas:
+    label: Fundo Nacional de Assistência Social
+    aliases:
+      - fnas
+      - fundo nacional de assistência social
+      - fundo nacional de assistencia social
+      - fundo da assistência social
+      - fundo da assistencia social
+    search_terms:
+      - Fundo Nacional de Assistência Social
+      - FNAS
+  seguridade_social:
+    label: Instituições da Seguridade Social
+    aliases:
+      - instituições da seguridade social
+      - instituicoes da seguridade social
+      - unidades da seguridade social
+      - órgãos da seguridade social
+      - orgaos da seguridade social
+      - fundos e autarquias da seguridade social
+    search_terms:
+      - Seguridade Social
+      - instituições da Seguridade Social
+  unidades_saude:
+    label: Unidades vinculadas ao Ministério da Saúde
+    aliases:
+      - unidade da saúde
+      - unidade da saude
+      - unidades da saúde
+      - unidades da saude
+      - unidade vinculada à saúde
+      - unidade vinculada a saude
+      - unidades vinculadas à saúde
+      - unidades vinculadas a saude
+      - unidade vinculada ao ministério da saúde
+      - unidade vinculada ao ministerio da saude
+      - unidades vinculadas ao ministério da saúde
+      - unidades vinculadas ao ministerio da saude
+      - instituição da saúde
+      - instituicao da saude
+      - instituições da saúde
+      - instituicoes da saude
+      - órgão da saúde
+      - orgao da saude
+      - órgãos da saúde
+      - orgaos da saude
+    search_terms:
+      - Ministério da Saúde
+      - unidades vinculadas ao Ministério da Saúde
+  educacao:
+    label: Educação
+    aliases: [educação, educacao, ensino]
+    search_terms: [Educação]
+    ambiguous_scope: true
+  ministerio_educacao:
+    label: Ministério da Educação
+    aliases:
+      - ministério da educação
+      - ministerio da educacao
+      - mec
+      - órgão 26000
+      - orgao 26000
+      - orçamento do mec
+      - orcamento do mec
+      - orçamento do ministério da educação
+      - orcamento do ministerio da educacao
+    search_terms: [Ministério da Educação, MEC, órgão 26000]
+  universidades_federais:
+    label: Universidades federais
+    aliases:
+      - universidades federais
+      - universidade federal
+      - universidades
+      - universidade
+    search_terms: [Universidade Federal, Educação Superior]
+  institutos_federais:
+    label: Institutos Federais
+    aliases:
+      - institutos federais
+      - instituto federal
+      - rede federal de educação profissional
+      - rede federal de educacao profissional
+    search_terms: [Instituto Federal, Rede Federal de Educação Profissional]
+  educacao_superior:
+    label: Educação Superior
+    aliases: [educação superior, educacao superior, ensino superior]
+    search_terms: [Educação Superior]
+  educacao_profissional:
+    label: Educação Profissional e Tecnológica
+    aliases:
+      - educação profissional
+      - educacao profissional
+      - educação profissional e tecnológica
+      - educacao profissional e tecnologica
+      - ensino técnico
+      - ensino tecnico
+    search_terms: [Educação Profissional e Tecnológica]
+  educacao_basica:
+    label: Educação Básica
+    aliases: [educação básica, educacao basica, ensino básico, ensino basico]
+    search_terms: [Educação Básica]
+  fnde:
+    label: Fundo Nacional de Desenvolvimento da Educação
+    aliases:
+      - fnde
+      - fundo nacional de desenvolvimento da educação
+      - fundo nacional de desenvolvimento da educacao
+      - fundo nacional da educação
+      - fundo nacional da educacao
+      - fundo nacional de educação
+      - fundo nacional de educacao
+      - fundo da educação
+      - fundo da educacao
+    search_terms: [FNDE, Fundo Nacional de Desenvolvimento da Educação]
+  bpc:
+    label: Benefício de Prestação Continuada
+    aliases: [bpc, benefício de prestação continuada, beneficio de prestacao continuada]
+    search_terms: [Benefício de Prestação Continuada, BPC]
+  defesa:
+    label: Defesa
+    aliases: [defesa, forças armadas, forcas armadas]
+    search_terms: [Ministério da Defesa, Forças Armadas]
+    ambiguous_scope: true
+  cultura:
+    label: Cultura
+    aliases: [cultura, ministério da cultura, ministerio da cultura]
+    search_terms: [Ministério da Cultura, Cultura]
+    ambiguous_scope: true
+  pac:
+    label: Programa de Aceleração do Crescimento
+    aliases: [pac, programa de aceleração do crescimento]
+    search_terms: [PAC, Programa de Aceleração do Crescimento]
+
+intents:
+  list_institutions:
+    label: Listar instituições e unidades orçamentárias
+    technical_concept: unidades_orcamentarias
+    expressions:
+      - quais são as unidades
+      - quais sao as unidades
+      - quais são as instituições
+      - quais sao as instituicoes
+      - liste as unidades
+      - listar unidades
+      - mostre as unidades
+      - quais são as universidades
+      - quais sao as universidades
+      - quais universidades
+      - liste as universidades
+      - listar universidades
+      - mostre as universidades
+      - quais são os institutos
+      - quais sao os institutos
+      - quais institutos
+      - liste os institutos
+      - listar institutos
+      - mostre os institutos
+      - liste o orçamento
+      - liste os orçamentos
+      - listar o orçamento
+      - listar os orçamentos
+      - mostre o orçamento
+      - mostre os orçamentos
+      - relação de orçamentos
+      - relacao de orcamentos
+    normalized_template: Quais unidades orçamentárias compõem {entity}?
+  count_institutions:
+    label: Contar instituições no orçamento
+    technical_concept: unidades_orcamentarias
+    expressions:
+      - quantas instituições
+      - quantas instituicoes
+      - quantas unidades
+      - existem quantas unidades
+      - número de unidades
+      - numero de unidades
+      - total de unidades vinculadas
+      - quantidade de unidades
+      - quantos órgãos
+      - quantos orgaos
+    normalized_template: Quantas instituições aparecem no orçamento de {entity}?
+  compare_maximum:
+    label: Encontrar o maior valor autorizado entre exercícios
+    technical_concept: dotacao_autorizada
+    expressions:
+      - em que ano
+      - qual ano
+      - recebeu mais
+      - maior orçamento
+      - maior valor
+      - mais dinheiro
+      - mais recursos
+      - mais receita
+      - ranking
+      - ranking de orçamento
+      - ranking de orçamentos
+      - ordene por orçamento
+      - ordenar por orçamento
+      - ordene
+      - ordenar
+      - do maior para o menor
+      - da maior para a menor
+    normalized_template: Em qual exercício a LOA autorizou o maior valor para {entity}?
+    requires_structured_values: true
+  compare_change:
+    label: Comparar valores autorizados entre exercícios
+    technical_concept: dotacao_autorizada
+    expressions:
+      - aumentou
+      - diminuiu
+      - caiu
+      - cresceu
+      - houve corte
+      - perdeu verba
+      - compare
+    normalized_template: Compare os valores autorizados nas LOAs para {entity}.
+    requires_structured_values: true
+  authorized_amount:
+    label: Consultar o valor autorizado
+    technical_concept: dotacao_autorizada
+    expressions:
+      - valor autorizado na loa
+      - qual foi o valor autorizado
+      - valor autorizado
+      - quanto recebeu
+      - quanto foi destinado
+      - quanto foi reservado
+      - qual o orçamento
+      - quanto de dinheiro
+      - qual a verba
+    normalized_template: Qual foi o valor autorizado na LOA para {entity}?
+    requires_structured_values: true
+  execution:
+    label: Consultar execução orçamentária
+    technical_concept: execucao_orcamentaria
+    expressions:
+      - quanto foi gasto
+      - quanto foi pago
+      - quanto foi executado
+      - quanto foi empenhado
+      - quanto foi liquidado
+      - quanto foi usado
+    normalized_template: Qual foi o valor executado para {entity}?
+    available_in_corpus: false
+  revenue:
+    label: Consultar receita prevista
+    technical_concept: receita_prevista
+    expressions:
+      - quanto arrecadou
+      - previsão de receita
+      - receita prevista
+      - quanto entraria
+    normalized_template: Qual foi a receita prevista na LOA para {entity}?
+  geographic:
+    label: Consultar valor por localização
+    technical_concept: localizador_de_gasto
+    expressions:
+      - quanto foi para
+      - qual estado
+      - qual município
+      - qual regiao
+    normalized_template: Qual valor foi autorizado para {entity} na localização mencionada?
+  transfer:
+    label: Consultar transferências autorizadas
+    technical_concept: transferencia_autorizada
+    expressions:
+      - quanto foi repassado
+      - quanto receberiam os municípios
+      - transferência aos estados
+      - transferencia aos municipios
+    normalized_template: Qual transferência foi autorizada na LOA para {entity}?
+  generic_search:
+    label: Pesquisa documental
+    technical_concept: pesquisa_documental
+    expressions: []
+    normalized_template: Localize evidências documentais sobre {entity}.
