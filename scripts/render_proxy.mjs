@@ -10,12 +10,19 @@ function upstreamFor(request) {
   return { host: "127.0.0.1", port: 3000 };
 }
 
+function upstreamPath(request) {
+  if (request.url?.startsWith("/api")) {
+    return request.url.replace(/^\/api(?=\/|$)/, "") || "/";
+  }
+  return request.url;
+}
+
 const server = http.createServer((request, response) => {
   const upstream = http.request(
     {
       ...upstreamFor(request),
       method: request.method,
-      path: request.url,
+      path: upstreamPath(request),
       headers: request.headers,
     },
     (upstreamResponse) => {
