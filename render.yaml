@@ -6,7 +6,6 @@ services:
     plan: starter
     buildCommand: pip install .
     startCommand: bash scripts/start_render_api.sh
-    healthCheckPath: /health
     disk:
       name: loa-piloto-dados
       mountPath: /var/data
