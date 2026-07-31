@@ -21,6 +21,8 @@ Preencha no painel do Render, nunca no repositório:
   devolutivas.
 - `CLOUDFLARE_ACCESS_TEAM_DOMAIN`: domínio da equipe no Cloudflare Access.
 - `CLOUDFLARE_ACCESS_AUDIENCE`: identificador de audiência da aplicação.
+  Inicialmente o Render usa valores de bloqueio seguros. Substitua-os pelos
+  valores reais antes de liberar qualquer pessoa para consultar o piloto.
 
 ## Publicação
 

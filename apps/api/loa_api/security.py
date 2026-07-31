@@ -26,6 +26,15 @@ def current_user(
     ),
 ) -> CurrentUser:
     settings = get_settings()
+    if (
+        settings.environment == "production"
+        and settings.auth_required
+        and not (
+            settings.cloudflare_access_team_domain
+            and settings.cloudflare_access_audience
+        )
+    ):
+        raise HTTPException(503, "Cloudflare Access ainda não foi configurado")
     if settings.cloudflare_access_team_domain or settings.cloudflare_access_audience:
         if not (
             settings.cloudflare_access_team_domain
@@ -58,9 +67,11 @@ def current_user(
             raise HTTPException(401, "Autenticação interna obrigatória")
         email = "desenvolvimento@local"
     normalized = email.strip().casefold()
-    allowed = settings.allowed_editors
-    if settings.auth_required and allowed and normalized not in allowed:
-        raise HTTPException(403, "Usuário sem autorização editorial")
+    allowed_editors = settings.allowed_editors
+    allowed_reviewers = settings.allowed_reviewers
+    allowed_users = allowed_editors | allowed_reviewers
+    if settings.auth_required and allowed_users and normalized not in allowed_users:
+        raise HTTPException(403, "Usuário sem autorização para o piloto")
     full_name = (
         unquote(encoded_name)
         if encoded_name and name_encoding == "percent-encoded-utf-8"
@@ -69,6 +80,6 @@ def current_user(
     return CurrentUser(
         email=normalized,
         full_name=full_name,
-        is_editor=not allowed or normalized in allowed,
-        is_reviewer=not settings.auth_required or normalized in settings.allowed_reviewers,
+        is_editor=not allowed_editors or normalized in allowed_editors,
+        is_reviewer=not settings.auth_required or normalized in allowed_reviewers,
     )

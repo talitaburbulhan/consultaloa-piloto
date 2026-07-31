@@ -23,9 +23,9 @@ services:
       - key: REVIEWER_EMAILS
         sync: false
       - key: CLOUDFLARE_ACCESS_TEAM_DOMAIN
-        sync: false
+        value: https://access-not-configured.invalid
       - key: CLOUDFLARE_ACCESS_AUDIENCE
-        sync: false
+        value: pending-configuration
 databases:
   - name: consulta-loa-feedback
     plan: free
