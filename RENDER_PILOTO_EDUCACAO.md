@@ -1,49 +1,43 @@
-# Publicação da versão-piloto: Educação
+# Publicação do piloto gratuito: Educação
 
-Este roteiro publica **somente a versão-piloto de Educação**. Saúde, Defesa,
-Cultura e outros temas não fazem parte do pacote de dados nem devem ser
-liberados nesta etapa.
+Esta configuração publica somente o piloto de Educação. Saúde, Defesa,
+Cultura e outros temas permanecem fora da aplicação.
 
-## O que já está preparado
+## Arquitetura gratuita
 
-- `render.yaml` cria dois serviços: a interface pública e a API privada.
-- A API usa um disco persistente em `/var/data`.
-- `storage/render-pilot-bundle/loa-piloto-educacao-render.zip` contém o banco
-  derivado e os nove PDFs necessários ao piloto.
-- A autenticação está preparada para o Cloudflare Access. Sem os dois valores
-  do Cloudflare, a API não aceita cabeçalhos de e-mail enviados pelo navegador.
+- `render.yaml` cria um único serviço web gratuito e um PostgreSQL gratuito
+  usado exclusivamente para feedbacks, relatórios e consultas salvas.
+- `pilot-seed/loa-piloto-educacao-render.zip` contém o banco derivado e os
+  nove PDFs do piloto. O pacote é incorporado à imagem de publicação, portanto
+  é restaurado sempre que o serviço gratuito reinicia.
+- O Cloudflare Access restringe o acesso aos e-mails autorizados.
 
-## Dados que a responsável precisa informar no Render
+## Segredos necessários no Render
 
-Preencha como segredos no painel do Render, nunca no repositório:
+Preencha no painel do Render, nunca no repositório:
 
-- `EDITOR_EMAILS`: lista de e-mails autorizados a registrar validação editorial.
-- `REVIEWER_EMAILS`: e-mail ou e-mails que podem consultar o relatório de
-  devolutivas. Definir antes de liberar o piloto.
+- `EDITOR_EMAILS`: e-mails autorizados a registrar validação editorial.
+- `REVIEWER_EMAILS`: e-mail ou e-mails que podem baixar o relatório de
+  devolutivas.
 - `CLOUDFLARE_ACCESS_TEAM_DOMAIN`: domínio da equipe no Cloudflare Access.
-- `CLOUDFLARE_ACCESS_AUDIENCE`: identificador de audiência da aplicação criada
-  no Cloudflare Access.
+- `CLOUDFLARE_ACCESS_AUDIENCE`: identificador de audiência da aplicação.
 
-## Ordem segura de publicação
+## Publicação
 
-1. Conecte o repositório que contém este projeto ao Render e crie os serviços
-   pelo arquivo `render.yaml`.
-2. Aguarde a criação do disco persistente da API. A primeira inicialização pode
-   mostrar `documents: 0`: isto é apenas modo de preparação, não é o piloto.
-3. No Shell da API no Render, copie o arquivo
-   `loa-piloto-educacao-render.zip` para `/var/data`, extraia-o ali e confirme
-   que existem `/var/data/loa.db` e `/var/data/dados`.
-4. Reinicie a API. Só depois que `/health` reportar `documents: 9` e
-   `pages: 293`, publique a interface web.
-5. No Cloudflare Access, crie uma aplicação para o domínio público da interface
-   e permita apenas os e-mails definidos para o piloto. Copie os valores de
-   equipe e audiência para os segredos do Render e faça novo deploy da API.
-6. Faça uma consulta de Educação e confira uma fonte. Em seguida, faça uma
-   pergunta de Saúde: ela deve informar que está fora do escopo do piloto.
+1. No Render, crie um Blueprint a partir deste repositório.
+2. Confira que a revisão mostra apenas `consulta-loa-piloto` e
+   `consulta-loa-feedback`, ambos no plano `free`.
+3. Informe os segredos solicitados e faça a publicação.
+4. No Cloudflare Access, crie a aplicação para o endereço público do Render,
+   permita somente os e-mails do piloto e copie os dois valores de configuração
+   para o Render.
+5. Faça uma consulta de Educação e confira uma fonte. Uma pergunta de Saúde
+   deve retornar que o tema está fora do escopo.
 
-## Segurança e limites
+## Limites
 
-O pacote de dados é derivado: ele não altera o banco principal nem os PDFs
-originais. As devolutivas registradas pelos usuários ficam armazenadas, mas não
-geram alteração automática em respostas, dados ou regras. Qualquer melhoria
-continua dependendo de autorização editorial.
+O serviço gratuito pode dormir depois de 15 minutos de inatividade e levar
+cerca de um minuto para voltar. O PostgreSQL gratuito expira após 30 dias;
+baixe o relatório de feedback antes desse prazo. Nenhuma devolutiva altera
+automaticamente dados, respostas ou regras: melhorias exigem autorização
+editorial.

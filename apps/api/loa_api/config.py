@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     app_name: str = "LOA — Pesquisa com evidências"
     database_url: str = "sqlite:///./storage/loa.db"
+    feedback_database_url: str = ""
     source_dir: Path = Path("../dados")
     storage_dir: Path = Path("./storage")
     cors_origins: str = "http://localhost:3000"

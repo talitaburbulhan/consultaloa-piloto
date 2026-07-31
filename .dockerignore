@@ -1,0 +1,9 @@
+.git
+.venv
+.pnpm-store
+.next
+.next-render-validation
+storage
+tests
+__pycache__
+*.pyc

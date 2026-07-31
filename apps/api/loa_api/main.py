@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from .config import get_settings
 from .comparison import compare_budget_records
 from .database import Base, engine, get_db
+from .feedback_database import create_feedback_schema, get_feedback_db
 from .exports import search_pdf
 from .models import (
     AuditLog,
@@ -88,6 +89,7 @@ def create_local_schema() -> None:
     if settings.database_url.startswith("sqlite"):
         settings.storage_dir.mkdir(parents=True, exist_ok=True)
         Base.metadata.create_all(engine)
+    create_feedback_schema()
 
 
 @app.get("/health")
@@ -165,6 +167,7 @@ def corpus_status(
 def save_query(
     request: SaveQueryRequest,
     db: Session = Depends(get_db),
+    feedback_db: Session = Depends(get_feedback_db),
     user: CurrentUser = Depends(current_user),
 ) -> SavedQueryResponse:
     result = _run_pilot_search(db, request.search)
@@ -173,9 +176,9 @@ def save_query(
         filters_json=json.dumps({"years": request.search.years}),
         response_json=result.model_dump_json(),
     )
-    db.add(saved)
-    db.flush()
-    db.add(
+    feedback_db.add(saved)
+    feedback_db.flush()
+    feedback_db.add(
         AuditLog(
             user_email=user.email,
             action="saved_query.create",
@@ -184,18 +187,18 @@ def save_query(
             details_json=json.dumps({"query": request.search.query}, ensure_ascii=False),
         )
     )
-    db.commit()
-    db.refresh(saved)
+    feedback_db.commit()
+    feedback_db.refresh(saved)
     return SavedQueryResponse(public_id=saved.public_id, search=result)
 
 
 @app.get("/saved-queries/{public_id}", response_model=SavedQueryResponse)
 def get_saved_query(
     public_id: str,
-    db: Session = Depends(get_db),
+    feedback_db: Session = Depends(get_feedback_db),
     user: CurrentUser = Depends(current_user),
 ) -> SavedQueryResponse:
-    saved = db.scalar(select(SavedQuery).where(SavedQuery.public_id == public_id))
+    saved = feedback_db.scalar(select(SavedQuery).where(SavedQuery.public_id == public_id))
     if not saved:
         raise HTTPException(404, "Consulta permanente não encontrada")
     return SavedQueryResponse(
@@ -208,10 +211,11 @@ def get_saved_query(
 def export_search(
     request: SearchRequest,
     db: Session = Depends(get_db),
+    feedback_db: Session = Depends(get_feedback_db),
     user: CurrentUser = Depends(current_user),
 ) -> Response:
     result = _run_pilot_search(db, request)
-    db.add(
+    feedback_db.add(
         AuditLog(
             user_email=user.email,
             action="search.export",
@@ -219,7 +223,7 @@ def export_search(
             details_json=json.dumps({"query": request.query}, ensure_ascii=False),
         )
     )
-    db.commit()
+    feedback_db.commit()
     return Response(
         search_pdf(result),
         media_type="application/pdf",
@@ -248,7 +252,7 @@ def compare(
 @app.post("/feedback", response_model=FeedbackResponse)
 def create_feedback(
     request: FeedbackCreateRequest,
-    db: Session = Depends(get_db),
+    feedback_db: Session = Depends(get_feedback_db),
     user: CurrentUser = Depends(current_user),
 ) -> FeedbackResponse:
     feedback = Feedback(
@@ -259,9 +263,9 @@ def create_feedback(
         verdict=request.verdict,
         comment=request.comment.strip(),
     )
-    db.add(feedback)
-    db.flush()
-    db.add(
+    feedback_db.add(feedback)
+    feedback_db.flush()
+    feedback_db.add(
         AuditLog(
             user_email=user.email,
             action="feedback.create",
@@ -273,7 +277,7 @@ def create_feedback(
             ),
         )
     )
-    db.commit()
+    feedback_db.commit()
     return FeedbackResponse(
         public_id=feedback.public_id,
         message=(
@@ -285,12 +289,12 @@ def create_feedback(
 
 @app.get("/feedback/report.csv")
 def feedback_report(
-    db: Session = Depends(get_db),
+    feedback_db: Session = Depends(get_feedback_db),
     user: CurrentUser = Depends(current_user),
 ) -> Response:
     if not user.is_reviewer:
         raise HTTPException(403, "Relatório disponível somente para a revisora responsável")
-    rows = db.scalars(select(Feedback).order_by(Feedback.created_at.desc())).all()
+    rows = feedback_db.scalars(select(Feedback).order_by(Feedback.created_at.desc())).all()
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(
