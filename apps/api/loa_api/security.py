@@ -70,7 +70,11 @@ def current_user(
     allowed_editors = settings.allowed_editors
     allowed_reviewers = settings.allowed_reviewers
     allowed_users = allowed_editors | allowed_reviewers
-    if settings.auth_required and allowed_users and normalized not in allowed_users:
+    if settings.environment == "production" and settings.auth_required and not allowed_users:
+        raise HTTPException(
+            503, "A lista de usuários autorizados do piloto ainda não foi configurada"
+        )
+    if settings.auth_required and normalized not in allowed_users:
         raise HTTPException(403, "Usuário sem autorização para o piloto")
     full_name = (
         unquote(encoded_name)

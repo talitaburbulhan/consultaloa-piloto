@@ -5,7 +5,7 @@ COPY apps/web/package.json apps/web/pnpm-lock.yaml apps/web/pnpm-workspace.yaml 
 RUN corepack enable && pnpm install --frozen-lockfile
 COPY apps/web/ ./
 ENV NEXT_PUBLIC_API_URL=/api
-ENV API_INTERNAL_HOSTPORT=127.0.0.1:10000
+ENV API_INTERNAL_HOSTPORT=127.0.0.1:10001
 RUN pnpm build && cp -r .next/static .next/standalone/.next/static
 
 FROM python:3.12-slim
@@ -25,7 +25,7 @@ RUN chmod +x ./scripts/start_render_free.sh
 ENV DATABASE_URL=sqlite:////app/pilot-data/loa.db
 ENV STORAGE_DIR=/app/pilot-data
 ENV SOURCE_DIR=/app/pilot-data/dados
-ENV API_INTERNAL_HOSTPORT=127.0.0.1:10000
+ENV API_INTERNAL_HOSTPORT=127.0.0.1:10001
 ENV PILOT_EDUCATION_ONLY=true
 
 CMD ["bash", "scripts/start_render_free.sh"]
