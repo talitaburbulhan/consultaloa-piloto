@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends bash && rm -rf 
 COPY pyproject.toml README.md ./
 COPY apps/api/ ./apps/api/
 RUN pip install --no-cache-dir .
+# O pacote instalado busca o vocabulário em /usr/local/lib/config.
+COPY config/ /usr/local/lib/config/
 COPY --from=web_build /web/.next/standalone ./web
 COPY pilot-seed/loa-piloto-educacao-render.zip /tmp/pilot.zip
 RUN python -c "import zipfile; zipfile.ZipFile('/tmp/pilot.zip').extractall('/app/pilot-data')" && rm /tmp/pilot.zip
