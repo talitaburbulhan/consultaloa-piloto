@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     auth_required: bool = False
     editor_emails: str = ""
     reviewer_emails: str = ""
-    pilot_education_only: bool = True
+    pilot_education_only: bool = False
+    pilot_allowed_areas: str = ""
     cloudflare_access_team_domain: str = ""
     cloudflare_access_audience: str = ""
     environment: str = "development"
@@ -32,6 +33,10 @@ class Settings(BaseSettings):
     @property
     def allowed_reviewers(self) -> set[str]:
         return {item.strip().casefold() for item in self.reviewer_emails.split(",") if item.strip()}
+
+    @property
+    def allowed_pilot_areas(self) -> set[str]:
+        return {item.strip() for item in self.pilot_allowed_areas.split(",") if item.strip()}
 
 
 @lru_cache

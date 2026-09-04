@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "2.573.906.594", "filename": "2019_volume4.pdf", "pdf_page": 96},
+    {"year": 2020, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "5.417.114.129", "filename": "2020_volume4.pdf", "pdf_page": 115},
+    {"year": 2021, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "2.813.721.998", "filename": "2021_volume4.pdf", "pdf_page": 86},
+    {"year": 2022, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "3.748.846.734", "filename": "2022_volume4.pdf", "pdf_page": 85},
+    {"year": 2023, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "4.186.251.053", "filename": "2023_volume4.pdf", "pdf_page": 87},
+    {"year": 2024, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "4.434.362.982", "filename": "2024_volume4.pdf", "pdf_page": 78},
+    {"year": 2025, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "4.305.265.657", "filename": "2025_volume4.pdf", "pdf_page": 69},
+    {"year": 2026, "code": "25104", "name": "Procuradoria-Geral da Fazenda Nacional", "category": "administracao_direta_especializada", "original_value": "4.752.459.169", "filename": "2026_volume4.pdf", "pdf_page": 65}
+  ]
+}

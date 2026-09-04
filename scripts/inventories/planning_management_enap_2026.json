@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "planning_management",
+  "records": [
+    {
+      "year": 2026,
+      "code": "46201",
+      "name": "Fundação Escola Nacional de Administração Pública",
+      "category": "fundacao",
+      "original_value": "159.374.147",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 348
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32396", "name": "Agência Nacional de Mineração", "category": "autarquia", "original_value": "615.484.239", "filename": "2019_volume4.pdf", "pdf_page": 158},
+    {"year": 2020, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "562.094.899", "filename": "2020_volume4.pdf", "pdf_page": 217},
+    {"year": 2021, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "547.543.652", "filename": "2021_volume4.pdf", "pdf_page": 185},
+    {"year": 2022, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "1.140.776.352", "filename": "2022_volume4.pdf", "pdf_page": 167},
+    {"year": 2023, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "1.055.353.040", "filename": "2023_volume4.pdf", "pdf_page": 164},
+    {"year": 2024, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "812.346.344", "filename": "2024_volume4.pdf", "pdf_page": 157},
+    {"year": 2025, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "907.818.628", "filename": "2025_volume4.pdf", "pdf_page": 143},
+    {"year": 2026, "code": "32396", "name": "Agência Nacional de Mineração - ANM", "category": "autarquia", "original_value": "822.237.313", "filename": "2026_volume4.pdf", "pdf_page": 136}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "28101", "name": "Ministério da Indústria, Comércio Exterior e Serviços - Administração Direta", "category": "administracao_direta", "original_value": "704.617.763", "filename": "2019_volume4.pdf", "pdf_page": 114},
+    {"year": 2024, "code": "28101", "name": "Ministério do Desenvolvimento, Indústria, Comércio e Serviços - Administração Direta", "category": "administracao_direta", "original_value": "912.633.296", "filename": "2024_volume4.pdf", "pdf_page": 90},
+    {"year": 2025, "code": "28101", "name": "Ministério do Desenvolvimento, Indústria, Comércio e Serviços - Administração Direta", "category": "administracao_direta", "original_value": "857.798.626", "filename": "2025_volume4.pdf", "pdf_page": 80},
+    {"year": 2026, "code": "28101", "name": "Ministério do Desenvolvimento, Indústria, Comércio e Serviços - Administração Direta", "category": "administracao_direta", "original_value": "1.466.273.974", "filename": "2026_volume4.pdf", "pdf_page": 76}
+  ]
+}

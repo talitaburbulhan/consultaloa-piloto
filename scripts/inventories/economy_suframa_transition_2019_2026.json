@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "28233", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "1.159.610.483", "filename": "2019_volume4.pdf", "pdf_page": 123},
+    {"year": 2020, "code": "25298", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "254.239.849", "filename": "2020_volume4.pdf", "pdf_page": 136},
+    {"year": 2021, "code": "25298", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "228.253.900", "filename": "2021_volume4.pdf", "pdf_page": 107},
+    {"year": 2022, "code": "25298", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "529.249.443", "filename": "2022_volume4.pdf", "pdf_page": 100},
+    {"year": 2023, "code": "25298", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "285.711.802", "filename": "2023_volume4.pdf", "pdf_page": 101},
+    {"year": 2024, "code": "28233", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "286.513.320", "filename": "2024_volume4.pdf", "pdf_page": 100},
+    {"year": 2025, "code": "28233", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "389.738.099", "filename": "2025_volume4.pdf", "pdf_page": 89},
+    {"year": 2026, "code": "28233", "name": "Superintendência da Zona Franca de Manaus - SUFRAMA", "category": "autarquia_industrial", "original_value": "320.295.610", "filename": "2026_volume4.pdf", "pdf_page": 84}
+  ]
+}

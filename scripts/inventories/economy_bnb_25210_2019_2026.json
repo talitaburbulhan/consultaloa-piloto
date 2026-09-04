@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "144.379.728", "filename": "2019_volume6.pdf", "pdf_page": 45},
+    {"year": 2020, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "112.316.400", "filename": "2020_volume6.pdf", "pdf_page": 37},
+    {"year": 2021, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "144.572.000", "filename": "2021_volume6.pdf", "pdf_page": 35},
+    {"year": 2022, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "139.099.500", "filename": "2022_volume6.pdf", "pdf_page": 34},
+    {"year": 2023, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "255.432.700", "filename": "2023_volume6.pdf", "pdf_page": 27},
+    {"year": 2024, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "245.709.200", "filename": "2024_volume6.pdf", "pdf_page": 27},
+    {"year": 2025, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "189.888.900", "filename": "2025_volume6.pdf", "pdf_page": 26},
+    {"year": 2026, "code": "25210", "name": "Banco do Nordeste do Brasil S.A. - BNB", "category": "empresa_estatal", "original_value": "414.842.900", "filename": "2026_volume6.pdf", "pdf_page": 26}
+  ]
+}

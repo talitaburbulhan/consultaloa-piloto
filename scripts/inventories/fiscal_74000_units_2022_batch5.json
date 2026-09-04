@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {
+      "year": 2022,
+      "code": "74910",
+      "name": "Recursos sob Sup. do Fundo Nac. de Desenv. Científico e Tecnológico/FNDCT-M. Ciência, Tecnol. e Inov.",
+      "category": "unidade_orcamentaria",
+      "original_value": "4.527.830.561",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 599
+    },
+    {
+      "year": 2022,
+      "code": "74912",
+      "name": "Recursos sob Supervisão do Fundo Nacional de Cultura",
+      "category": "unidade_orcamentaria",
+      "original_value": "511.000.000",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 599
+    },
+    {
+      "year": 2022,
+      "code": "74913",
+      "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Norte/FNO - M. Desenvolv. Regional",
+      "category": "unidade_orcamentaria",
+      "original_value": "3.782.332.699",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 599
+    }
+  ]
+}

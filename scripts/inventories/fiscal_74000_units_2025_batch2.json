@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2025, "code": "74204", "name": "Recursos sob Supervisão da Caixa de Construções de Casas para o Pessoal da Marinha - CCCPM", "category": "unidade_orcamentaria", "original_value": "209.566.282", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74205", "name": "Recursos sob Supervisão da Caixa de Financiamento Imobiliário da Aeronáutica", "category": "unidade_orcamentaria", "original_value": "14.599.630", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74901", "name": "Recursos sob Supervisão do Fundo de Defesa da Economia Cafeeira/FUNCAFÉ - Ministério da Agricultura e Pecuária", "category": "unidade_orcamentaria", "original_value": "7.187.895.867", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante/FMM - Ministério de Portos e Aeroportos", "category": "unidade_orcamentaria", "original_value": "9.324.975.091", "filename": "2025_volume4.pdf", "pdf_page": 651}
+  ]
+}

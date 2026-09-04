@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {
+      "year": 2024,
+      "code": "74101",
+      "name": "Recursos sob Supervisão da Secretaria do Tesouro Nacional - Ministério da Fazenda",
+      "category": "unidade_orcamentaria",
+      "original_value": "15.886.570.335",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    },
+    {
+      "year": 2024,
+      "code": "74102",
+      "name": "Recursos sob Supervisão do Ministério da Fazenda",
+      "category": "unidade_orcamentaria",
+      "original_value": "100.000.000",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    },
+    {
+      "year": 2024,
+      "code": "74201",
+      "name": "Recursos sob Supervisão da Superintendência de Seguros Privados/SUSEP - M. Fazenda",
+      "category": "unidade_orcamentaria",
+      "original_value": "1.240.460",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    }
+  ]
+}

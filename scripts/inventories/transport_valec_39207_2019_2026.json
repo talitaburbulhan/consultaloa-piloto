@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "792.520.714", "filename": "2019_volume4.pdf", "pdf_page": 305},
+    {"year": 2020, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "530.931.482", "filename": "2020_volume4.pdf", "pdf_page": 345},
+    {"year": 2021, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "521.396.422", "filename": "2021_volume4.pdf", "pdf_page": 300},
+    {"year": 2022, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "573.264.004", "filename": "2022_volume4.pdf", "pdf_page": 272},
+    {"year": 2023, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "772.155.750", "filename": "2023_volume4.pdf", "pdf_page": 312},
+    {"year": 2024, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "892.551.384", "filename": "2024_volume4.pdf", "pdf_page": 273},
+    {"year": 2025, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "813.450.714", "filename": "2025_volume4.pdf", "pdf_page": 247},
+    {"year": 2026, "code": "39207", "name": "VALEC - Engenharia, Construções e Ferrovias S.A.", "category": "empresa_publica", "original_value": "718.147.037", "filename": "2026_volume4.pdf", "pdf_page": 242}
+  ]
+}

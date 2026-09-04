@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2020, "code": "53906", "name": "Fundo Nacional de Habitação de Interesse Social - FNHIS", "category": "fundo", "original_value": "223.336.598", "filename": "2020_volume4.pdf", "pdf_page": 514},
+    {"year": 2021, "code": "53906", "name": "Fundo Nacional de Habitação de Interesse Social - FNHIS", "category": "fundo", "original_value": "507.742.450", "filename": "2021_volume4.pdf", "pdf_page": 483},
+    {"year": 2022, "code": "53906", "name": "Fundo Nacional de Habitação de Interesse Social - FNHIS", "category": "fundo", "original_value": "107.901.366", "filename": "2022_volume4.pdf", "pdf_page": 467},
+    {"year": 2023, "code": "53906", "name": "Fundo Nacional de Habitação de Interesse Social - FNHIS", "category": "fundo", "original_value": "273.907.452", "filename": "2023_volume4.pdf", "pdf_page": 505}
+  ]
+}

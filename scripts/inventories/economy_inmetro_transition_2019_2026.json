@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "28202", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "1.028.369.581", "filename": "2019_volume4.pdf", "pdf_page": 118},
+    {"year": 2020, "code": "25296", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "760.360.736", "filename": "2020_volume4.pdf", "pdf_page": 130},
+    {"year": 2021, "code": "25296", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "565.983.073", "filename": "2021_volume4.pdf", "pdf_page": 101},
+    {"year": 2022, "code": "25296", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "719.034.614", "filename": "2022_volume4.pdf", "pdf_page": 94},
+    {"year": 2023, "code": "25296", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "863.990.693", "filename": "2023_volume4.pdf", "pdf_page": 96},
+    {"year": 2024, "code": "28202", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "900.186.868", "filename": "2024_volume4.pdf", "pdf_page": 95},
+    {"year": 2025, "code": "28202", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "882.808.130", "filename": "2025_volume4.pdf", "pdf_page": 83},
+    {"year": 2026, "code": "28202", "name": "Instituto Nacional de Metrologia, Qualidade e Tecnologia - INMETRO", "category": "autarquia_industrial", "original_value": "942.173.394", "filename": "2026_volume4.pdf", "pdf_page": 79}
+  ]
+}

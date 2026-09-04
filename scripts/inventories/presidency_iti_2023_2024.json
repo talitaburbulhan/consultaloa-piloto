@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2023,
+      "code": "20204",
+      "name": "Instituto Nacional de Tecnologia da Informação - ITI",
+      "category": "unidade_vinculada",
+      "original_value": "39.820.270",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 13
+    },
+    {
+      "year": 2024,
+      "code": "20204",
+      "name": "Instituto Nacional de Tecnologia da Informação - ITI",
+      "category": "unidade_vinculada",
+      "original_value": "37.289.674",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 11
+    }
+  ]
+}

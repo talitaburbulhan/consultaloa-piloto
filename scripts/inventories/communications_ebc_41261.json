@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41261",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica",
+      "original_value": "392.535.231",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 348
+    },
+    {
+      "year": 2022,
+      "code": "41261",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica",
+      "original_value": "641.179.121",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 337
+    },
+    {
+      "year": 2023,
+      "code": "41261",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica",
+      "original_value": "741.590.947",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 381
+    }
+  ]
+}

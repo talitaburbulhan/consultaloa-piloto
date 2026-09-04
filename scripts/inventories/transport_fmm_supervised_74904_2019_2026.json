@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "5.480.146.096", "filename": "2019_volume4.pdf", "pdf_page": 661},
+    {"year": 2020, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "6.300.000.000", "filename": "2020_volume4.pdf", "pdf_page": 664},
+    {"year": 2021, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "5.720.239.466", "filename": "2021_volume4.pdf", "pdf_page": 632},
+    {"year": 2022, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "9.887.305.384", "filename": "2022_volume4.pdf", "pdf_page": 599},
+    {"year": 2023, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "5.234.236.169", "filename": "2023_volume4.pdf", "pdf_page": 661},
+    {"year": 2024, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "7.780.286.471", "filename": "2024_volume4.pdf", "pdf_page": 701},
+    {"year": 2025, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "9.324.975.091", "filename": "2025_volume4.pdf", "pdf_page": 672},
+    {"year": 2026, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante - FMM", "category": "recursos_supervisionados", "original_value": "9.266.918.558", "filename": "2026_volume4.pdf", "pdf_page": 656}
+  ]
+}

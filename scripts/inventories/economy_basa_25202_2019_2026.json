@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "64.740.828", "filename": "2019_volume6.pdf", "pdf_page": 41},
+    {"year": 2020, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "46.886.492", "filename": "2020_volume6.pdf", "pdf_page": 33},
+    {"year": 2021, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "25.876.379", "filename": "2021_volume6.pdf", "pdf_page": 31},
+    {"year": 2022, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "58.945.959", "filename": "2022_volume6.pdf", "pdf_page": 30},
+    {"year": 2023, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "24.755.314", "filename": "2023_volume6.pdf", "pdf_page": 23},
+    {"year": 2024, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "36.344.206", "filename": "2024_volume6.pdf", "pdf_page": 23},
+    {"year": 2025, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "82.897.000", "filename": "2025_volume6.pdf", "pdf_page": 22},
+    {"year": 2026, "code": "25202", "name": "Banco da Amazônia S.A. - BASA", "category": "empresa_estatal", "original_value": "97.999.870", "filename": "2026_volume6.pdf", "pdf_page": 22}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2020, "code": "93180", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento - Administração Direta", "category": "programacao_condicionada", "original_value": "2.592.095.683", "filename": "2020_volume4.pdf", "pdf_page": 748},
+    {"year": 2020, "code": "93474", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "programacao_condicionada", "original_value": "13.572.949", "filename": "2020_volume4.pdf", "pdf_page": 1297},
+    {"year": 2021, "code": "93180", "name": "Recursos do Ministério da Agricultura, Pecuária e Abastecimento - Administração Direta (22101)", "category": "programacao_condicionada", "original_value": "2.647.905.150", "filename": "2021_volume4.pdf", "pdf_page": 715}
+  ]
+}

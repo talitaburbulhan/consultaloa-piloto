@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2020,
+      "code": "93175",
+      "name": "Recursos sob Supervisão da Presidência da República",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "138.353.189",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 737
+    },
+    {
+      "year": 2021,
+      "code": "93175",
+      "name": "Recursos da Presidência da República",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "250.621.841",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 704
+    }
+  ]
+}

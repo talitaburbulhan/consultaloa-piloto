@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2020, "code": "74910", "name": "Recursos sob Sup. do Fundo Nac. de Desenv. Científico e Tecnológico/FNDCT-M. Ciência, Tecnol., Inov. e Comunicações", "category": "unidade_orcamentaria", "original_value": "1.627.294.336", "filename": "2020_volume4.pdf", "pdf_page": 641},
+    {"year": 2020, "code": "74912", "name": "Recursos sob Supervisão do Fundo Nacional de Cultura", "category": "unidade_orcamentaria", "original_value": "539.200.052", "filename": "2020_volume4.pdf", "pdf_page": 641},
+    {"year": 2020, "code": "74913", "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Norte/FNO - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "2.819.654.279", "filename": "2020_volume4.pdf", "pdf_page": 641}
+  ]
+}

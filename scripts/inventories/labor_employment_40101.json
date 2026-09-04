@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "labor_employment",
+  "records": [
+    {
+      "year": 2019,
+      "code": "40101",
+      "name": "Ministério do Trabalho - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "9.492.830.918",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 335
+    },
+    {
+      "year": 2022,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Previdência - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "4.138.954.039",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 309
+    }
+  ]
+}

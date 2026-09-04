@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "4.461.729.757", "filename": "2019_volume4.pdf", "pdf_page": 145},
+    {"year": 2020, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "804.098.822", "filename": "2020_volume4.pdf", "pdf_page": 200},
+    {"year": 2021, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "4.589.790.056", "filename": "2021_volume4.pdf", "pdf_page": 170},
+    {"year": 2022, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "892.466.239", "filename": "2022_volume4.pdf", "pdf_page": 150},
+    {"year": 2023, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "1.185.675.530", "filename": "2023_volume4.pdf", "pdf_page": 148},
+    {"year": 2024, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "1.080.534.092", "filename": "2024_volume4.pdf", "pdf_page": 140},
+    {"year": 2025, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "1.378.184.751", "filename": "2025_volume4.pdf", "pdf_page": 128},
+    {"year": 2026, "code": "32101", "name": "Ministério de Minas e Energia - Administração Direta", "category": "administracao_direta", "original_value": "1.050.876.416", "filename": "2026_volume4.pdf", "pdf_page": 121}
+  ]
+}

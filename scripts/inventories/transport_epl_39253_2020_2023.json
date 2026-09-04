@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2020, "code": "39253", "name": "Empresa de Planejamento e Logística S.A. - EPL", "category": "empresa_publica", "original_value": "88.885.652", "filename": "2020_volume4.pdf", "pdf_page": 368},
+    {"year": 2021, "code": "39253", "name": "Empresa de Planejamento e Logística S.A. - EPL", "category": "empresa_publica", "original_value": "54.566.599", "filename": "2021_volume4.pdf", "pdf_page": 324},
+    {"year": 2022, "code": "39253", "name": "Empresa de Planejamento e Logística S.A. - EPL", "category": "empresa_publica", "original_value": "79.731.116", "filename": "2022_volume4.pdf", "pdf_page": 294},
+    {"year": 2023, "code": "39253", "name": "Empresa de Planejamento e Logística S.A. - EPL", "category": "empresa_publica", "original_value": "90.483.856", "filename": "2023_volume4.pdf", "pdf_page": 339}
+  ]
+}

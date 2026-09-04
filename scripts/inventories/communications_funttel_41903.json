@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "27.044.783",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 352
+    },
+    {
+      "year": 2022,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "21.321.980",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 341
+    },
+    {
+      "year": 2023,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "18.221.591",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 385
+    },
+    {
+      "year": 2024,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "16.091.851",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 327
+    },
+    {
+      "year": 2025,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "15.000.000",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 296
+    },
+    {
+      "year": 2026,
+      "code": "41903",
+      "name": "Fundo para o Desenvolvimento Tecnológico das Telecomunicações - FUNTTEL",
+      "category": "fundo",
+      "original_value": "30.000.000",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 285
+    }
+  ]
+}

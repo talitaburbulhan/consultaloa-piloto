@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2020,
+      "code": "93177",
+      "name": "Recursos sob Supervisão do Instituto Nacional de Tecnologia da Informação - ITI",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "6.691.185",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 742
+    },
+    {
+      "year": 2021,
+      "code": "93177",
+      "name": "Recursos do Instituto Nacional de Tecnologia da Informação - ITI",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "16.940.891",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 709
+    }
+  ]
+}

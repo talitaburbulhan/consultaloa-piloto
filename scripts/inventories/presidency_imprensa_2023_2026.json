@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2023,
+      "code": "20927",
+      "name": "Fundo de Imprensa Nacional",
+      "category": "fundo_vinculado",
+      "original_value": "249.933.663",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 17
+    },
+    {
+      "year": 2024,
+      "code": "20927",
+      "name": "Fundo de Imprensa Nacional",
+      "category": "fundo_vinculado",
+      "original_value": "261.978.659",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 16
+    },
+    {
+      "year": 2025,
+      "code": "20927",
+      "name": "Fundo de Imprensa Nacional",
+      "category": "fundo_vinculado",
+      "original_value": "161.553.207",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 14
+    },
+    {
+      "year": 2026,
+      "code": "20927",
+      "name": "Fundo de Imprensa Nacional",
+      "category": "fundo_vinculado",
+      "original_value": "94.187.352",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 14
+    }
+  ]
+}

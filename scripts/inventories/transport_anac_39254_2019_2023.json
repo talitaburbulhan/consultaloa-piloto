@@ -1,0 +1,10 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "39254", "name": "Agência Nacional de Aviação Civil - ANAC", "category": "autarquia", "original_value": "720.732.933", "filename": "2019_volume4.pdf", "pdf_page": 325},
+    {"year": 2020, "code": "39254", "name": "Agência Nacional de Aviação Civil - ANAC", "category": "autarquia", "original_value": "683.919.815", "filename": "2020_volume4.pdf", "pdf_page": 370},
+    {"year": 2021, "code": "39254", "name": "Agência Nacional de Aviação Civil - ANAC", "category": "autarquia", "original_value": "408.538.510", "filename": "2021_volume4.pdf", "pdf_page": 326},
+    {"year": 2022, "code": "39254", "name": "Agência Nacional de Aviação Civil - ANAC", "category": "autarquia", "original_value": "700.041.693", "filename": "2022_volume4.pdf", "pdf_page": 296},
+    {"year": 2023, "code": "39254", "name": "Agência Nacional de Aviação Civil - ANAC", "category": "autarquia", "original_value": "722.453.182", "filename": "2023_volume4.pdf", "pdf_page": 341}
+  ]
+}

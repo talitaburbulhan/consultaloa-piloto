@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "tourism",
+  "records": [
+    {
+      "year": 2020,
+      "code": "54201",
+      "name": "EMBRATUR - Instituto Brasileiro de Turismo",
+      "category": "autarquia",
+      "original_value": "63.562.308",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 527
+    }
+  ]
+}

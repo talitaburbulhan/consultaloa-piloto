@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53101", "name": "Ministério da Integração Nacional - Administração Direta", "category": "administracao_direta", "original_value": "2.835.151.978", "filename": "2019_volume4.pdf", "pdf_page": 481},
+    {"year": 2020, "code": "53101", "name": "Ministério do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "12.138.429.164", "filename": "2020_volume4.pdf", "pdf_page": 460},
+    {"year": 2021, "code": "53101", "name": "Ministério do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "15.342.015.166", "filename": "2021_volume4.pdf", "pdf_page": 432},
+    {"year": 2022, "code": "53101", "name": "Ministério do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "7.919.486.254", "filename": "2022_volume4.pdf", "pdf_page": 421},
+    {"year": 2023, "code": "53101", "name": "Ministério do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "26.276.747.549", "filename": "2023_volume4.pdf", "pdf_page": 463},
+    {"year": 2024, "code": "53101", "name": "Ministério da Integração e do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "5.993.261.363", "filename": "2024_volume4.pdf", "pdf_page": 498},
+    {"year": 2025, "code": "53101", "name": "Ministério da Integração e do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "6.033.087.704", "filename": "2025_volume4.pdf", "pdf_page": 459},
+    {"year": 2026, "code": "53101", "name": "Ministério da Integração e do Desenvolvimento Regional - Administração Direta", "category": "administracao_direta", "original_value": "8.415.569.964", "filename": "2026_volume4.pdf", "pdf_page": 446}
+  ]
+}

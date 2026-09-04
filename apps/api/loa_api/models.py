@@ -130,6 +130,10 @@ class BudgetRecord(Base):
     organization_name: Mapped[str | None] = mapped_column(String(500), index=True)
     institution_category: Mapped[str | None] = mapped_column(String(80), index=True)
     parent_organization_code: Mapped[str | None] = mapped_column(String(30), index=True)
+    area_slug: Mapped[str | None] = mapped_column(String(100), index=True)
+    record_level: Mapped[str | None] = mapped_column(String(50), index=True)
+    evidence_status: Mapped[str | None] = mapped_column(String(50), index=True)
+    aggregation_policy: Mapped[str | None] = mapped_column(String(50), index=True)
     program_code: Mapped[str | None] = mapped_column(String(30), index=True)
     action_code: Mapped[str | None] = mapped_column(String(30), index=True)
     function_code: Mapped[str | None] = mapped_column(String(30), index=True)
@@ -139,6 +143,42 @@ class BudgetRecord(Base):
     unit: Mapped[str | None] = mapped_column(String(80))
     source_text: Mapped[str] = mapped_column(Text)
     deduplication_key: Mapped[str] = mapped_column(String(64), unique=True)
+
+
+class EditorialArea(Base):
+    __tablename__ = "editorial_areas"
+
+    slug: Mapped[str] = mapped_column(String(100), primary_key=True)
+    label: Mapped[str] = mapped_column(String(300), unique=True)
+    aliases_json: Mapped[str] = mapped_column(Text, default="[]")
+    protected: Mapped[bool] = mapped_column(default=False)
+    human_validation_complete: Mapped[bool] = mapped_column(default=False)
+
+
+class EditorialRule(Base):
+    __tablename__ = "editorial_rules"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    rule_key: Mapped[str] = mapped_column(String(200), unique=True, index=True)
+    subject_slug: Mapped[str] = mapped_column(String(150), index=True)
+    rule_type: Mapped[str] = mapped_column(String(80), index=True)
+    payload_json: Mapped[str] = mapped_column(Text)
+    source_checkpoint: Mapped[str | None] = mapped_column(String(500))
+    active: Mapped[bool] = mapped_column(default=True)
+
+
+class HistoricalSegment(Base):
+    __tablename__ = "historical_segments"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    entity_slug: Mapped[str] = mapped_column(String(150), index=True)
+    area_slug: Mapped[str] = mapped_column(String(100), index=True)
+    organization_code: Mapped[str] = mapped_column(String(30), index=True)
+    start_year: Mapped[int] = mapped_column(index=True)
+    end_year: Mapped[int] = mapped_column(index=True)
+    comparison_group: Mapped[str | None] = mapped_column(String(150), index=True)
+    aggregation_allowed: Mapped[bool] = mapped_column(default=False)
+    notes: Mapped[str | None] = mapped_column(Text)
 
 
 class SavedQuery(Base):

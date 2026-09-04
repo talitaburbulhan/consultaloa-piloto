@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "39101", "name": "Ministério dos Transportes, Portos e Aviação Civil - Administração Direta", "category": "administracao_direta", "original_value": "4.123.240.540", "filename": "2019_volume4.pdf", "pdf_page": 302},
+    {"year": 2020, "code": "39101", "name": "Ministério da Infraestrutura - Administração Direta", "category": "administracao_direta", "original_value": "2.045.857.126", "filename": "2020_volume4.pdf", "pdf_page": 341},
+    {"year": 2021, "code": "39101", "name": "Ministério da Infraestrutura - Administração Direta", "category": "administracao_direta", "original_value": "2.807.089.594", "filename": "2021_volume4.pdf", "pdf_page": 296},
+    {"year": 2022, "code": "39101", "name": "Ministério da Infraestrutura - Administração Direta", "category": "administracao_direta", "original_value": "3.592.265.282", "filename": "2022_volume4.pdf", "pdf_page": 267},
+    {"year": 2023, "code": "39101", "name": "Ministério da Infraestrutura - Administração Direta", "category": "administracao_direta", "original_value": "3.310.962.006", "filename": "2023_volume4.pdf", "pdf_page": 309},
+    {"year": 2024, "code": "39101", "name": "Ministério dos Transportes - Administração Direta", "category": "administracao_direta", "original_value": "5.018.732.526", "filename": "2024_volume4.pdf", "pdf_page": 270},
+    {"year": 2025, "code": "39101", "name": "Ministério dos Transportes - Administração Direta", "category": "administracao_direta", "original_value": "2.573.802.960", "filename": "2025_volume4.pdf", "pdf_page": 244},
+    {"year": 2026, "code": "39101", "name": "Ministério dos Transportes - Administração Direta", "category": "administracao_direta", "original_value": "1.242.700.321", "filename": "2026_volume4.pdf", "pdf_page": 239}
+  ]
+}

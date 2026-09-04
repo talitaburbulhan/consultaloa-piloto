@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2020,
+      "code": "20101",
+      "name": "Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "510.598.006",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 13
+    },
+    {
+      "year": 2020,
+      "code": "60101",
+      "name": "Gabinete da Vice-Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "13.542.651",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 597
+    },
+    {
+      "year": 2021,
+      "code": "20101",
+      "name": "Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "186.648.354",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 4
+    },
+    {
+      "year": 2021,
+      "code": "60101",
+      "name": "Gabinete da Vice-Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "5.376.394",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 555
+    }
+  ]
+}

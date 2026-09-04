@@ -125,6 +125,21 @@ function extractNumericRows(text: string): NumericSummaryRow[] {
 
   if (rows.length > 0) return rows;
 
+  const historicalPattern =
+    /(20\d{2})\s+\(c[óo]digo\s+(\d+)\):\s*R\$\s*([\d.]+)(?:\s*\[(\d+)\])?/gi;
+  let historicalMatch: RegExpExecArray | null;
+  while ((historicalMatch = historicalPattern.exec(text)) !== null) {
+    rows.push({
+      label: "Série documental",
+      code: historicalMatch[2],
+      year: Number(historicalMatch[1]),
+      value: historicalMatch[3],
+      sourceId: historicalMatch[4] ? Number(historicalMatch[4]) : null,
+    });
+  }
+
+  if (rows.length > 0) return rows;
+
   const rankingPattern =
     /(20\d{2}):\s*(.+?)\s+\(c[óo]digo\s+(\d+)\),\s*R\$\s*([\d.]+)(?:\s*\[(\d+)\])?/gi;
   let rankingMatch: RegExpExecArray | null;
@@ -417,7 +432,9 @@ export default function Home() {
           <p className="eyebrow">Redação · Fact-checking</p>
           <h1>LOA</h1>
         </div>
-        <p className="status"><span /> Piloto restrito · Educação 2019–2026</p>
+        <p className="status">
+          <span /> Acervo homologado · LOA 2019–2026
+        </p>
       </header>
 
       {corpus && !corpus.homologation_complete && (
@@ -435,23 +452,25 @@ export default function Home() {
         <p className="kicker">Pesquisa com evidências</p>
         <h2>Encontre o dado.<br />Confira a página.</h2>
         <p className="intro">
-          Consulte a área federal de Educação nas Leis Orçamentárias Anuais sem perder
-          o caminho até o documento original.
+          Consulte todas as áreas homologadas das Leis Orçamentárias Anuais sem perder o
+          caminho até o documento original.
         </p>
 
-        <section className="pilotCoverage" aria-label="Escopo do piloto">
+        <section className="pilotCoverage" aria-label="Cobertura da consulta">
           <div>
-            <p className="eyebrow">Escopo do piloto</p>
+            <p className="eyebrow">Cobertura da consulta</p>
             <p>
-              Por enquanto, estão disponíveis para consultas e comparações somente os dados
-              da LOA referentes à Educação.
+              Estão disponíveis para consultas e comparações os registros homologados de
+              todas as áreas da LOA federal entre 2019 e 2026.
             </p>
             <p>
-              Saúde, Defesa, Cultura e os demais temas serão liberados mais adiante.
+              Cada resultado numérico mantém o vínculo com o documento e a página de origem.
+              Ausências documentais, mudanças de código e séries que não podem ser somadas são
+              indicadas explicitamente na resposta.
             </p>
             <p>
-              O objetivo desta etapa é conhecer a experiência dos usuários e reunir relatos
-              sobre como o aplicativo pode ser aperfeiçoado.
+              O feedback dos usuários continua disponível para revisão editorial e
+              aperfeiçoamento da aplicação.
             </p>
           </div>
           {isReviewer && (

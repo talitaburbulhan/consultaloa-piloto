@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2020,
+      "code": "93179",
+      "name": "Recursos sob Supervisão do Fundo de Imprensa Nacional",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "1.163.832",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 746
+    },
+    {
+      "year": 2021,
+      "code": "93179",
+      "name": "Recursos do Fundo de Imprensa Nacional",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "28.274.054",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 713
+    }
+  ]
+}

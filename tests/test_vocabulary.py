@@ -188,6 +188,281 @@ def test_budget_listing_by_category_wordings_are_recognized() -> None:
         }
 
 
+def test_institute_feedback_queries_return_individual_values_without_group_sum() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2022,
+            title="LOA 2022",
+            kind=DocumentKind.LOA,
+            official_url=None,
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2022_volume4.pdf",
+            sha256="e" * 64,
+            byte_size=100,
+            page_count=2,
+        )
+        baiano_page = Page(
+            version=version,
+            pdf_page_number=10,
+            printed_page_label="6",
+            original_text="26404 Instituto Federal Baiano Total 500.000.000",
+            page_sha256="f" * 64,
+        )
+        other_page = Page(
+            version=version,
+            pdf_page_number=11,
+            printed_page_label="7",
+            original_text="26408 Instituto Federal do Maranhão Total 700.000.000",
+            page_sha256="1" * 64,
+        )
+        db.add_all([document, version, baiano_page, other_page])
+        db.flush()
+        db.add_all(
+            [
+                BudgetRecord(
+                    year=2022,
+                    document_version_id=version.id,
+                    page_id=baiano_page.id,
+                    organization_code="26404",
+                    organization_name="Instituto Federal Baiano",
+                    institution_category="educacao_profissional",
+                    parent_organization_code="26000",
+                    original_value="500.000.000",
+                    numeric_value=500000000,
+                    unit="R$ 1,00",
+                    source_text=baiano_page.original_text,
+                    deduplication_key="2" * 64,
+                ),
+                BudgetRecord(
+                    year=2022,
+                    document_version_id=version.id,
+                    page_id=other_page.id,
+                    organization_code="26408",
+                    organization_name="Instituto Federal do Maranhão",
+                    institution_category="educacao_profissional",
+                    parent_organization_code="26000",
+                    original_value="700.000.000",
+                    numeric_value=700000000,
+                    unit="R$ 1,00",
+                    source_text=other_page.original_text,
+                    deduplication_key="3" * 64,
+                ),
+            ]
+        )
+        db.commit()
+
+        collective = search_documents(
+            db,
+            SearchRequest(
+                query="Mostre os orçamentos de cada um dos institutos federais em 2022",
+                interpretation_confirmed=True,
+            ),
+        )
+        individual = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o orçamento do Instituto Federal Baiano em 2022?",
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert len(collective.listed_units) == 2
+    assert {item.original_value for item in collective.listed_units} == {
+        "500.000.000",
+        "700.000.000",
+    }
+    assert "Instituto Federal Baiano" in individual.summary
+    assert "R$ 500.000.000" in individual.summary
+    assert "1.200.000.000" not in individual.summary
+    assert len(individual.sources) == 1
+
+
+def test_specific_unit_names_do_not_match_prefixes_or_parent_institutions() -> None:
+    from loa_api.chunking import normalize
+    from loa_api.search import _alias_spans, _drop_nested_institution_matches
+
+    parana_query = normalize("orçamento da Universidade Federal do Paraná")
+    assert _alias_spans("universidade federal do parana", parana_query)
+    assert not _alias_spans("universidade federal do para", parana_query)
+
+    hospital_query = normalize(
+        "orçamento do Hospital de Clínicas da Universidade Federal do Paraná"
+    )
+    university_span = _alias_spans(
+        "universidade federal do parana", hospital_query
+    )
+    hospital_span = _alias_spans(
+        "hospital de clinicas da universidade federal do parana", hospital_query
+    )
+    candidates = {
+        "26241": ("Universidade Federal do Paraná", []),
+        "26372": ("Hospital de Clínicas da Universidade Federal do Paraná", []),
+    }
+    _drop_nested_institution_matches(
+        candidates,
+        {"26241": university_span, "26372": hospital_span},
+    )
+    assert set(candidates) == {"26372"}
+
+    # Nomes iguais com códigos históricos ocupam o mesmo trecho e permanecem
+    # disponíveis para que o exercício selecione o segmento documental correto.
+    historical = {
+        "20201": ("INCRA", []),
+        "22201": ("INCRA", []),
+    }
+    same_span = _alias_spans("incra", normalize("orçamento do INCRA"))
+    _drop_nested_institution_matches(
+        historical,
+        {"20201": same_span, "22201": same_span},
+    )
+    assert set(historical) == {"20201", "22201"}
+
+
+def test_identical_unit_names_in_same_year_require_code_instead_of_sum() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2024,
+            title="LOA 2024",
+            kind=DocumentKind.LOA,
+            official_url=None,
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2024_volume4.pdf",
+            sha256="4" * 64,
+            byte_size=100,
+            page_count=2,
+        )
+        pages = [
+            Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} Recursos sob Supervisão do Ministério da Fazenda",
+                page_sha256=str(index) * 64,
+            )
+            for index, code in ((1, "71101"), (2, "73101"))
+        ]
+        db.add_all([document, version, *pages])
+        db.flush()
+        for index, (page, code, area, value) in enumerate(
+            zip(
+                pages,
+                ("71101", "73101"),
+                ("fiscal_71000", "fiscal_73000"),
+                (100, 200),
+            ),
+            start=1,
+        ):
+            db.add(
+                BudgetRecord(
+                    year=2024,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name="Recursos sob Supervisão do Ministério da Fazenda",
+                    area_slug=area,
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 5) * 64,
+                )
+            )
+        db.commit()
+        ambiguous = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o orçamento dos Recursos sob Supervisão do Ministério da Fazenda em 2024?",
+                interpretation_confirmed=True,
+            ),
+        )
+        explicit = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o orçamento da unidade 71101 em 2024?",
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert ambiguous.insufficient_evidence
+    assert "Escolha pelo contexto" in ambiguous.summary
+    assert "Não é necessário conhecer o código" in ambiguous.summary
+    assert "Encargos Financeiros da União" in ambiguous.summary
+    assert "Transferências a Estados" in ambiguous.summary
+    assert ambiguous.sources == []
+    assert "não foram somadas" in ambiguous.limitations[0]
+    assert "R$ 100" in explicit.summary
+    assert "R$ 200" not in explicit.summary
+
+
+def test_area_context_disambiguates_identical_unit_names_without_code() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2024, title="LOA 2024", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2024_volume4.pdf",
+            sha256="a" * 64,
+            byte_size=100,
+            page_count=2,
+        )
+        for index, (code, area, value) in enumerate(
+            (("71101", "fiscal_71000", 100), ("74102", "fiscal_74000", 300)),
+            start=1,
+        ):
+            page = Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} Recursos sob Supervisão do Ministério da Fazenda",
+                page_sha256=str(index + 6) * 64,
+            )
+            db.add(page)
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=2024,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name="Recursos sob Supervisão do Ministério da Fazenda",
+                    area_slug=area,
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 7) * 64,
+                )
+            )
+        db.commit()
+        response = search_documents(
+            db,
+            SearchRequest(
+                query=(
+                    "Qual foi o orçamento dos Recursos sob Supervisão do Ministério "
+                    "da Fazenda em Operações Oficiais de Crédito em 2024?"
+                ),
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert "código 74102" in response.summary
+    assert "R$ 300" in response.summary
+    assert "R$ 100" not in response.summary
+
+
 def test_health_unit_group_wordings_are_recognized() -> None:
     expected = [
         ("Quantas unidades vinculadas ao Ministério da Saúde existem?", "count_institutions"),

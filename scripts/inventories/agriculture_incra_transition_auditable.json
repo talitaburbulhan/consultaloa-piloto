@@ -1,0 +1,11 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2020, "code": "22201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "3.291.615.943", "filename": "2020_volume4.pdf", "pdf_page": 46},
+    {"year": 2021, "code": "22201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "3.897.457.928", "filename": "2021_volume4.pdf", "pdf_page": 33},
+    {"year": 2023, "code": "22201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "2.400.646.650", "filename": "2023_volume4.pdf", "pdf_page": 36},
+    {"year": 2024, "code": "49201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "2.878.420.918", "filename": "2024_volume4.pdf", "pdf_page": 417},
+    {"year": 2025, "code": "49201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "2.727.953.386", "filename": "2025_volume4.pdf", "pdf_page": 383},
+    {"year": 2026, "code": "49201", "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA", "category": "autarquia", "original_value": "2.823.251.364", "filename": "2026_volume4.pdf", "pdf_page": 369}
+  ]
+}

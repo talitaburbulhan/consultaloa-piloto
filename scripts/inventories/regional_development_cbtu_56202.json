@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "56202", "name": "Companhia Brasileira de Trens Urbanos - CBTU", "category": "empresa_publica", "original_value": "1.233.938.045", "filename": "2019_volume4.pdf", "pdf_page": 562},
+    {"year": 2024, "code": "56202", "name": "Companhia Brasileira de Trens Urbanos - CBTU", "category": "empresa_publica", "original_value": "1.360.408.599", "filename": "2024_volume4.pdf", "pdf_page": 575},
+    {"year": 2025, "code": "56202", "name": "Companhia Brasileira de Trens Urbanos - CBTU", "category": "empresa_publica", "original_value": "1.339.210.190", "filename": "2025_volume4.pdf", "pdf_page": 532},
+    {"year": 2026, "code": "56202", "name": "Companhia Brasileira de Trens Urbanos - CBTU", "category": "empresa_publica", "original_value": "1.511.693.473", "filename": "2026_volume4.pdf", "pdf_page": 520}
+  ]
+}

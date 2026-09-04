@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "2.321.204.954", "filename": "2019_volume4.pdf", "pdf_page": 151},
+    {"year": 2020, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "1.735.412.391", "filename": "2020_volume4.pdf", "pdf_page": 208},
+    {"year": 2021, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "1.048.760.551", "filename": "2021_volume4.pdf", "pdf_page": 177},
+    {"year": 2022, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "2.004.774.013", "filename": "2022_volume4.pdf", "pdf_page": 158},
+    {"year": 2023, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "2.782.567.358", "filename": "2023_volume4.pdf", "pdf_page": 155},
+    {"year": 2024, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "2.487.178.951", "filename": "2024_volume4.pdf", "pdf_page": 148},
+    {"year": 2025, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "2.468.178.368", "filename": "2025_volume4.pdf", "pdf_page": 134},
+    {"year": 2026, "code": "32265", "name": "Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP", "category": "agencia_reguladora", "original_value": "1.649.899.437", "filename": "2026_volume4.pdf", "pdf_page": 127}
+  ]
+}

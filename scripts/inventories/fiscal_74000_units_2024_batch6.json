@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2024, "code": "74915", "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Nordeste/FNE - MDR", "category": "unidade_orcamentaria", "original_value": "15.941.286.214", "filename": "2024_volume4.pdf", "pdf_page": 680},
+    {"year": 2024, "code": "74916", "name": "Recursos sob Supervisão do Fundo Nacional sobre Mudança do Clima/FNMC - MMA", "category": "unidade_orcamentaria", "original_value": "10.456.143.124", "filename": "2024_volume4.pdf", "pdf_page": 680},
+    {"year": 2024, "code": "74917", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento da Amazônia/FDA - MDR", "category": "unidade_orcamentaria", "original_value": "896.345.069", "filename": "2024_volume4.pdf", "pdf_page": 680}
+  ]
+}

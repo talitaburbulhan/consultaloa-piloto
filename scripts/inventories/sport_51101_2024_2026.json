@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "sport",
+  "records": [
+    {
+      "year": 2024,
+      "code": "51101",
+      "name": "Ministério do Esporte - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "2.553.883.340",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 426
+    },
+    {
+      "year": 2025,
+      "code": "51101",
+      "name": "Ministério do Esporte - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "3.198.671.867",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 391
+    },
+    {
+      "year": 2026,
+      "code": "51101",
+      "name": "Ministério do Esporte - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "2.464.447.506",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 377
+    }
+  ]
+}

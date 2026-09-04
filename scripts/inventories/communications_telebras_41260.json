@@ -1,0 +1,50 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41260",
+      "name": "Telecomunicações Brasileiras S.A. - TELEBRAS",
+      "category": "empresa_publica",
+      "original_value": "856.944.600",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 345
+    },
+    {
+      "year": 2022,
+      "code": "41260",
+      "name": "Telecomunicações Brasileiras S.A. - TELEBRAS",
+      "category": "empresa_publica",
+      "original_value": "897.145.286",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 334
+    },
+    {
+      "year": 2023,
+      "code": "41260",
+      "name": "Telecomunicações Brasileiras S.A. - TELEBRAS",
+      "category": "empresa_publica",
+      "original_value": "841.598.981",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 379
+    },
+    {
+      "year": 2024,
+      "code": "41260",
+      "name": "Telecomunicações Brasileiras S.A. - TELEBRAS",
+      "category": "empresa_publica",
+      "original_value": "861.948.771",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 322
+    },
+    {
+      "year": 2025,
+      "code": "41260",
+      "name": "Telecomunicações Brasileiras S.A. - TELEBRAS",
+      "category": "empresa_publica",
+      "original_value": "927.476.042",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 291
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "parent_organization_code": "ciencia_tecnologia",
+  "validation_type": "human_editorial_validation",
+  "records": [
+    {
+      "year": 2022,
+      "code": "24205",
+      "name": "Agência Espacial Brasileira - AEB",
+      "category": "agencia_espacial",
+      "original_value": "167.082.794",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 66,
+      "summary_pdf_page": 64,
+      "retrospective_confirmation_document": "2023_volume4.pdf",
+      "retrospective_confirmation_pdf_page": 65,
+      "editorial_provenance": "Total confirmado pelo usuário no fechamento contemporâneo da unidade em validação editorial humana em 2026-08-28"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2025,
+      "code": "73116",
+      "name": "Recursos sob Supervisão da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP",
+      "category": "unidade_orcamentaria",
+      "original_value": "66.731.448.125",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 617
+    },
+    {
+      "year": 2026,
+      "code": "73116",
+      "name": "Recursos sob Supervisão da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis - ANP",
+      "category": "unidade_orcamentaria",
+      "original_value": "60.237.855.246",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 601
+    }
+  ]
+}

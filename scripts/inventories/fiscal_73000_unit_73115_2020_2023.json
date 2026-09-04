@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {"year": 2020, "code": "73115", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "unidade_orcamentaria", "original_value": "5.554.568", "filename": "2020_volume4.pdf", "pdf_page": 622},
+    {"year": 2021, "code": "73115", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "unidade_orcamentaria", "original_value": "5.162.955", "filename": "2021_volume4.pdf", "pdf_page": 578},
+    {"year": 2022, "code": "73115", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "unidade_orcamentaria", "original_value": "8.393.343", "filename": "2022_volume4.pdf", "pdf_page": 566},
+    {"year": 2023, "code": "73115", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "unidade_orcamentaria", "original_value": "13.450.920", "filename": "2023_volume4.pdf", "pdf_page": 595}
+  ]
+}

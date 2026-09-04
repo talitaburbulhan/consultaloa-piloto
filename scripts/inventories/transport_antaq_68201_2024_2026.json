@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {
+      "year": 2024,
+      "code": "68201",
+      "name": "Agência Nacional de Transportes Aquaviários - ANTAQ",
+      "category": "autarquia",
+      "original_value": "293.309.696",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 611
+    },
+    {
+      "year": 2025,
+      "code": "68201",
+      "name": "Agência Nacional de Transportes Aquaviários - ANTAQ",
+      "category": "autarquia",
+      "original_value": "247.335.711",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 568
+    },
+    {
+      "year": 2026,
+      "code": "68201",
+      "name": "Agência Nacional de Transportes Aquaviários - ANTAQ",
+      "category": "autarquia",
+      "original_value": "214.491.596",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 554
+    }
+  ]
+}

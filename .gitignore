@@ -11,3 +11,4 @@ coverage/
 storage/
 *.egg-info/
 .tool-home/
+tmp/

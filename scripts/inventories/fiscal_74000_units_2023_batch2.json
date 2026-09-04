@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2023, "code": "74201", "name": "Recursos sob Supervisão da Superintendência de Seguros Privados/SUSEP - Ministério da Economia", "category": "unidade_orcamentaria", "original_value": "1.321.169", "filename": "2023_volume4.pdf", "pdf_page": 638},
+    {"year": 2023, "code": "74203", "name": "Recursos sob Supervisão do Instituto Nacional de Colonização e Reforma Agrária/INCRA-MAPA", "category": "unidade_orcamentaria", "original_value": "48.224.134", "filename": "2023_volume4.pdf", "pdf_page": 638},
+    {"year": 2023, "code": "74204", "name": "Recursos sob Supervisão da Caixa de Construções de Casas para o Pessoal da Marinha - CCCPM", "category": "unidade_orcamentaria", "original_value": "228.473.762", "filename": "2023_volume4.pdf", "pdf_page": 638}
+  ]
+}

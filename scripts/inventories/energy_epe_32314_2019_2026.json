@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "147.319.878", "filename": "2019_volume4.pdf", "pdf_page": 156},
+    {"year": 2020, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "102.193.954", "filename": "2020_volume4.pdf", "pdf_page": 214},
+    {"year": 2021, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "36.678.680", "filename": "2021_volume4.pdf", "pdf_page": 183},
+    {"year": 2022, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "130.694.536", "filename": "2022_volume4.pdf", "pdf_page": 164},
+    {"year": 2023, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "147.876.337", "filename": "2023_volume4.pdf", "pdf_page": 161},
+    {"year": 2024, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "176.014.504", "filename": "2024_volume4.pdf", "pdf_page": 154},
+    {"year": 2025, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "183.703.995", "filename": "2025_volume4.pdf", "pdf_page": 140},
+    {"year": 2026, "code": "32314", "name": "Empresa de Pesquisa Energética - EPE", "category": "empresa_publica", "original_value": "223.704.886", "filename": "2026_volume4.pdf", "pdf_page": 133}
+  ]
+}

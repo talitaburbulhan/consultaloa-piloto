@@ -54,6 +54,15 @@ def load_inventory(path: Path, area_slug: str, source_label: str) -> dict[str, i
                 )
             page, version, document = page_row
 
+            source_text = (
+                f"{source_label}: {code} {name}. "
+                f"Categoria institucional: {category}. "
+                f"Total autorizado na LOA: {original}"
+            )
+            deduplication_key = hashlib.sha256(
+                f"{area_slug}|{year}|{code}|{original}".encode("utf-8")
+            ).hexdigest()
+
             existing = db.execute(
                 select(BudgetRecord).where(
                     BudgetRecord.year == year,
@@ -73,17 +82,25 @@ def load_inventory(path: Path, area_slug: str, source_label: str) -> dict[str, i
                     if record.parent_organization_code != parent_code:
                         record.parent_organization_code = parent_code
                         changed = True
+                    if record.page_id != page.id:
+                        record.page_id = page.id
+                        record.document_version_id = version.id
+                        changed = True
+                    if record.original_value != original:
+                        record.original_value = original
+                        changed = True
+                    if record.unit != "R$ 1,00":
+                        record.unit = "R$ 1,00"
+                        changed = True
+                    if record.source_text != source_text:
+                        record.source_text = source_text
+                        changed = True
+                    if record.deduplication_key != deduplication_key:
+                        record.deduplication_key = deduplication_key
+                        changed = True
                 counters["updated" if changed else "unchanged"] += 1
                 continue
 
-            source_text = (
-                f"{source_label}: {code} {name}. "
-                f"Categoria institucional: {category}. "
-                f"Total autorizado na LOA: {original}"
-            )
-            deduplication_key = hashlib.sha256(
-                f"{area_slug}|{year}|{code}|{original}".encode("utf-8")
-            ).hexdigest()
             db.add(
                 BudgetRecord(
                     year=year,

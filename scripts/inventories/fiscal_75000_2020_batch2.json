@@ -1,0 +1,7 @@
+{
+  "parent_organization_code": "75000",
+  "records": [
+    {"year": 2020, "code": "75000", "name": "Dívida Pública Federal", "category": "orgao_fiscal_transversal", "original_value": "1.599.946.616.849", "filename": "2020_volume4.pdf", "pdf_page": 690},
+    {"year": 2020, "code": "75101", "name": "Recursos sob Supervisão do Ministério da Economia", "category": "unidade_orcamentaria", "original_value": "1.599.946.616.849", "filename": "2020_volume4.pdf", "pdf_page": 690}
+  ]
+}

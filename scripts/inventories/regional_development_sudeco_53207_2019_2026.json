@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "199.172.922", "filename": "2019_volume4.pdf", "pdf_page": 500},
+    {"year": 2020, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "144.309.287", "filename": "2020_volume4.pdf", "pdf_page": 503},
+    {"year": 2021, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "242.656.744", "filename": "2021_volume4.pdf", "pdf_page": 472},
+    {"year": 2022, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "144.597.762", "filename": "2022_volume4.pdf", "pdf_page": 456},
+    {"year": 2023, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "169.521.005", "filename": "2023_volume4.pdf", "pdf_page": 495},
+    {"year": 2024, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "152.719.067", "filename": "2024_volume4.pdf", "pdf_page": 525},
+    {"year": 2025, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "108.714.522", "filename": "2025_volume4.pdf", "pdf_page": 485},
+    {"year": 2026, "code": "53207", "name": "Superintendência do Desenvolvimento do Centro-Oeste - SUDECO", "category": "autarquia", "original_value": "121.880.647", "filename": "2026_volume4.pdf", "pdf_page": 472}
+  ]
+}

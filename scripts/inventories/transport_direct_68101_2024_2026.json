@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2024, "code": "68101", "name": "Ministério de Portos e Aeroportos - Administração Direta", "category": "administracao_direta", "original_value": "1.241.867.754", "filename": "2024_volume4.pdf", "pdf_page": 606},
+    {"year": 2025, "code": "68101", "name": "Ministério de Portos e Aeroportos - Administração Direta", "category": "administracao_direta", "original_value": "1.440.391.643", "filename": "2025_volume4.pdf", "pdf_page": 562},
+    {"year": 2026, "code": "68101", "name": "Ministério de Portos e Aeroportos - Administração Direta", "category": "administracao_direta", "original_value": "959.008.522", "filename": "2026_volume4.pdf", "pdf_page": 549}
+  ]
+}

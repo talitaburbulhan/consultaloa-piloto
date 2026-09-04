@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2020, "code": "53208", "name": "Empresa de Trens Urbanos de Porto Alegre S.A. - TRENSURB", "category": "empresa_publica", "original_value": "312.886.508", "filename": "2020_volume4.pdf", "pdf_page": 506},
+    {"year": 2021, "code": "53208", "name": "Empresa de Trens Urbanos de Porto Alegre S.A. - TRENSURB", "category": "empresa_publica", "original_value": "205.136.072", "filename": "2021_volume4.pdf", "pdf_page": 475},
+    {"year": 2022, "code": "53208", "name": "Empresa de Trens Urbanos de Porto Alegre S.A. - TRENSURB", "category": "empresa_publica", "original_value": "277.002.363", "filename": "2022_volume4.pdf", "pdf_page": 459},
+    {"year": 2023, "code": "53208", "name": "Empresa de Trens Urbanos de Porto Alegre S.A. - TRENSURB", "category": "empresa_publica", "original_value": "307.810.054", "filename": "2023_volume4.pdf", "pdf_page": 498}
+  ]
+}

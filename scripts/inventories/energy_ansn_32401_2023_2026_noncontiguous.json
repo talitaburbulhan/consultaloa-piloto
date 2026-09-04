@@ -1,0 +1,7 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2023, "code": "32401", "name": "Autoridade Nacional de Segurança Nuclear - ANSN", "category": "autarquia", "original_value": "160.775.477", "filename": "2023_volume4.pdf", "pdf_page": 169},
+    {"year": 2026, "code": "32401", "name": "Autoridade Nacional de Segurança Nuclear - ANSN", "category": "autarquia", "original_value": "225.594.987", "filename": "2026_volume4.pdf", "pdf_page": 142}
+  ]
+}

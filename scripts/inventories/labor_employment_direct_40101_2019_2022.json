@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "labor_employment",
+  "records": [
+    {
+      "year": 2019,
+      "code": "40101",
+      "name": "Ministério do Trabalho - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "9.492.830.918",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 337
+    },
+    {
+      "year": 2022,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Previdência - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "4.138.954.039",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 309
+    },
+    {
+      "year": 2023,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Previdência - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "6.783.882.195",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 354
+    },
+    {
+      "year": 2024,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Emprego - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "4.590.965.017",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 300
+    },
+    {
+      "year": 2025,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Emprego - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "2.899.313.227",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 273
+    },
+    {
+      "year": 2026,
+      "code": "40101",
+      "name": "Ministério do Trabalho e Emprego - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "2.609.499.698",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 265
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "1.589.077.440", "filename": "2019_volume4.pdf", "pdf_page": 154},
+    {"year": 2020, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "1.495.758.878", "filename": "2020_volume4.pdf", "pdf_page": 211},
+    {"year": 2021, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "1.606.904.570", "filename": "2021_volume4.pdf", "pdf_page": 180},
+    {"year": 2022, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "2.089.800.758", "filename": "2022_volume4.pdf", "pdf_page": 161},
+    {"year": 2023, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "2.437.391.064", "filename": "2023_volume4.pdf", "pdf_page": 158},
+    {"year": 2024, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "3.259.215.484", "filename": "2024_volume4.pdf", "pdf_page": 151},
+    {"year": 2025, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "3.238.505.531", "filename": "2025_volume4.pdf", "pdf_page": 137},
+    {"year": 2026, "code": "32266", "name": "Agência Nacional de Energia Elétrica - ANEEL", "category": "agencia_reguladora", "original_value": "2.988.056.909", "filename": "2026_volume4.pdf", "pdf_page": 130}
+  ]
+}

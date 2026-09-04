@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "8.505.818.130", "filename": "2019_volume4.pdf", "pdf_page": 311},
+    {"year": 2020, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "8.274.570.764", "filename": "2020_volume4.pdf", "pdf_page": 354},
+    {"year": 2021, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "8.239.524.288", "filename": "2021_volume4.pdf", "pdf_page": 309},
+    {"year": 2022, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "7.770.315.561", "filename": "2022_volume4.pdf", "pdf_page": 279},
+    {"year": 2023, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "18.473.453.190", "filename": "2023_volume4.pdf", "pdf_page": 321},
+    {"year": 2024, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "13.845.343.581", "filename": "2024_volume4.pdf", "pdf_page": 280},
+    {"year": 2025, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "13.657.139.138", "filename": "2025_volume4.pdf", "pdf_page": 253},
+    {"year": 2026, "code": "39252", "name": "Departamento Nacional de Infraestrutura de Transportes - DNIT", "category": "autarquia", "original_value": "14.772.734.280", "filename": "2026_volume4.pdf", "pdf_page": 248}
+  ]
+}

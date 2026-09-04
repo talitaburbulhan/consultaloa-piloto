@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25103", "name": "Secretaria da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "17.778.580.235", "filename": "2019_volume4.pdf", "pdf_page": 93},
+    {"year": 2020, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "13.216.540.366", "filename": "2020_volume4.pdf", "pdf_page": 112},
+    {"year": 2021, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "15.332.722.886", "filename": "2021_volume4.pdf", "pdf_page": 83},
+    {"year": 2022, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "18.129.218.397", "filename": "2022_volume4.pdf", "pdf_page": 82},
+    {"year": 2023, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "18.253.390.090", "filename": "2023_volume4.pdf", "pdf_page": 84},
+    {"year": 2024, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "23.065.380.694", "filename": "2024_volume4.pdf", "pdf_page": 75},
+    {"year": 2025, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "18.104.423.207", "filename": "2025_volume4.pdf", "pdf_page": 66},
+    {"year": 2026, "code": "25103", "name": "Secretaria Especial da Receita Federal do Brasil", "category": "administracao_direta_especializada", "original_value": "13.262.370.412", "filename": "2026_volume4.pdf", "pdf_page": 62}
+  ]
+}

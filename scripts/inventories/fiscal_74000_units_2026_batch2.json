@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2026, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante/FMM - Ministério de Portos e Aeroportos", "category": "unidade_orcamentaria", "original_value": "9.266.918.558", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74905", "name": "Recursos sob Supervisão do Fundo para o Desenvolvimento Tecnológico das Telecomunicações/FUNTTEL - Ministério das Comunicações", "category": "unidade_orcamentaria", "original_value": "369.103.921", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74906", "name": "Recursos sob Supervisão do Fundo de Terras e da Reforma Agrária/Banco da Terra - MDA", "category": "unidade_orcamentaria", "original_value": "326.083.308", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74908", "name": "Recursos sob Supervisão do Fundo Geral de Turismo/FUNGETUR - Ministério do Turismo", "category": "unidade_orcamentaria", "original_value": "826.435.095", "filename": "2026_volume4.pdf", "pdf_page": 635}
+  ]
+}

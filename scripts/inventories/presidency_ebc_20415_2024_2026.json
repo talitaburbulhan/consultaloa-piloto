@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2024,
+      "code": "20415",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica_vinculada",
+      "original_value": "818.583.163",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 13
+    },
+    {
+      "year": 2025,
+      "code": "20415",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica_vinculada",
+      "original_value": "955.182.280",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 12
+    },
+    {
+      "year": 2026,
+      "code": "20415",
+      "name": "Empresa Brasil de Comunicação S.A. - EBC",
+      "category": "empresa_publica_vinculada",
+      "original_value": "1.183.969.668",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 12
+    }
+  ]
+}

@@ -42,8 +42,9 @@ from .schemas import (
 )
 from .security import CurrentUser, current_user
 from .search import (
-    education_pilot_out_of_scope,
-    education_pilot_query_allowed,
+    pilot_comparison_allowed,
+    pilot_out_of_scope,
+    pilot_query_allowed,
     search_documents,
 )
 
@@ -100,10 +101,10 @@ def health(db: Session = Depends(get_db)) -> dict:
 
 
 def _run_pilot_search(db: Session, request: SearchRequest) -> SearchResponse:
-    if settings.pilot_education_only and not education_pilot_query_allowed(
-        db, request.query
+    if settings.pilot_education_only and not pilot_query_allowed(
+        db, request.query, settings.allowed_pilot_areas
     ):
-        return education_pilot_out_of_scope(request)
+        return pilot_out_of_scope(request, settings.allowed_pilot_areas)
     return search_documents(db, request)
 
 
@@ -237,15 +238,10 @@ def compare(
     db: Session = Depends(get_db),
     user: CurrentUser = Depends(current_user),
 ) -> ComparisonResponse:
-    if settings.pilot_education_only and request.entity_type == "organization":
-        education_record = db.scalar(
-            select(BudgetRecord.id).where(
-                BudgetRecord.organization_code == request.code,
-                BudgetRecord.parent_organization_code == "26000",
-            )
-        )
-        if not education_record:
-            raise HTTPException(403, "Comparação fora do piloto de Educação")
+    if settings.pilot_education_only and not pilot_comparison_allowed(
+        db, request.entity_type, request.code, settings.allowed_pilot_areas
+    ):
+        raise HTTPException(403, "Comparação fora das áreas liberadas no piloto")
     return compare_budget_records(db, request)
 
 

@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "75000",
+  "records": [
+    {"year": 2025, "code": "75000", "name": "Dívida Pública Federal", "category": "orgao_fiscal_transversal", "original_value": "2.525.820.998.165", "filename": "2025_volume4.pdf", "pdf_page": 702},
+    {"year": 2025, "code": "75101", "name": "Recursos sob Supervisão do Ministério da Fazenda", "category": "unidade_orcamentaria", "original_value": "2.525.820.998.165", "filename": "2025_volume4.pdf", "pdf_page": 702},
+    {"year": 2026, "code": "75000", "name": "Dívida Pública Federal", "category": "orgao_fiscal_transversal", "original_value": "2.859.968.152.647", "filename": "2026_volume4.pdf", "pdf_page": 686},
+    {"year": 2026, "code": "75101", "name": "Recursos sob Supervisão do Ministério da Fazenda", "category": "unidade_orcamentaria", "original_value": "2.859.968.152.647", "filename": "2026_volume4.pdf", "pdf_page": 686}
+  ]
+}

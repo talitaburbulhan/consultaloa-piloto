@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "labor_employment",
+  "records": [
+    {
+      "year": 2019,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "110.668.788",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 339
+    },
+    {
+      "year": 2022,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "105.810.578",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 317
+    },
+    {
+      "year": 2023,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "102.225.289",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 360
+    },
+    {
+      "year": 2024,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "112.464.542",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 305
+    },
+    {
+      "year": 2025,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "114.348.438",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 277
+    },
+    {
+      "year": 2026,
+      "code": "40203",
+      "name": "Fundação Jorge Duprat Figueiredo de Segurança e Medicina do Trabalho",
+      "category": "fundacao_vinculada",
+      "original_value": "132.666.517",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 269
+    }
+  ]
+}

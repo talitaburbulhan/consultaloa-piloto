@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2019, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "861.957.604", "filename": "2019_volume4.pdf", "pdf_page": 148},
+    {"year": 2020, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "580.685.475", "filename": "2020_volume4.pdf", "pdf_page": 204},
+    {"year": 2021, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "234.256.834", "filename": "2021_volume4.pdf", "pdf_page": 173},
+    {"year": 2022, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "665.638.071", "filename": "2022_volume4.pdf", "pdf_page": 154},
+    {"year": 2023, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "913.990.181", "filename": "2023_volume4.pdf", "pdf_page": 151},
+    {"year": 2024, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "860.375.301", "filename": "2024_volume4.pdf", "pdf_page": 144},
+    {"year": 2025, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "884.942.104", "filename": "2025_volume4.pdf", "pdf_page": 131},
+    {"year": 2026, "code": "32202", "name": "Companhia de Pesquisa de Recursos Minerais - CPRM", "category": "empresa_publica", "original_value": "871.272.332", "filename": "2026_volume4.pdf", "pdf_page": 124}
+  ]
+}

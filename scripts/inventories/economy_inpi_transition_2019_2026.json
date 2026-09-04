@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "28203", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "561.284.332", "filename": "2019_volume4.pdf", "pdf_page": 121},
+    {"year": 2020, "code": "25297", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "635.460.777", "filename": "2020_volume4.pdf", "pdf_page": 133},
+    {"year": 2021, "code": "25297", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "562.497.408", "filename": "2021_volume4.pdf", "pdf_page": 104},
+    {"year": 2022, "code": "25297", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "714.786.164", "filename": "2022_volume4.pdf", "pdf_page": 97},
+    {"year": 2023, "code": "25297", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "868.536.249", "filename": "2023_volume4.pdf", "pdf_page": 99},
+    {"year": 2024, "code": "28203", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "860.630.994", "filename": "2024_volume4.pdf", "pdf_page": 98},
+    {"year": 2025, "code": "28203", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "954.042.375", "filename": "2025_volume4.pdf", "pdf_page": 86},
+    {"year": 2026, "code": "28203", "name": "Instituto Nacional da Propriedade Industrial - INPI", "category": "autarquia_industrial", "original_value": "1.092.401.023", "filename": "2026_volume4.pdf", "pdf_page": 82}
+  ]
+}

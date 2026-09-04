@@ -16,7 +16,9 @@ next_cli = root / "apps" / "web" / "node_modules" / "next" / "dist" / "bin" / "n
 flags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
 
 
-def launch(name: str, command: list[str], cwd: Path) -> int:
+def launch(
+    name: str, command: list[str], cwd: Path, env: dict[str, str] | None = None
+) -> int:
     output = (logs / f"{name}.log").open("ab")
     process = subprocess.Popen(
         command,
@@ -26,10 +28,16 @@ def launch(name: str, command: list[str], cwd: Path) -> int:
         stderr=subprocess.STDOUT,
         creationflags=flags,
         close_fds=True,
+        env=env,
     )
     (logs / f"{name}.pid").write_text(str(process.pid), encoding="ascii")
     return process.pid
 
+
+local_api_env = os.environ.copy()
+local_api_env["PILOT_EDUCATION_ONLY"] = "false"
+local_web_env = os.environ.copy()
+local_web_env["NEXT_PUBLIC_PILOT_EDUCATION_ONLY"] = "false"
 
 api_pid = launch(
     "api",
@@ -46,10 +54,12 @@ api_pid = launch(
         "8000",
     ],
     root,
+    local_api_env,
 )
 web_pid = launch(
     "web",
     [str(node), str(next_cli), "dev", "--hostname", "127.0.0.1", "--port", "3000"],
     root / "apps" / "web",
+    local_web_env,
 )
 print(f"api={api_pid} web={web_pid}")

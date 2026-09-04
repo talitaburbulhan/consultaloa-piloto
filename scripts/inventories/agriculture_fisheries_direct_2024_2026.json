@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2024, "code": "58101", "name": "Ministério da Pesca e Aquicultura - Administração Direta", "category": "administracao_direta", "original_value": "356.831.363", "filename": "2024_volume4.pdf", "pdf_page": 581},
+    {"year": 2025, "code": "58101", "name": "Ministério da Pesca e Aquicultura - Administração Direta", "category": "administracao_direta", "original_value": "273.271.098", "filename": "2025_volume4.pdf", "pdf_page": 538},
+    {"year": 2026, "code": "58101", "name": "Ministério da Pesca e Aquicultura - Administração Direta", "category": "administracao_direta", "original_value": "270.004.272", "filename": "2026_volume4.pdf", "pdf_page": 526}
+  ]
+}

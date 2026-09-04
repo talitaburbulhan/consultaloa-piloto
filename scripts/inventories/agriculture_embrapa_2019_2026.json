@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2019, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "3.634.372.758", "filename": "2019_volume4.pdf", "pdf_page": 45},
+    {"year": 2020, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "2.061.940.274", "filename": "2020_volume4.pdf", "pdf_page": 51},
+    {"year": 2021, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "1.207.444.700", "filename": "2021_volume4.pdf", "pdf_page": 37},
+    {"year": 2022, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "3.421.464.636", "filename": "2022_volume4.pdf", "pdf_page": 39},
+    {"year": 2023, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "3.639.755.433", "filename": "2023_volume4.pdf", "pdf_page": 40},
+    {"year": 2024, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "4.109.084.307", "filename": "2024_volume4.pdf", "pdf_page": 31},
+    {"year": 2025, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "4.760.823.026", "filename": "2025_volume4.pdf", "pdf_page": 26},
+    {"year": 2026, "code": "22202", "name": "Empresa Brasileira de Pesquisa Agropecuária - EMBRAPA", "category": "empresa_publica", "original_value": "4.840.897.748", "filename": "2026_volume4.pdf", "pdf_page": 25}
+  ]
+}

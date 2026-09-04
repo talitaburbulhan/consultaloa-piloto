@@ -18,15 +18,15 @@ RUN pip install --no-cache-dir .
 # O pacote instalado busca o vocabulário em /usr/local/lib/config.
 COPY config/ /usr/local/lib/config/
 COPY --from=web_build /web/.next/standalone ./web
-COPY pilot-seed/loa-piloto-educacao-render.zip /tmp/pilot.zip
-RUN python -c "import zipfile; zipfile.ZipFile('/tmp/pilot.zip').extractall('/app/pilot-data')" && rm /tmp/pilot.zip
+COPY pilot-seed/loa-homologada-render.zip /tmp/loa-homologada.zip
+RUN python -c "import zipfile; zipfile.ZipFile('/tmp/loa-homologada.zip').extractall('/app/loa-data')" && rm /tmp/loa-homologada.zip
 COPY scripts/start_render_free.sh ./scripts/start_render_free.sh
 COPY scripts/render_proxy.mjs ./scripts/render_proxy.mjs
 RUN chmod +x ./scripts/start_render_free.sh
 
-ENV DATABASE_URL=sqlite:////app/pilot-data/loa.db
-ENV STORAGE_DIR=/app/pilot-data
-ENV SOURCE_DIR=/app/pilot-data/dados
-ENV PILOT_EDUCATION_ONLY=true
+ENV DATABASE_URL=sqlite:////app/loa-data/loa.db
+ENV STORAGE_DIR=/app/loa-data
+ENV SOURCE_DIR=/app/loa-data/dados
+ENV PILOT_EDUCATION_ONLY=false
 
 CMD ["bash", "scripts/start_render_free.sh"]

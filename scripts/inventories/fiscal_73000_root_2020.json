@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2020,
+      "code": "73000",
+      "name": "Transferências a Estados, Distrito Federal e Municípios",
+      "category": "orgao_fiscal_transversal",
+      "original_value": "302.582.950.787",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 622
+    }
+  ]
+}

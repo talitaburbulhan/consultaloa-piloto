@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25201", "name": "Banco Central do Brasil", "category": "autarquia_financeira", "original_value": "3.599.412.451", "filename": "2019_volume4.pdf", "pdf_page": 98},
+    {"year": 2020, "code": "25201", "name": "Banco Central do Brasil", "category": "autarquia_financeira", "original_value": "2.491.292.606", "filename": "2020_volume4.pdf", "pdf_page": 118},
+    {"year": 2021, "code": "25201", "name": "Banco Central do Brasil", "category": "autarquia_financeira", "original_value": "2.315.008.617", "filename": "2021_volume4.pdf", "pdf_page": 89}
+  ]
+}

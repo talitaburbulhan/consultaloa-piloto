@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "47206", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "66.172.950", "filename": "2019_volume6.pdf", "pdf_page": 208},
+    {"year": 2020, "code": "25918", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "45.777.808", "filename": "2020_volume6.pdf", "pdf_page": 58},
+    {"year": 2021, "code": "25918", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "107.920.660", "filename": "2021_volume6.pdf", "pdf_page": 54},
+    {"year": 2022, "code": "25918", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "91.980.671", "filename": "2022_volume6.pdf", "pdf_page": 53},
+    {"year": 2023, "code": "25918", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "48.574.949", "filename": "2023_volume6.pdf", "pdf_page": 50},
+    {"year": 2024, "code": "28234", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "107.589.331", "filename": "2024_volume6.pdf", "pdf_page": 49},
+    {"year": 2025, "code": "28234", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "118.543.577", "filename": "2025_volume6.pdf", "pdf_page": 49},
+    {"year": 2026, "code": "28234", "name": "Banco Nacional de Desenvolvimento Econômico e Social - BNDES", "category": "empresa_estatal", "original_value": "292.306.016", "filename": "2026_volume6.pdf", "pdf_page": 49}
+  ]
+}

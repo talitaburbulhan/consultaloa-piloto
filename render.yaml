@@ -11,7 +11,7 @@ services:
       - key: AUTH_REQUIRED
         value: "true"
       - key: PILOT_EDUCATION_ONLY
-        value: "true"
+        value: "false"
       - key: CORS_ORIGINS
         value: "*"
       - key: FEEDBACK_DATABASE_URL

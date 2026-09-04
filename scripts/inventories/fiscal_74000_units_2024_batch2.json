@@ -1,0 +1,32 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {
+      "year": 2024,
+      "code": "74203",
+      "name": "Recursos sob Supervisão do Instituto Nacional de Colonização e Reforma Agrária/INCRA-MDA",
+      "category": "unidade_orcamentaria",
+      "original_value": "9.496.252",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    },
+    {
+      "year": 2024,
+      "code": "74204",
+      "name": "Recursos sob Supervisão da Caixa de Construções de Casas para o Pessoal da Marinha - CCCPM",
+      "category": "unidade_orcamentaria",
+      "original_value": "209.593.867",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    },
+    {
+      "year": 2024,
+      "code": "74205",
+      "name": "Recursos sob Supervisão da Caixa de Financiamento Imobiliário da Aeronáutica",
+      "category": "unidade_orcamentaria",
+      "original_value": "7.194.886",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 680
+    }
+  ]
+}

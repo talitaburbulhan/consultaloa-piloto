@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "1.288.489.138", "filename": "2019_volume4.pdf", "pdf_page": 487},
+    {"year": 2020, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "1.508.825.122", "filename": "2020_volume4.pdf", "pdf_page": 483},
+    {"year": 2021, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.233.881.753", "filename": "2021_volume4.pdf", "pdf_page": 453},
+    {"year": 2022, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.168.803.046", "filename": "2022_volume4.pdf", "pdf_page": 439},
+    {"year": 2023, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.266.788.098", "filename": "2023_volume4.pdf", "pdf_page": 478},
+    {"year": 2024, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.001.692.643", "filename": "2024_volume4.pdf", "pdf_page": 507},
+    {"year": 2025, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.103.896.474", "filename": "2025_volume4.pdf", "pdf_page": 468},
+    {"year": 2026, "code": "53201", "name": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba - CODEVASF", "category": "empresa_publica", "original_value": "2.092.449.726", "filename": "2026_volume4.pdf", "pdf_page": 455}
+  ]
+}

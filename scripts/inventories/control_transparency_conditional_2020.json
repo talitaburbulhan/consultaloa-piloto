@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "controle_transparencia",
+  "records": [
+    {
+      "year": 2020,
+      "code": "93387",
+      "name": "Recursos sob Supervisão da Controladoria-Geral da União - Administração Direta",
+      "category": "programacao_condicionada_supervisionada",
+      "original_value": "103.883.676",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 1177
+    }
+  ]
+}

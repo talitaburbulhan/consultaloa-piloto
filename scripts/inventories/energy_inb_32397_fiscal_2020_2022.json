@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2020, "code": "32397", "name": "Indústrias Nucleares do Brasil S.A. - INB", "category": "empresa_estatal", "original_value": "479.561.786", "filename": "2020_volume4.pdf", "pdf_page": 220},
+    {"year": 2021, "code": "32397", "name": "Indústrias Nucleares do Brasil S.A. - INB", "category": "empresa_estatal", "original_value": "740.592.526", "filename": "2021_volume4.pdf", "pdf_page": 188},
+    {"year": 2022, "code": "32397", "name": "Indústrias Nucleares do Brasil S.A. - INB", "category": "empresa_estatal", "original_value": "1.346.346.442", "filename": "2022_volume4.pdf", "pdf_page": 170}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "federal_public_advocacy",
+  "records": [
+    {
+      "year": 2019,
+      "code": "63101",
+      "name": "Advocacia-Geral da União",
+      "category": "administracao_direta",
+      "original_value": "3.807.195.551",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 572
+    },
+    {
+      "year": 2022,
+      "code": "63101",
+      "name": "Advocacia-Geral da União",
+      "category": "administracao_direta",
+      "original_value": "4.062.871.398",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 544
+    }
+  ]
+}

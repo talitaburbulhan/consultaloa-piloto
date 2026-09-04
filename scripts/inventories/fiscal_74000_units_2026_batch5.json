@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2026, "code": "74919", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Centro-Oeste/FDCO - MDR", "category": "unidade_orcamentaria", "original_value": "590.881.871", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74920", "name": "Recursos sob Supervisão do Fundo de Universalização dos Serviços de Telecomunicações - FUST - Ministério das Comunicações", "category": "unidade_orcamentaria", "original_value": "1.720.261.028", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74921", "name": "Recursos sob Supervisão do Fundo Nacional de Investimento em Infraestrutura Social (FIIS)/PR", "category": "unidade_orcamentaria", "original_value": "10.000.000.000", "filename": "2026_volume4.pdf", "pdf_page": 635}
+  ]
+}

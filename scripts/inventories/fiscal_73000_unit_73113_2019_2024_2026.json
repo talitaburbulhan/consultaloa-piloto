@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {"year": 2019, "code": "73113", "name": "Recursos sob Supervisão do Ministério do Planejamento, Desenvolvimento e Gestão", "category": "unidade_orcamentaria", "original_value": "6.418.192.020", "filename": "2019_volume4.pdf", "pdf_page": 625},
+    {"year": 2024, "code": "73113", "name": "Recursos sob Supervisão do Ministério da Gestão e Inovação em Serviços Públicos", "category": "unidade_orcamentaria", "original_value": "7.280.139.311", "filename": "2024_volume4.pdf", "pdf_page": 645},
+    {"year": 2025, "code": "73113", "name": "Recursos sob Supervisão do Ministério da Gestão e Inovação em Serviços Públicos", "category": "unidade_orcamentaria", "original_value": "7.547.081.506", "filename": "2025_volume4.pdf", "pdf_page": 617},
+    {"year": 2026, "code": "73113", "name": "Recursos sob Supervisão do Ministério da Gestão e Inovação em Serviços Públicos", "category": "unidade_orcamentaria", "original_value": "15.625.982.905", "filename": "2026_volume4.pdf", "pdf_page": 601}
+  ]
+}

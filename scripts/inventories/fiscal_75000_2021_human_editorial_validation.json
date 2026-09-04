@@ -1,0 +1,17 @@
+{
+  "parent_organization_code": "75000",
+  "validation_type": "human_editorial_validation",
+  "records": [
+    {
+      "year": 2021,
+      "code": "75000",
+      "name": "Dívida Pública Federal",
+      "category": "orgao_fiscal_transversal",
+      "original_value": "2.232.495.842.780",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 658,
+      "printed_page": 657,
+      "editorial_provenance": "Valor integral confirmado pelo usuário em validação editorial humana em 2026-08-28"
+    }
+  ]
+}

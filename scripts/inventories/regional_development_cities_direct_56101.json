@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "56101", "name": "Ministério das Cidades - Administração Direta", "category": "administracao_direta", "original_value": "6.766.099.644", "filename": "2019_volume4.pdf", "pdf_page": 558},
+    {"year": 2024, "code": "56101", "name": "Ministério das Cidades - Administração Direta", "category": "administracao_direta", "original_value": "19.943.421.977", "filename": "2024_volume4.pdf", "pdf_page": 565},
+    {"year": 2025, "code": "56101", "name": "Ministério das Cidades - Administração Direta", "category": "administracao_direta", "original_value": "16.436.711.201", "filename": "2025_volume4.pdf", "pdf_page": 521},
+    {"year": 2026, "code": "56101", "name": "Ministério das Cidades - Administração Direta", "category": "administracao_direta", "original_value": "13.783.114.007", "filename": "2026_volume4.pdf", "pdf_page": 510}
+  ]
+}

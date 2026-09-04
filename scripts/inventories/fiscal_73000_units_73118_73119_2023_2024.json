@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2023,
+      "code": "73118",
+      "name": "Recursos sob Supervisão da Agência Nacional de Energia Elétrica - ANEEL",
+      "category": "unidade_orcamentaria",
+      "original_value": "2.529.491.311",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 595
+    },
+    {
+      "year": 2024,
+      "code": "73118",
+      "name": "Recursos sob Supervisão da Agência Nacional de Energia Elétrica - ANEEL",
+      "category": "unidade_orcamentaria",
+      "original_value": "2.941.962.993",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 645
+    },
+    {
+      "year": 2023,
+      "code": "73119",
+      "name": "Recursos sob Supervisão da Agência Nacional de Mineração - ANM",
+      "category": "unidade_orcamentaria",
+      "original_value": "8.244.019.280",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 595
+    },
+    {
+      "year": 2024,
+      "code": "73119",
+      "name": "Recursos sob Supervisão da Agência Nacional de Mineração - ANM",
+      "category": "unidade_orcamentaria",
+      "original_value": "6.110.075.328",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 645
+    }
+  ]
+}

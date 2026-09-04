@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "planning_management",
+  "records": [
+    {
+      "year": 2024,
+      "code": "46102",
+      "name": "Arquivo Nacional",
+      "category": "administracao_direta",
+      "original_value": "28.722.860",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 394
+    },
+    {
+      "year": 2024,
+      "code": "46201",
+      "name": "Fundação Escola Nacional de Administração Pública",
+      "category": "fundacao",
+      "original_value": "91.392.660",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 396
+    }
+  ]
+}

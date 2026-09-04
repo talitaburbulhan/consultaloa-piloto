@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2023,
+      "code": "20118",
+      "name": "Agência Brasileira de Inteligência - ABIN",
+      "category": "unidade_vinculada",
+      "original_value": "749.919.453",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 11
+    },
+    {
+      "year": 2024,
+      "code": "20118",
+      "name": "Agência Brasileira de Inteligência - ABIN",
+      "category": "unidade_vinculada",
+      "original_value": "800.416.798",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 9
+    },
+    {
+      "year": 2025,
+      "code": "20118",
+      "name": "Agência Brasileira de Inteligência - ABIN",
+      "category": "unidade_vinculada",
+      "original_value": "831.419.772",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 9
+    },
+    {
+      "year": 2026,
+      "code": "20118",
+      "name": "Agência Brasileira de Inteligência - ABIN",
+      "category": "unidade_vinculada",
+      "original_value": "933.315.099",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 9
+    }
+  ]
+}

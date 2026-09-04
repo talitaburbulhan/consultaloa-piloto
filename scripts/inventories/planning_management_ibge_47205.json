@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "planning_management",
+  "records": [
+    {
+      "year": 2019,
+      "code": "47205",
+      "name": "Fundação Instituto Brasileiro de Geografia e Estatística",
+      "category": "fundacao",
+      "original_value": "2.894.780.795",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 400
+    },
+    {
+      "year": 2024,
+      "code": "47205",
+      "name": "Fundação Instituto Brasileiro de Geografia e Estatística",
+      "category": "fundacao",
+      "original_value": "2.617.962.922",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 405
+    },
+    {
+      "year": 2025,
+      "code": "47205",
+      "name": "Fundação Instituto Brasileiro de Geografia e Estatística",
+      "category": "fundacao",
+      "original_value": "2.908.288.088",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 370
+    },
+    {
+      "year": 2026,
+      "code": "47205",
+      "name": "Fundação Instituto Brasileiro de Geografia e Estatística",
+      "category": "fundacao",
+      "original_value": "3.977.080.555",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 358
+    }
+  ]
+}

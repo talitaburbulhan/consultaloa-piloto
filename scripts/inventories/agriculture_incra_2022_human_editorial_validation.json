@@ -1,0 +1,17 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "validation_type": "human_editorial_validation",
+  "records": [
+    {
+      "year": 2022,
+      "code": "22201",
+      "name": "Instituto Nacional de Colonização e Reforma Agrária - INCRA",
+      "category": "autarquia",
+      "original_value": "3.421.642.468",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 38,
+      "summary_pdf_page": 35,
+      "editorial_provenance": "Total integral confirmado pelo usuário no fechamento da unidade em validação editorial humana em 2026-08-28"
+    }
+  ]
+}

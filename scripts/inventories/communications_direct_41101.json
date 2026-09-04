@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "662.328.961",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 338
+    },
+    {
+      "year": 2022,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "978.765.427",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 327
+    },
+    {
+      "year": 2023,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "730.015.491",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 372
+    },
+    {
+      "year": 2024,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "452.473.453",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 314
+    },
+    {
+      "year": 2025,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "390.784.576",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 284
+    },
+    {
+      "year": 2026,
+      "code": "41101",
+      "name": "Ministério das Comunicações - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "1.451.144.789",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 276
+    }
+  ]
+}

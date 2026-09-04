@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "tourism",
+  "records": [
+    {
+      "year": 2026,
+      "code": "54901",
+      "name": "Fundo Geral do Turismo",
+      "category": "fundo",
+      "original_value": "20.000",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 485
+    }
+  ]
+}

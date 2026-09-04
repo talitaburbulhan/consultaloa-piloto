@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2023, "code": "74917", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento da Amazônia/FDA - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "815.906.253", "filename": "2023_volume4.pdf", "pdf_page": 638},
+    {"year": 2023, "code": "74918", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Nordeste/FDNE - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "1.058.416.551", "filename": "2023_volume4.pdf", "pdf_page": 638},
+    {"year": 2023, "code": "74919", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Centro-Oeste/FDCO - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "320.681.772", "filename": "2023_volume4.pdf", "pdf_page": 638},
+    {"year": 2023, "code": "74920", "name": "Recursos sob Supervisão do Fundo de Universalização dos Serviços de Telecomunicações - FUST - M. Comunicações", "category": "unidade_orcamentaria", "original_value": "866.238.567", "filename": "2023_volume4.pdf", "pdf_page": 638}
+  ]
+}

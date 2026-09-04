@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2026, "code": "74910", "name": "Recursos sob Supervisão do Fundo Nacional de Desenvolvimento Científico e Tecnológico/FNDCT - Ministério da Ciência, Tecnologia e Inovação", "category": "unidade_orcamentaria", "original_value": "8.846.984.016", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74912", "name": "Recursos sob Supervisão do Fundo Nacional de Cultura", "category": "unidade_orcamentaria", "original_value": "467.980.000", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74913", "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Norte/FNO - MDR", "category": "unidade_orcamentaria", "original_value": "6.149.243.916", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74914", "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Centro-Oeste/FCO - MDR", "category": "unidade_orcamentaria", "original_value": "6.149.243.916", "filename": "2026_volume4.pdf", "pdf_page": 635}
+  ]
+}

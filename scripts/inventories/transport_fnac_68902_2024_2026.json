@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2024, "code": "68902", "name": "Fundo Nacional de Aviação Civil - FNAC", "category": "fundo", "original_value": "2.991.099.840", "filename": "2024_volume4.pdf", "pdf_page": 619},
+    {"year": 2025, "code": "68902", "name": "Fundo Nacional de Aviação Civil - FNAC", "category": "fundo", "original_value": "1.798.279.886", "filename": "2025_volume4.pdf", "pdf_page": 576},
+    {"year": 2026, "code": "68902", "name": "Fundo Nacional de Aviação Civil - FNAC", "category": "fundo", "original_value": "1.904.558.898", "filename": "2026_volume4.pdf", "pdf_page": 562}
+  ]
+}

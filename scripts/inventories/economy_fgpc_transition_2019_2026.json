@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "47908", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "184.499.411", "filename": "2019_volume4.pdf", "pdf_page": 405},
+    {"year": 2020, "code": "25916", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "138.388.967", "filename": "2020_volume4.pdf", "pdf_page": 158},
+    {"year": 2021, "code": "25916", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "83.288.848", "filename": "2021_volume4.pdf", "pdf_page": 130},
+    {"year": 2022, "code": "25916", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "115.310.974", "filename": "2022_volume4.pdf", "pdf_page": 114},
+    {"year": 2023, "code": "25916", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "21.498.639", "filename": "2023_volume4.pdf", "pdf_page": 113},
+    {"year": 2024, "code": "28904", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "2.506.936", "filename": "2024_volume4.pdf", "pdf_page": 103},
+    {"year": 2025, "code": "28904", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "5.014.000", "filename": "2025_volume4.pdf", "pdf_page": 91},
+    {"year": 2026, "code": "28904", "name": "Fundo de Garantia para Promoção da Competitividade - FGPC", "category": "fundo", "original_value": "16.800.262", "filename": "2026_volume4.pdf", "pdf_page": 86}
+  ]
+}

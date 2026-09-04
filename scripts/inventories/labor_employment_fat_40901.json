@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "labor_employment",
+  "records": [
+    {
+      "year": 2019,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "80.154.500.090",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 342
+    },
+    {
+      "year": 2022,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "89.949.325.335",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 321
+    },
+    {
+      "year": 2023,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "92.986.423.603",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 365
+    },
+    {
+      "year": 2024,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "105.700.713.818",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 308
+    },
+    {
+      "year": 2025,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "119.702.223.287",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 279
+    },
+    {
+      "year": 2026,
+      "code": "40901",
+      "name": "Fundo de Amparo ao Trabalhador",
+      "category": "fundo_vinculado",
+      "original_value": "120.397.969.759",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 271
+    }
+  ]
+}

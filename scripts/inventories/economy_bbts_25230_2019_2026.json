@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25230", "name": "COBRA Tecnologia S.A.", "category": "empresa_estatal", "original_value": "56.762.507", "filename": "2019_volume6.pdf", "pdf_page": 50},
+    {"year": 2020, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "51.935.535", "filename": "2020_volume6.pdf", "pdf_page": 44},
+    {"year": 2021, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "200.431.839", "filename": "2021_volume6.pdf", "pdf_page": 42},
+    {"year": 2022, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "189.348.021", "filename": "2022_volume6.pdf", "pdf_page": 41},
+    {"year": 2023, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "148.336.879", "filename": "2023_volume6.pdf", "pdf_page": 34},
+    {"year": 2024, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "134.980.815", "filename": "2024_volume6.pdf", "pdf_page": 34},
+    {"year": 2025, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "148.542.263", "filename": "2025_volume6.pdf", "pdf_page": 34},
+    {"year": 2026, "code": "25230", "name": "BB Tecnologia e Serviços S.A.", "category": "empresa_estatal", "original_value": "129.235.700", "filename": "2026_volume6.pdf", "pdf_page": 34}
+  ]
+}

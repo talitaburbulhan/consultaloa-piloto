@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2019, "code": "22211", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "2.731.523.259", "filename": "2019_volume4.pdf", "pdf_page": 48},
+    {"year": 2020, "code": "22211", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.998.792.804", "filename": "2020_volume4.pdf", "pdf_page": 56},
+    {"year": 2021, "code": "22211", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.903.684.615", "filename": "2021_volume4.pdf", "pdf_page": 41},
+    {"year": 2022, "code": "22211", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.622.123.575", "filename": "2022_volume4.pdf", "pdf_page": 43},
+    {"year": 2023, "code": "22211", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.833.873.423", "filename": "2023_volume4.pdf", "pdf_page": 45},
+    {"year": 2024, "code": "49202", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.765.753.489", "filename": "2024_volume4.pdf", "pdf_page": 422},
+    {"year": 2025, "code": "49202", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.918.400.112", "filename": "2025_volume4.pdf", "pdf_page": 387},
+    {"year": 2026, "code": "49202", "name": "Companhia Nacional de Abastecimento - CONAB", "category": "empresa_publica", "original_value": "1.791.834.488", "filename": "2026_volume4.pdf", "pdf_page": 373}
+  ]
+}

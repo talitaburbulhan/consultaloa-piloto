@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2025, "code": "74916", "name": "Recursos sob Supervisão do Fundo Nacional sobre Mudança do Clima/FNMC - MMA", "category": "unidade_orcamentaria", "original_value": "21.223.731.361", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74917", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento da Amazônia/FDA - MDR", "category": "unidade_orcamentaria", "original_value": "830.526.076", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74918", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Nordeste/FDNE - MDR", "category": "unidade_orcamentaria", "original_value": "1.989.667.414", "filename": "2025_volume4.pdf", "pdf_page": 651},
+    {"year": 2025, "code": "74919", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Centro-Oeste/FDCO - MDR", "category": "unidade_orcamentaria", "original_value": "287.923.905", "filename": "2025_volume4.pdf", "pdf_page": 651}
+  ]
+}

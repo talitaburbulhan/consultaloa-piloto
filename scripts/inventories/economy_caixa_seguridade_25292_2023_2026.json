@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2023, "code": "25292", "name": "Caixa Seguridade e Participações S.A.", "category": "empresa_estatal", "original_value": "2.000.000", "filename": "2023_volume6.pdf", "pdf_page": 46},
+    {"year": 2024, "code": "25292", "name": "Caixa Seguridade e Participações S.A.", "category": "empresa_estatal", "original_value": "2.000.000", "filename": "2024_volume6.pdf", "pdf_page": 46},
+    {"year": 2025, "code": "25292", "name": "Caixa Seguridade e Participações S.A.", "category": "empresa_estatal", "original_value": "2.000.000", "filename": "2025_volume6.pdf", "pdf_page": 46},
+    {"year": 2026, "code": "25292", "name": "Caixa Seguridade e Participações S.A.", "category": "empresa_estatal", "original_value": "4.046.000", "filename": "2026_volume6.pdf", "pdf_page": 46}
+  ]
+}

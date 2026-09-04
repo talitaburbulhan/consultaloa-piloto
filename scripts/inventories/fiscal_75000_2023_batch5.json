@@ -1,0 +1,7 @@
+{
+  "parent_organization_code": "75000",
+  "records": [
+    {"year": 2023, "code": "75000", "name": "Dívida Pública Federal", "category": "orgao_fiscal_transversal", "original_value": "2.556.221.230.209", "filename": "2023_volume4.pdf", "pdf_page": 689},
+    {"year": 2023, "code": "75101", "name": "Recursos sob Supervisão do Ministério da Economia", "category": "unidade_orcamentaria", "original_value": "2.556.221.230.209", "filename": "2023_volume4.pdf", "pdf_page": 689}
+  ]
+}

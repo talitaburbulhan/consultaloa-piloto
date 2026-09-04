@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2019, "code": "74901", "name": "Recursos sob Supervisão do Fundo de Defesa da Economia Cafeeira/FUNCAFÉ - MAPA", "category": "unidade_orcamentaria", "original_value": "5.227.790.894", "filename": "2019_volume4.pdf", "pdf_page": 640},
+    {"year": 2019, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante/FMM - Ministério dos Transportes, Portos e Aviação Civil", "category": "unidade_orcamentaria", "original_value": "5.480.146.096", "filename": "2019_volume4.pdf", "pdf_page": 640},
+    {"year": 2019, "code": "74905", "name": "Recursos sob Sup. do Fundo p/ Desenv. Tecnol. das Telecomunic./FUNTTEL-M. Ciência, Tecnol., Inov. e Comunicações", "category": "unidade_orcamentaria", "original_value": "300.000.000", "filename": "2019_volume4.pdf", "pdf_page": 640}
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "849.571.057",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 350
+    },
+    {
+      "year": 2022,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "50.900.634",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 339
+    },
+    {
+      "year": 2023,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "48.075.281",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 383
+    },
+    {
+      "year": 2024,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "52.000.000",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 325
+    },
+    {
+      "year": 2025,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "30.000.000",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 294
+    },
+    {
+      "year": 2026,
+      "code": "41902",
+      "name": "Fundo de Universalização dos Serviços de Telecomunicações - FUST",
+      "category": "fundo",
+      "original_value": "30.000.000",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 283
+    }
+  ]
+}

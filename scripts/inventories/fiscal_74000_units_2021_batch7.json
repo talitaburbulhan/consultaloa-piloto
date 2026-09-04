@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2021, "code": "74917", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento da Amazônia/FDA - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "383.123.918", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74918", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Nordeste/FDNE - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "830.047.862", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74919", "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Centro-Oeste/FDCO - M. Desenvolv. Regional", "category": "unidade_orcamentaria", "original_value": "236.571.863", "filename": "2021_volume4.pdf", "pdf_page": 609}
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "parent_organization_code": "communications",
+  "records": [
+    {
+      "year": 2021,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "607.979.787",
+      "filename": "2021_volume4.pdf",
+      "pdf_page": 344
+    },
+    {
+      "year": 2022,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "629.899.042",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 333
+    },
+    {
+      "year": 2023,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "612.862.236",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 376
+    },
+    {
+      "year": 2024,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "665.066.707",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 319
+    },
+    {
+      "year": 2025,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "765.166.357",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 288
+    },
+    {
+      "year": 2026,
+      "code": "41231",
+      "name": "Agência Nacional de Telecomunicações - ANATEL",
+      "category": "agencia_reguladora",
+      "original_value": "836.995.304",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 280
+    }
+  ]
+}

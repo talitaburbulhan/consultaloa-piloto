@@ -1,0 +1,14 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2026,
+      "code": "73101",
+      "name": "Recursos sob Supervisão do Ministério da Fazenda",
+      "category": "unidade_orcamentaria",
+      "original_value": "4.000.000.000",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 601
+    }
+  ]
+}

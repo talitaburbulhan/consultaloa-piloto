@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2019,
+      "code": "73111",
+      "name": "Recursos sob Supervisão do Ministério do Meio Ambiente",
+      "category": "unidade_orcamentaria",
+      "original_value": "2.606.311",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 625
+    },
+    {
+      "year": 2024,
+      "code": "73111",
+      "name": "Recursos sob Supervisão do Ministério do Meio Ambiente e Mudança do Clima",
+      "category": "unidade_orcamentaria",
+      "original_value": "13.817.583",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 645
+    },
+    {
+      "year": 2025,
+      "code": "73111",
+      "name": "Recursos sob Supervisão do Ministério do Meio Ambiente e Mudança do Clima",
+      "category": "unidade_orcamentaria",
+      "original_value": "16.732.126",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 617
+    },
+    {
+      "year": 2026,
+      "code": "73111",
+      "name": "Recursos sob Supervisão do Ministério do Meio Ambiente e Mudança do Clima",
+      "category": "unidade_orcamentaria",
+      "original_value": "23.426.473",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 601
+    }
+  ]
+}

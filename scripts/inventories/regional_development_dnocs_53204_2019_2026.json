@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "1.078.119.697", "filename": "2019_volume4.pdf", "pdf_page": 497},
+    {"year": 2020, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "998.471.227", "filename": "2020_volume4.pdf", "pdf_page": 498},
+    {"year": 2021, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "1.192.212.113", "filename": "2021_volume4.pdf", "pdf_page": 467},
+    {"year": 2022, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "898.332.120", "filename": "2022_volume4.pdf", "pdf_page": 452},
+    {"year": 2023, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "905.011.465", "filename": "2023_volume4.pdf", "pdf_page": 491},
+    {"year": 2024, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "995.442.340", "filename": "2024_volume4.pdf", "pdf_page": 521},
+    {"year": 2025, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "1.237.290.116", "filename": "2025_volume4.pdf", "pdf_page": 481},
+    {"year": 2026, "code": "53204", "name": "Departamento Nacional de Obras Contra as Secas - DNOCS", "category": "autarquia", "original_value": "1.078.254.685", "filename": "2026_volume4.pdf", "pdf_page": 468}
+  ]
+}

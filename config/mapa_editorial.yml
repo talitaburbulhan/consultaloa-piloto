@@ -1,0 +1,284 @@
+version: 1
+
+areas:
+  educacao:
+    label: Educação
+    aliases: [educação, educacao, MEC]
+    protected: true
+  saude:
+    label: Saúde
+    aliases: [saúde, saude, SUS]
+    protected: true
+  seguridade_social:
+    label: Seguridade Social
+    aliases: [seguridade social]
+    protected: true
+  defesa:
+    label: Defesa
+    aliases: [defesa, forças armadas]
+  cultura:
+    label: Cultura
+    aliases: [cultura, Ministério da Cultura]
+  meio_ambiente:
+    label: Meio Ambiente
+    aliases: [meio ambiente, MMA]
+  justica_seguranca_publica:
+    label: Justiça e Segurança Pública
+    aliases: [justiça, segurança pública, MJSP]
+  ciencia_tecnologia:
+    label: Ciência e Tecnologia
+    aliases: [ciência e tecnologia, MCTI]
+  communications:
+    label: Comunicações
+    aliases: [comunicações, Ministério das Comunicações]
+  transport_infrastructure:
+    label: Transportes e Infraestrutura
+    aliases: [transportes, infraestrutura]
+  regional_development_cities:
+    label: Desenvolvimento Regional e Cidades
+    aliases: [desenvolvimento regional, cidades]
+  minas_energia:
+    label: Minas e Energia
+    aliases: [minas e energia, MME]
+  agricultura_desenvolvimento_agrario_pesca:
+    label: Agricultura, Desenvolvimento Agrário, Pesca e Aquicultura
+    aliases: [agricultura, desenvolvimento agrário, pesca, aquicultura]
+  fazenda_economia_industria_comercio_empreendedorismo:
+    label: Fazenda, Economia, Indústria, Comércio e Empreendedorismo
+    aliases: [fazenda, economia, indústria, comércio, empreendedorismo]
+  planning_management:
+    label: Planejamento, Gestão e Inovação em Serviços Públicos
+    aliases: [planejamento, gestão, MGI]
+  labor_employment:
+    label: Trabalho e Emprego
+    aliases: [trabalho, emprego]
+  presidency_vice_presidency:
+    label: Presidência e Vice-Presidência da República
+    aliases: [presidência, vice-presidência]
+  controle_transparencia:
+    label: Controle e Transparência
+    aliases: [controle, transparência, CGU]
+  tourism:
+    label: Turismo
+    aliases: [turismo]
+  sport:
+    label: Esporte
+    aliases: [esporte]
+  women:
+    label: Mulheres
+    aliases: [mulheres, Ministério das Mulheres]
+  racial_equality:
+    label: Igualdade Racial
+    aliases: [igualdade racial]
+  indigenous_peoples:
+    label: Povos Indígenas
+    aliases: [povos indígenas, FUNAI]
+  human_rights:
+    label: Direitos Humanos
+    aliases: [direitos humanos]
+  federal_public_advocacy:
+    label: Advocacia Pública Federal
+    aliases: [advocacia pública, AGU]
+  relacoes_exteriores:
+    label: Relações Exteriores
+    aliases: [relações exteriores, Itamaraty]
+  fiscal_71000:
+    label: Encargos Financeiros da União
+    aliases: [encargos financeiros da União, órgão 71000]
+  fiscal_73000:
+    label: Transferências a Estados, Distrito Federal e Municípios
+    aliases: [transferências a estados e municípios, órgão 73000]
+  fiscal_74000:
+    label: Operações Oficiais de Crédito
+    aliases: [operações oficiais de crédito, órgão 74000]
+  fiscal_75000:
+    label: Dívida Pública Federal
+    aliases: [dívida pública federal, órgão 75000]
+  fiscal_90000:
+    label: Reserva de Contingência
+    aliases: [reserva de contingência, órgão 90000]
+
+parent_area_map:
+  "26000": educacao
+  "36000": saude
+  seguridade_social: seguridade_social
+  defesa: defesa
+  cultura: cultura
+  meio_ambiente: meio_ambiente
+  justica_seguranca_publica: justica_seguranca_publica
+  ciencia_tecnologia: ciencia_tecnologia
+  communications: communications
+  transport_infrastructure: transport_infrastructure
+  regional_development_cities: regional_development_cities
+  minas_energia: minas_energia
+  agricultura_desenvolvimento_agrario_pesca: agricultura_desenvolvimento_agrario_pesca
+  fazenda_economia_industria_comercio_empreendedorismo: fazenda_economia_industria_comercio_empreendedorismo
+  planning_management: planning_management
+  labor_employment: labor_employment
+  presidency_vice_presidency: presidency_vice_presidency
+  controle_transparencia: controle_transparencia
+  tourism: tourism
+  sport: sport
+  women: women
+  racial_equality: racial_equality
+  indigenous_peoples: indigenous_peoples
+  human_rights: human_rights
+  federal_public_advocacy: federal_public_advocacy
+  relacoes_exteriores: relacoes_exteriores
+  "71000": fiscal_71000
+  "73000": fiscal_73000
+  "74000": fiscal_74000
+  "75000": fiscal_75000
+  "90000": fiscal_90000
+
+protected_code_overrides:
+  "73107": educacao
+  "74202": saude
+  "74902": educacao
+
+historical_segments:
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "2058", start_year: 2019, end_year: 2019, comparison_group: defesa_nacional}
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6012", start_year: 2020, end_year: 2023, comparison_group: defesa_nacional}
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6112", start_year: 2024, end_year: 2026, comparison_group: defesa_nacional}
+  - {entity_slug: ebc, area_slug: presidency_vice_presidency, organization_code: "20415", start_year: 2019, end_year: 2020, comparison_group: ebc}
+  - {entity_slug: ebc, area_slug: communications, organization_code: "41261", start_year: 2021, end_year: 2023, comparison_group: ebc}
+  - {entity_slug: ebc, area_slug: presidency_vice_presidency, organization_code: "20415", start_year: 2024, end_year: 2026, comparison_group: ebc}
+  - {entity_slug: servico_florestal, area_slug: meio_ambiente, organization_code: "44102", start_year: 2019, end_year: 2019, comparison_group: servico_florestal}
+  - {entity_slug: servico_florestal, area_slug: meio_ambiente, organization_code: "22106", start_year: 2020, end_year: 2023, comparison_group: servico_florestal}
+  - {entity_slug: servico_florestal, area_slug: meio_ambiente, organization_code: "44102", start_year: 2024, end_year: 2026, comparison_group: servico_florestal}
+  - {entity_slug: ana, area_slug: meio_ambiente, organization_code: "44205", start_year: 2019, end_year: 2019, comparison_group: ana}
+  - {entity_slug: ana, area_slug: meio_ambiente, organization_code: "53210", start_year: 2020, end_year: 2026, comparison_group: ana}
+  - {entity_slug: incra, area_slug: agricultura_desenvolvimento_agrario_pesca, organization_code: "20201", start_year: 2019, end_year: 2019, comparison_group: incra}
+  - {entity_slug: incra, area_slug: agricultura_desenvolvimento_agrario_pesca, organization_code: "22201", start_year: 2020, end_year: 2023, comparison_group: incra}
+  - {entity_slug: incra, area_slug: agricultura_desenvolvimento_agrario_pesca, organization_code: "49201", start_year: 2024, end_year: 2026, comparison_group: incra}
+  - {entity_slug: conab, area_slug: agricultura_desenvolvimento_agrario_pesca, organization_code: "22211", start_year: 2019, end_year: 2023, comparison_group: conab}
+  - {entity_slug: conab, area_slug: agricultura_desenvolvimento_agrario_pesca, organization_code: "49202", start_year: 2024, end_year: 2026, comparison_group: conab}
+  - {entity_slug: bndes, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "47206", start_year: 2019, end_year: 2019, comparison_group: bndes}
+  - {entity_slug: bndes, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "25918", start_year: 2020, end_year: 2023, comparison_group: bndes}
+  - {entity_slug: bndes, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "28234", start_year: 2024, end_year: 2026, comparison_group: bndes}
+  - {entity_slug: abgf, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "47216", start_year: 2019, end_year: 2019, comparison_group: abgf}
+  - {entity_slug: abgf, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "25289", start_year: 2020, end_year: 2020, comparison_group: abgf}
+  - {entity_slug: abgf, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "25289", start_year: 2023, end_year: 2026, comparison_group: abgf, notes: "Ausências documentais em 2021-2022; não preencher."}
+  - {entity_slug: fgpc, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "47908", start_year: 2019, end_year: 2019, comparison_group: fgpc}
+  - {entity_slug: fgpc, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "25916", start_year: 2020, end_year: 2023, comparison_group: fgpc}
+  - {entity_slug: fgpc, area_slug: fazenda_economia_industria_comercio_empreendedorismo, organization_code: "28904", start_year: 2024, end_year: 2026, comparison_group: fgpc}
+  - {entity_slug: trensurb, area_slug: regional_development_cities, organization_code: "56201", start_year: 2019, end_year: 2019, comparison_group: trensurb}
+  - {entity_slug: trensurb, area_slug: regional_development_cities, organization_code: "53208", start_year: 2020, end_year: 2023, comparison_group: trensurb}
+  - {entity_slug: trensurb, area_slug: regional_development_cities, organization_code: "56201", start_year: 2024, end_year: 2026, comparison_group: trensurb}
+  - {entity_slug: cbtu, area_slug: regional_development_cities, organization_code: "56202", start_year: 2019, end_year: 2019, comparison_group: cbtu}
+  - {entity_slug: cbtu, area_slug: regional_development_cities, organization_code: "53209", start_year: 2020, end_year: 2023, comparison_group: cbtu}
+  - {entity_slug: cbtu, area_slug: regional_development_cities, organization_code: "56202", start_year: 2024, end_year: 2026, comparison_group: cbtu}
+  - {entity_slug: fnhis, area_slug: regional_development_cities, organization_code: "56902", start_year: 2019, end_year: 2019, comparison_group: fnhis}
+  - {entity_slug: fnhis, area_slug: regional_development_cities, organization_code: "53906", start_year: 2020, end_year: 2023, comparison_group: fnhis}
+  - {entity_slug: fnhis, area_slug: regional_development_cities, organization_code: "56902", start_year: 2024, end_year: 2026, comparison_group: fnhis}
+  - {entity_slug: antaq, area_slug: transport_infrastructure, organization_code: "39251", start_year: 2019, end_year: 2023, comparison_group: antaq}
+  - {entity_slug: antaq, area_slug: transport_infrastructure, organization_code: "68201", start_year: 2024, end_year: 2026, comparison_group: antaq}
+  - {entity_slug: anac, area_slug: transport_infrastructure, organization_code: "39254", start_year: 2019, end_year: 2023, comparison_group: anac}
+  - {entity_slug: anac, area_slug: transport_infrastructure, organization_code: "68213", start_year: 2024, end_year: 2026, comparison_group: anac}
+  - {entity_slug: fmm, area_slug: transport_infrastructure, organization_code: "39901", start_year: 2019, end_year: 2023, comparison_group: fmm}
+  - {entity_slug: fmm, area_slug: transport_infrastructure, organization_code: "68901", start_year: 2024, end_year: 2026, comparison_group: fmm}
+  - {entity_slug: fnac, area_slug: transport_infrastructure, organization_code: "39902", start_year: 2019, end_year: 2023, comparison_group: fnac}
+  - {entity_slug: fnac, area_slug: transport_infrastructure, organization_code: "68902", start_year: 2024, end_year: 2026, comparison_group: fnac}
+  - {entity_slug: inb_fiscal, area_slug: ciencia_tecnologia, organization_code: "24206", start_year: 2019, end_year: 2019, comparison_group: inb, notes: "Orçamento fiscal e da seguridade."}
+  - {entity_slug: inb_fiscal, area_slug: minas_energia, organization_code: "32397", start_year: 2020, end_year: 2022, comparison_group: inb, notes: "Orçamento fiscal e da seguridade."}
+  - {entity_slug: inb_investimento, area_slug: minas_energia, organization_code: "32397", start_year: 2023, end_year: 2026, comparison_group: inb, notes: "Orçamento de investimento das estatais; comparação direta com o segmento fiscal proibida."}
+  - {entity_slug: mulheres_autonomo, area_slug: women, organization_code: "65101", start_year: 2024, end_year: 2026, comparison_group: mulheres_autonomo}
+  - {entity_slug: igualdade_racial_autonomo, area_slug: racial_equality, organization_code: "67101", start_year: 2024, end_year: 2026, comparison_group: igualdade_racial_autonomo}
+  - {entity_slug: esporte_autonomo, area_slug: sport, organization_code: "51101", start_year: 2024, end_year: 2026, comparison_group: esporte_autonomo}
+
+historical_entities:
+  incra: {label: INCRA, aliases: [INCRA]}
+  conab: {label: CONAB, aliases: [CONAB]}
+  bndes: {label: BNDES, aliases: [BNDES]}
+  abgf: {label: ABGF, aliases: [ABGF]}
+  fgpc: {label: FGPC, aliases: [FGPC]}
+  trensurb: {label: TRENSURB, aliases: [TRENSURB]}
+  cbtu: {label: CBTU, aliases: [CBTU]}
+  fnhis: {label: FNHIS, aliases: [FNHIS]}
+  antaq: {label: ANTAQ, aliases: [ANTAQ]}
+  anac: {label: ANAC, aliases: [ANAC]}
+  fmm: {label: Fundo da Marinha Mercante, aliases: [FMM, Fundo da Marinha Mercante]}
+  fnac: {label: Fundo Nacional de Aviação Civil, aliases: [FNAC, Fundo Nacional de Aviação Civil]}
+  inb: {label: Indústrias Nucleares do Brasil, aliases: [INB, Indústrias Nucleares do Brasil]}
+
+rules:
+  - rule_key: no_cross_level_sum
+    subject_slug: global
+    rule_type: aggregation
+    payload: {total_orgao: canonical, subtotal_unidade: component, total_programa: detail_only, valor_acao: detail_only}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json
+  - rule_key: absence_is_not_zero
+    subject_slug: global
+    rule_type: missingness
+    payload: {absence: no_record, explicit_zero: preserve}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json
+  - rule_key: retrospective_does_not_overwrite
+    subject_slug: global
+    rule_type: evidence_precedence
+    payload: {primary: own_exercise_document, retrospective: documentary_divergence_only}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json
+  - rule_key: historical_segments_are_not_equivalent
+    subject_slug: global
+    rule_type: historical_comparison
+    payload: {comparative_sequence: allowed, disclose_code_changes: true, automatic_equivalence: false, automatic_sum: false, retroactive_code_replacement: false}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json
+  - rule_key: supervised_programs_stay_separate
+    subject_slug: global
+    rule_type: aggregation
+    payload: {code_prefix: "93", presentation: separate, automatic_sum: false, project_missing_years: false}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json
+  - rule_key: inb_budget_regime_break
+    subject_slug: inb
+    rule_type: regime_transition
+    payload: {fiscal_seguridade: "2019-2022", investimento_estatais: "2023-2026", continuous_quantitative_series: false, direct_comparison: false, automatic_sum: false}
+    source_checkpoint: science-inb-regimes-human-editorial-validation-20260828.json
+  - rule_key: agriculture_conditional_separation
+    subject_slug: agricultura_desenvolvimento_agrario_pesca
+    rule_type: code_exclusion
+    payload: {separate_codes: ["93180", "93474"], ordinary_code: "22101", automatic_sum: false}
+    source_checkpoint: agriculture-conditional-programs-human-editorial-validation-20260828.json
+  - rule_key: culture_shared_administration
+    subject_slug: cultura
+    rule_type: allocation_prohibition
+    payload: {shared_codes: ["55101", "54101"], exclusive_attribution: false, estimated_allocation: false}
+    source_checkpoint: culture-shared-administration-human-editorial-validation-20260831.json
+  - rule_key: culture_related_fiscal_blocks
+    subject_slug: cultura
+    rule_type: code_exclusion
+    payload: {separate_codes: ["93421", "93422", "93423", "93424", "93425", "93426", "74912", "73120"], automatic_sum: false}
+    source_checkpoint: culture-supervised-fiscal-blocks-human-editorial-validation-20260831.json
+  - rule_key: communications_exclusions
+    subject_slug: communications
+    rule_type: code_exclusion
+    payload: {separate_codes: ["93178"], external_codes: ["74905"], automatic_sum: false, telebras_2026: absence}
+    source_checkpoint: communications-human-editorial-validation-complete-20260831.json
+  - rule_key: defense_supervised_separation
+    subject_slug: defesa
+    rule_type: code_exclusion
+    payload: {separate_codes: ["93403", "93404", "93405", "93406", "93407", "93408", "93452", "93455", "93456", "93457"], ordinary_family: "52xxx", automatic_sum: false}
+    source_checkpoint: defense-supervised-resources-human-editorial-validation-20260831.json
+  - rule_key: science_communications_perimeter
+    subject_slug: ciencia_tecnologia
+    rule_type: temporal_perimeter
+    payload: {historical_through_2020: ["24211", "24216", "24906", "24907"], exclude_from_2021: ["93190", "93435"], automatic_continuity: false}
+    source_checkpoint: science-historical-telecommunications-human-editorial-validation-20260828.json
+  - rule_key: tourism_perimeter
+    subject_slug: tourism
+    rule_type: code_exclusion
+    payload: {ordinary_codes: ["54101", "54201", "54901"], culture_codes: ["54202", "54203", "54204", "54205", "54206", "54207", "54208", "54902"], external_supervised_codes: ["74908"], automatic_sum: false}
+    source_checkpoint: tourism-human-editorial-validation-complete-20260828.json
+  - rule_key: transport_supervised_fmm
+    subject_slug: transport_infrastructure
+    rule_type: code_exclusion
+    payload: {separate_code: "74904", ordinary_codes: ["39901", "68901"], automatic_sum: false, automatic_equivalence: false}
+    source_checkpoint: transport-74904-supervised-fmm-human-editorial-validation-20260828.json
+  - rule_key: regional_ana_exclusion
+    subject_slug: regional_development_cities
+    rule_type: area_exclusion
+    payload: {entity: ANA, canonical_area: meio_ambiente, duplicate_in_area: false}
+    source_checkpoint: regional-ana-exclusive-environment-human-editorial-validation-20260828.json
+  - rule_key: autonomous_ministries_start_2024
+    subject_slug: autonomous_areas
+    rule_type: temporal_perimeter
+    payload: {areas: {women: "65101", racial_equality: "67101", sport: "51101"}, start_year: 2024, earlier_years: separate_historical_research, absence_is_zero: false}
+    source_checkpoint: human-editorial-validation-stage-complete-20260831.json

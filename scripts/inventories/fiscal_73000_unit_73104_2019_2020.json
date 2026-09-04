@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "73000",
+  "records": [
+    {
+      "year": 2019,
+      "code": "73104",
+      "name": "Recursos sob Supervisão do Ministério de Minas e Energia",
+      "category": "unidade_orcamentaria",
+      "original_value": "44.664.694.585",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 625
+    },
+    {
+      "year": 2020,
+      "code": "73104",
+      "name": "Recursos sob Supervisão do Ministério de Minas e Energia",
+      "category": "unidade_orcamentaria",
+      "original_value": "42.427.454.201",
+      "filename": "2020_volume4.pdf",
+      "pdf_page": 622
+    }
+  ]
+}

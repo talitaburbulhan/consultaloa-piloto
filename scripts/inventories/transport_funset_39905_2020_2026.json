@@ -1,0 +1,12 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2020, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "760.403.484", "filename": "2020_volume4.pdf", "pdf_page": 378},
+    {"year": 2021, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "672.373.739", "filename": "2021_volume4.pdf", "pdf_page": 334},
+    {"year": 2022, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "645.232.336", "filename": "2022_volume4.pdf", "pdf_page": 265},
+    {"year": 2023, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "696.528.132", "filename": "2023_volume4.pdf", "pdf_page": 350},
+    {"year": 2024, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "810.017.363", "filename": "2024_volume4.pdf", "pdf_page": 296},
+    {"year": 2025, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "860.060.390", "filename": "2025_volume4.pdf", "pdf_page": 269},
+    {"year": 2026, "code": "39905", "name": "Fundo Nacional de Segurança e Educação de Trânsito - FUNSET", "category": "fundo", "original_value": "1.018.082.339", "filename": "2026_volume4.pdf", "pdf_page": 262}
+  ]
+}

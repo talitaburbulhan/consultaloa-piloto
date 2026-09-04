@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2019,
+      "code": "20101",
+      "name": "Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "653.513.998",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 11
+    },
+    {
+      "year": 2019,
+      "code": "60101",
+      "name": "Gabinete da Vice-Presidência da República",
+      "category": "administracao_direta",
+      "original_value": "18.907.385",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 569
+    }
+  ]
+}

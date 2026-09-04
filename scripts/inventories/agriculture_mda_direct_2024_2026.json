@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "agricultura_desenvolvimento_agrario_pesca",
+  "records": [
+    {"year": 2024, "code": "49101", "name": "Ministério do Desenvolvimento Agrário e Agricultura Familiar - Administração Direta", "category": "administracao_direta", "original_value": "1.218.343.331", "filename": "2024_volume4.pdf", "pdf_page": 410},
+    {"year": 2025, "code": "49101", "name": "Ministério do Desenvolvimento Agrário e Agricultura Familiar - Administração Direta", "category": "administracao_direta", "original_value": "1.593.697.063", "filename": "2025_volume4.pdf", "pdf_page": 375},
+    {"year": 2026, "code": "49101", "name": "Ministério do Desenvolvimento Agrário e Agricultura Familiar - Administração Direta", "category": "administracao_direta", "original_value": "1.650.527.550", "filename": "2026_volume4.pdf", "pdf_page": 363}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2021, "code": "74205", "name": "Recursos sob Supervisão da Caixa de Financiamento Imobiliário da Aeronáutica", "category": "unidade_orcamentaria", "original_value": "2.719.550", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74901", "name": "Recursos sob Supervisão do Fundo de Defesa da Economia Cafeeira/FUNCAFÉ - MAPA", "category": "unidade_orcamentaria", "original_value": "5.972.988.593", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74904", "name": "Recursos sob Supervisão do Fundo da Marinha Mercante/FMM - Ministério da Infraestrutura", "category": "unidade_orcamentaria", "original_value": "5.720.239.466", "filename": "2021_volume4.pdf", "pdf_page": 609}
+  ]
+}

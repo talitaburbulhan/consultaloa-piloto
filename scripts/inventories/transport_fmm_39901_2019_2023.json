@@ -1,0 +1,10 @@
+{
+  "parent_organization_code": "transport_infrastructure",
+  "records": [
+    {"year": 2019, "code": "39901", "name": "Fundo da Marinha Mercante - FMM", "category": "fundo", "original_value": "1.479.503.785", "filename": "2019_volume4.pdf", "pdf_page": 327},
+    {"year": 2020, "code": "39901", "name": "Fundo da Marinha Mercante - FMM", "category": "fundo", "original_value": "1.355.858.306", "filename": "2020_volume4.pdf", "pdf_page": 373},
+    {"year": 2021, "code": "39901", "name": "Fundo da Marinha Mercante - FMM", "category": "fundo", "original_value": "9.030.000", "filename": "2021_volume4.pdf", "pdf_page": 329},
+    {"year": 2022, "code": "39901", "name": "Fundo da Marinha Mercante - FMM", "category": "fundo", "original_value": "8.890.401", "filename": "2022_volume4.pdf", "pdf_page": 299},
+    {"year": 2023, "code": "39901", "name": "Fundo da Marinha Mercante - FMM", "category": "fundo", "original_value": "6.684.154", "filename": "2023_volume4.pdf", "pdf_page": 344}
+  ]
+}

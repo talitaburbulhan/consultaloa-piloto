@@ -6,6 +6,13 @@ from sqlalchemy.orm import Session
 
 from .chunking import cosine, embed, normalize
 from .editorial import INSUFFICIENT_EVIDENCE, ambiguity_warnings, is_execution_query
+from .editorial_map import (
+    canonical_area_totals,
+    historical_comparison_plan,
+    load_editorial_map,
+    resolve_area_alias,
+    resolve_historical_entity_alias,
+)
 from .models import BudgetRecord, Chunk, Document, DocumentVersion, Page
 from .schemas import (
     Evidence,
@@ -338,7 +345,62 @@ STRUCTURED_LIMITATIONS = {
 def _query_years(query: str, selected: list[int]) -> list[int]:
     if selected:
         return sorted(set(selected))
-    return sorted({int(year) for year in re.findall(r"\b20(?:19|2[0-6])\b", query)})
+    explicit = sorted({int(year) for year in re.findall(r"\b20(?:19|2[0-6])\b", query)})
+    normalized_query = normalize(query)
+    range_match = re.search(
+        r"\b(?:de|entre)\s+(20(?:19|2[0-6]))\s+(?:a|ate|e)\s+(20(?:19|2[0-6]))\b",
+        normalized_query,
+    )
+    if not range_match:
+        return explicit
+    start, end = map(int, range_match.groups())
+    lower, upper = sorted((start, end))
+    return list(range(lower, upper + 1))
+
+
+def _value_sort_direction(query: str) -> str | None:
+    normalized_query = normalize(query)
+    descending = (
+        "ordem decrescente",
+        "do maior para o menor",
+        "da maior para a menor",
+        "maior ao menor",
+        "mais alto para o mais baixo",
+    )
+    ascending = (
+        "ordem crescente",
+        "do menor para o maior",
+        "da menor para a maior",
+        "menor ao maior",
+        "mais baixo para o mais alto",
+    )
+    if any(phrase in normalized_query for phrase in descending):
+        return "descending"
+    if any(phrase in normalized_query for phrase in ascending):
+        return "ascending"
+    return None
+
+
+def _sort_rows_by_requested_value(rows: list, query: str) -> list:
+    direction = _value_sort_direction(query)
+    if direction is None:
+        return rows
+    return sorted(
+        rows,
+        key=lambda row: (row[0].numeric_value, row[0].year),
+        reverse=direction == "descending",
+    )
+
+
+def _ordered_value_years(values_by_year: dict, query: str) -> list[int]:
+    direction = _value_sort_direction(query)
+    if direction is None:
+        return sorted(values_by_year)
+    return sorted(
+        values_by_year,
+        key=lambda year: (values_by_year[year], year),
+        reverse=direction == "descending",
+    )
 
 
 def _program_code_response(
@@ -495,6 +557,7 @@ INSTITUTION_CODE_ALIASES = {
     "26442": {"unilab"},
     "26443": {"ebserh"},
     "26408": {"ifma"},
+    "26404": {"ifbaiano", "if baiano"},
     "26414": {"ifmt"},
     "26417": {"ifpb"},
     "26426": {"ifap"},
@@ -576,6 +639,57 @@ def education_pilot_query_allowed(db: Session, query: str) -> bool:
     )
 
 
+def pilot_query_allowed(db: Session, query: str, allowed_areas: set[str]) -> bool:
+    """Allow only queries that resolve to an explicitly released pilot area."""
+    if "educacao" in allowed_areas and education_pilot_query_allowed(db, query):
+        return True
+    resolved_area = resolve_area_alias(query)
+    if resolved_area and resolved_area[0] in allowed_areas:
+        return True
+
+    normalized_query = normalize(query)
+    rows = db.execute(
+        select(BudgetRecord.organization_code, BudgetRecord.organization_name)
+        .where(
+            BudgetRecord.area_slug.in_(allowed_areas),
+            BudgetRecord.evidence_status == "homologated",
+        )
+        .distinct()
+    ).all()
+    for code, name in rows:
+        if code and re.search(rf"\b{re.escape(code)}\b", normalized_query):
+            return True
+        normalized_name = normalize(name or "")
+        if len(normalized_name) >= 4 and normalized_name in normalized_query:
+            return True
+    return False
+
+
+def pilot_comparison_allowed(
+    db: Session, entity_type: str, code: str, allowed_areas: set[str]
+) -> bool:
+    """Apply the pilot area allowlist to every structured comparison level."""
+    fields = {
+        "organization": BudgetRecord.organization_code,
+        "program": BudgetRecord.program_code,
+        "action": BudgetRecord.action_code,
+        "function": BudgetRecord.function_code,
+        "subfunction": BudgetRecord.subfunction_code,
+    }
+    field = fields.get(entity_type)
+    if field is None:
+        return False
+    return bool(
+        db.scalar(
+            select(BudgetRecord.id).where(
+                field == code,
+                BudgetRecord.area_slug.in_(allowed_areas),
+                BudgetRecord.evidence_status == "homologated",
+            )
+        )
+    )
+
+
 def education_pilot_out_of_scope(request: SearchRequest) -> SearchResponse:
     parsed = interpret_query(request.query)
     interpretation = QueryInterpretation(
@@ -586,6 +700,35 @@ def education_pilot_out_of_scope(request: SearchRequest) -> SearchResponse:
             not in {"search_terms", "available_in_corpus", "requires_structured_values"}
         },
         confirmed=True,
+    )
+
+
+def pilot_out_of_scope(request: SearchRequest, allowed_areas: set[str]) -> SearchResponse:
+    parsed = interpret_query(request.query)
+    interpretation = QueryInterpretation(
+        **{
+            key: value
+            for key, value in parsed.items()
+            if key
+            not in {"search_terms", "available_in_corpus", "requires_structured_values"}
+        },
+        confirmed=True,
+    )
+    released = ["Educação"]
+    if "fiscal_74000" in allowed_areas:
+        released.append("Operações Oficiais de Crédito (74000)")
+    return SearchResponse(
+        query=request.query,
+        summary="Esta versão-piloto responde somente sobre: " + ", ".join(released) + ".",
+        insufficient_evidence=True,
+        evidence=[],
+        sources=[],
+        warnings=["Consulta fora da cobertura liberada no piloto."],
+        limitations=[
+            "As demais áreas permanecem bloqueadas para liberação gradual.",
+            "A ausência de resposta não significa ausência do tema nos documentos originais.",
+        ],
+        interpretation=interpretation,
     )
     return SearchResponse(
         query=request.query,
@@ -624,6 +767,46 @@ def _institution_aliases(name: str, code: str) -> set[str]:
     return {alias for alias in aliases if len(alias) >= 2}
 
 
+def _alias_spans(alias: str, normalized_query: str) -> set[tuple[int, int]]:
+    """Return whole-token matches so Pará does not match inside Paraná."""
+    return {
+        match.span()
+        for match in re.finditer(
+            rf"(?<!\w){re.escape(alias)}(?!\w)", normalized_query
+        )
+    }
+
+
+def _drop_nested_institution_matches(
+    candidates: dict[str, tuple[str, list]],
+    spans_by_code: dict[str, set[tuple[int, int]]],
+) -> None:
+    """Drop a shorter institution name embedded in a more specific one.
+
+    Equal spans are retained because the same documentary institution can have
+    different historical codes. Disjoint spans are also retained for explicit
+    multi-institution questions.
+    """
+    nested_codes = set()
+    for code, spans in spans_by_code.items():
+        if not spans:
+            continue
+        if all(
+            any(
+                other_start <= start
+                and end <= other_end
+                and (other_start, other_end) != (start, end)
+                for other_code, other_spans in spans_by_code.items()
+                if other_code != code
+                for other_start, other_end in other_spans
+            )
+            for start, end in spans
+        ):
+            nested_codes.add(code)
+    for code in nested_codes:
+        candidates.pop(code, None)
+
+
 def _multiple_institutions_response(
     request: SearchRequest,
     interpretation: QueryInterpretation,
@@ -654,6 +837,7 @@ def _multiple_institutions_response(
                 conflicting_years.append(year)
             elif year_rows:
                 selected_rows.append(year_rows[0])
+        selected_rows = _sort_rows_by_requested_value(selected_rows, request.query)
         missing_years = sorted(set(years) - {row[0].year for row in selected_rows})
         if missing_years or conflicting_years:
             all_complete = False
@@ -730,6 +914,7 @@ def _multiple_institutions_response(
             ]
             if len(institution_rows) < 2:
                 continue
+            institution_rows.sort(key=lambda item: item[2].year)
             first, last = institution_rows[0][2], institution_rows[-1][2]
             difference = last.numeric_value - first.numeric_value
             direction = "aumento" if difference >= 0 else "redução"
@@ -783,6 +968,8 @@ def _institution_response(
     ).all()
     normalized_query = normalize(request.query)
     candidates: dict[str, tuple[str, list]] = {}
+    spans_by_code: dict[str, set[tuple[int, int]]] = {}
+    explicit_codes = set()
     recognized_aliases = set()
     for row in rows:
         record = row[0]
@@ -797,22 +984,42 @@ def _institution_response(
                 normalized_query,
             )
         )
-        matching_aliases = [
-            alias
+        matching_spans = {
+            span
             for alias in aliases
-            if (
-                alias in normalized_query
-                if " " in alias
-                else re.search(rf"\b{re.escape(alias)}\b", normalized_query)
-            )
+            for span in _alias_spans(alias, normalized_query)
+        }
+        matching_aliases = [
+            alias for alias in aliases if _alias_spans(alias, normalized_query)
         ]
         if not explicit_code and not matching_aliases:
             continue
+        if explicit_code:
+            explicit_codes.add(record.organization_code)
         recognized_aliases.update(matching_aliases)
         code = record.organization_code
         if code not in candidates:
             candidates[code] = (name, [])
         candidates[code][1].append(row)
+        spans_by_code.setdefault(code, set()).update(matching_spans)
+    if explicit_codes:
+        candidates = {
+            code: candidate
+            for code, candidate in candidates.items()
+            if code in explicit_codes
+        }
+    else:
+        _drop_nested_institution_matches(candidates, spans_by_code)
+        resolved_area = resolve_area_alias(request.query)
+        if resolved_area:
+            area_slug = resolved_area[0]
+            area_candidates = {
+                code: candidate
+                for code, candidate in candidates.items()
+                if any(row[0].area_slug == area_slug for row in candidate[1])
+            }
+            if area_candidates:
+                candidates = area_candidates
     mentioned_acronyms = {
         normalize(acronym)
         for acronym in re.findall(r"\b[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,12}\b", request.query)
@@ -860,6 +1067,58 @@ def _institution_response(
             interpretation=interpretation,
         )
     if len(candidates) >= 2:
+        candidate_names = {normalize(item[0]) for item in candidates.values()}
+        years_by_code = {
+            code: {row[0].year for row in item[1]}
+            for code, item in candidates.items()
+        }
+        overlapping_years = sorted(
+            {
+                year
+                for code, code_years in years_by_code.items()
+                for other_code, other_years in years_by_code.items()
+                if code < other_code
+                for year in code_years & other_years
+            }
+        )
+        if len(candidate_names) == 1 and overlapping_years:
+            area_catalog = load_editorial_map()["areas"]
+            options = []
+            examples = []
+            for index, code in enumerate(sorted(candidates), start=1):
+                rows = candidates[code][1]
+                area_slugs = sorted(
+                    {row[0].area_slug for row in rows if row[0].area_slug}
+                )
+                area_labels = [
+                    area_catalog.get(slug, {}).get("label", slug)
+                    for slug in area_slugs
+                ]
+                context_label = " / ".join(area_labels) or "área não identificada"
+                options.append(
+                    f"{index}) {context_label} (referência técnica: unidade {code})"
+                )
+                examples.append(context_label)
+            return SearchResponse(
+                query=request.query,
+                summary=(
+                    f"O nome “{next(iter(candidates.values()))[0]}” corresponde a mais "
+                    "de uma unidade no mesmo exercício. Escolha pelo contexto: "
+                    + "; ".join(options)
+                    + ". Não é necessário conhecer o código. Refaça a pergunta incluindo "
+                    f"a área, por exemplo: “Qual foi o orçamento dessa unidade em {examples[0]}?”."
+                ),
+                insufficient_evidence=True,
+                evidence=[],
+                sources=[],
+                warnings=warnings,
+                limitations=[
+                    "Unidades diferentes com o mesmo nome não foram somadas nem escolhidas automaticamente.",
+                    "O código é exibido somente como referência; a escolha pode ser feita pelo nome da área.",
+                ],
+                interpretation=interpretation,
+            )
+    if len(candidates) >= 2:
         return _multiple_institutions_response(
             request,
             interpretation,
@@ -902,6 +1161,9 @@ def _institution_response(
     missing_years = sorted(set(years) - {row[0].year for row in selected_rows})
     if not selected_rows:
         return None
+
+    chronological_rows = sorted(selected_rows, key=lambda row: row[0].year)
+    selected_rows = _sort_rows_by_requested_value(selected_rows, request.query)
 
     evidence = []
     sources = []
@@ -962,14 +1224,17 @@ def _institution_response(
         and len(selected_rows) >= 2
         and complete_comparison
     ):
-        first, last = selected_rows[0][0], selected_rows[-1][0]
+        first, last = chronological_rows[0][0], chronological_rows[-1][0]
+        source_ids = {
+            row[0].id: index for index, row in enumerate(selected_rows, start=1)
+        }
         difference = last.numeric_value - first.numeric_value
         direction = "um aumento" if difference >= 0 else "uma redução"
         formatted_difference = f"{abs(difference):,.0f}".replace(",", ".")
         summary = (
             f"O total autorizado para {name} (código {code}) passou de "
-            f"R$ {first.original_value} em {first.year} [1] para "
-            f"R$ {last.original_value} em {last.year} [{len(selected_rows)}], "
+            f"R$ {first.original_value} em {first.year} [{source_ids[first.id]}] para "
+            f"R$ {last.original_value} em {last.year} [{source_ids[last.id]}], "
             f"{direction} nominal de R$ {formatted_difference}."
         )
     elif len(selected_rows) == 1:
@@ -1168,9 +1433,10 @@ def _universities_response(
             )
         )
 
+    ordered_years = _ordered_value_years(totals, request.query)
     values = [
-        f"{year}: R$ {totals[year]:,.0f} [{index}]".replace(",", ".")
-        for index, year in enumerate(sorted(totals), start=1)
+        f"{year}: R$ {totals[year]:,.0f} [{sorted(totals).index(year) + 1}]".replace(",", ".")
+        for year in ordered_years
     ]
     if parsed["intent"] == "compare_maximum":
         maximum_year = max(totals, key=totals.get)
@@ -2061,6 +2327,9 @@ def _structured_program_response(
     if found_years != expected_years:
         return None
 
+    chronological_records = sorted(records, key=lambda row: row[0].year)
+    records = _sort_rows_by_requested_value(records, request.query)
+
     evidence = []
     sources = []
     for index, (record, page, version, document) in enumerate(records, start=1):
@@ -2120,7 +2389,10 @@ def _structured_program_response(
             "Valores considerados: " + "; ".join(values) + "."
         )
     elif parsed["intent"] == "compare_change" and len(records) >= 2:
-        first, last = records[0][0], records[-1][0]
+        first, last = chronological_records[0][0], chronological_records[-1][0]
+        source_ids = {
+            row[0].id: index for index, row in enumerate(records, start=1)
+        }
         direction = "aumento" if last.numeric_value >= first.numeric_value else "redução"
         direction_with_article = (
             "um aumento" if direction == "aumento" else "uma redução"
@@ -2129,8 +2401,8 @@ def _structured_program_response(
         formatted_difference = f"{difference:,.0f}".replace(",", ".")
         summary = (
             f"O valor autorizado para {label} passou de R$ {first.original_value} "
-            f"em {first.year} [1] para R$ {last.original_value} em {last.year} "
-            f"[{len(records)}], {direction_with_article} nominal de R$ {formatted_difference}. "
+            f"em {first.year} [{source_ids[first.id]}] para R$ {last.original_value} em {last.year} "
+            f"[{source_ids[last.id]}], {direction_with_article} nominal de R$ {formatted_difference}. "
             "Série consultada: " + "; ".join(values) + "."
         )
     else:
@@ -2149,6 +2421,276 @@ def _structured_program_response(
         sources=sources,
         warnings=warnings,
         limitations=STRUCTURED_LIMITATIONS.get(parsed["entity"], []),
+        interpretation=interpretation,
+    )
+
+
+def _editorial_area_total_response(
+    db: Session,
+    request: SearchRequest,
+    parsed: dict,
+    interpretation: QueryInterpretation,
+    warnings: list[str],
+) -> SearchResponse | None:
+    """Answer new multi-area queries only from canonical editorial totals."""
+    if parsed["entity"] is not None or not parsed["requires_structured_values"]:
+        return None
+    resolved = resolve_area_alias(request.query)
+    if resolved is None:
+        return None
+    area_slug, area_label = resolved
+    requested_years = _query_years(request.query, request.years)
+    expected_years = requested_years or list(range(2019, 2027))
+    try:
+        records, missing = canonical_area_totals(db, area_slug, expected_years)
+    except ValueError as error:
+        return SearchResponse(
+            query=request.query,
+            summary="A consulta foi bloqueada porque há mais de um total canônico no mesmo exercício.",
+            insufficient_evidence=True,
+            evidence=[],
+            warnings=[str(error), *warnings],
+            limitations=["Nenhum valor foi somado automaticamente."],
+            interpretation=interpretation,
+        )
+    if not records:
+        return SearchResponse(
+            query=request.query,
+            summary=(
+                f"A área {area_label} foi reconhecida, mas não há uma série de totais "
+                "de órgão classificada como canônica para esta formulação."
+            ),
+            insufficient_evidence=True,
+            evidence=[],
+            warnings=warnings,
+            limitations=[
+                "A aplicação não substitui o total da área pela soma de unidades, programas ou ações.",
+                "Reformule indicando o órgão ou a instituição desejada.",
+            ],
+            interpretation=interpretation,
+        )
+
+    rows = db.execute(
+        select(BudgetRecord, Page, DocumentVersion, Document)
+        .join(Page, BudgetRecord.page_id == Page.id)
+        .join(DocumentVersion, BudgetRecord.document_version_id == DocumentVersion.id)
+        .join(Document, DocumentVersion.document_id == Document.id)
+        .where(BudgetRecord.id.in_([record.id for record in records]))
+        .order_by(BudgetRecord.year)
+    ).all()
+    chronological_rows = sorted(rows, key=lambda row: row[0].year)
+    rows = _sort_rows_by_requested_value(list(rows), request.query)
+    evidence: list[Evidence] = []
+    sources: list[SourceReference] = []
+    for index, (record, page, version, document) in enumerate(rows, start=1):
+        evidence.append(
+            Evidence(
+                document=document.title,
+                year=record.year,
+                pdf_page=page.pdf_page_number,
+                printed_page=page.printed_page_label,
+                original_text=record.source_text,
+                filename=version.filename,
+                page_url=f"/documents/{version.id}/pages/{page.pdf_page_number}",
+            )
+        )
+        sources.append(
+            SourceReference(
+                id=index,
+                document=document.title,
+                year=record.year,
+                pdf_page=page.pdf_page_number,
+                printed_page=page.printed_page_label,
+                excerpt=record.source_text,
+                filename=version.filename,
+                pdf_url=f"/documents/{version.id}/pdf#page={page.pdf_page_number}",
+                official_url=_official_budget_url(document.year, document.official_url),
+            )
+        )
+    values = [
+        f"{record.year}: R$ {record.original_value} [{index}]"
+        for index, (record, _, _, _) in enumerate(rows, start=1)
+    ]
+    if parsed["intent"] == "compare_maximum":
+        maximum_index, maximum_row = max(
+            enumerate(rows, start=1), key=lambda item: item[1][0].numeric_value
+        )
+        maximum = maximum_row[0]
+        summary = (
+            f"O maior total anual do órgão para {area_label} foi o de {maximum.year}: "
+            f"R$ {maximum.original_value} [{maximum_index}]. Série consultada: "
+            + "; ".join(values)
+            + "."
+        )
+    elif parsed["intent"] == "compare_change" and len(rows) >= 2:
+        first, last = chronological_rows[0][0], chronological_rows[-1][0]
+        source_ids = {
+            row[0].id: index for index, row in enumerate(rows, start=1)
+        }
+        summary = (
+            f"O total anual do órgão para {area_label} passou de R$ {first.original_value} "
+            f"em {first.year} [{source_ids[first.id]}] para R$ {last.original_value} em {last.year} "
+            f"[{source_ids[last.id]}]. Série consultada: " + "; ".join(values) + "."
+        )
+    else:
+        summary = f"Os totais anuais do órgão para {area_label} são: " + "; ".join(values) + "."
+    limitations = [
+        "A resposta utiliza exclusivamente registros classificados como total de órgão, homologados e canônicos.",
+        "Subtotais de unidade, programas, ações e programações supervisionadas não foram somados.",
+    ]
+    if missing:
+        limitations.append(
+            "Sem total canônico para: " + ", ".join(str(year) for year in missing) + "."
+        )
+    return SearchResponse(
+        query=request.query,
+        summary=summary,
+        insufficient_evidence=bool(missing),
+        evidence=evidence,
+        sources=sources,
+        warnings=warnings,
+        limitations=limitations,
+        interpretation=interpretation,
+    )
+
+
+def _historical_editorial_series_response(
+    db: Session,
+    request: SearchRequest,
+    parsed: dict,
+    interpretation: QueryInterpretation,
+    warnings: list[str],
+) -> SearchResponse | None:
+    """Answer validated historical entities while preserving documentary breaks."""
+    normalized_query = normalize(request.query)
+    historical_request = any(
+        phrase in normalized_query
+        for phrase in ("serie historica", "serie documental", "orcamento")
+    )
+    if not parsed["requires_structured_values"] and not historical_request:
+        return None
+    resolved = resolve_historical_entity_alias(request.query)
+    if resolved is None:
+        return None
+    entity_slug, _ = resolved
+    requested_years = _query_years(request.query, request.years) or list(range(2019, 2027))
+    try:
+        plan = historical_comparison_plan(entity_slug, requested_years)
+    except ValueError as error:
+        return SearchResponse(
+            query=request.query,
+            summary="A consulta histórica foi bloqueada por inconsistência no mapa editorial.",
+            insufficient_evidence=True,
+            evidence=[],
+            warnings=[str(error), *warnings],
+            limitations=["Nenhum segmento foi fundido ou somado."],
+            interpretation=interpretation,
+        )
+
+    expected: list[tuple[int, str, str]] = []
+    for segment in plan.segments:
+        for year in requested_years:
+            if int(segment["start_year"]) <= year <= int(segment["end_year"]):
+                expected.append((year, str(segment["organization_code"]), segment["area_slug"]))
+    records: list[BudgetRecord] = []
+    missing = list(plan.missing_years)
+    for year, code, area_slug in expected:
+        matches = list(
+            db.scalars(
+                select(BudgetRecord).where(
+                    BudgetRecord.year == year,
+                    BudgetRecord.organization_code == code,
+                    BudgetRecord.area_slug == area_slug,
+                    BudgetRecord.record_level == "subtotal_unidade",
+                    BudgetRecord.evidence_status == "homologated",
+                )
+            )
+        )
+        if len(matches) > 1:
+            return SearchResponse(
+                query=request.query,
+                summary=f"A consulta foi bloqueada porque {code}/{year} possui mais de um total de unidade homologado.",
+                insufficient_evidence=True,
+                evidence=[],
+                warnings=warnings,
+                limitations=["Nenhum valor duplicado foi escolhido ou somado automaticamente."],
+                interpretation=interpretation,
+            )
+        if matches:
+            records.append(matches[0])
+        elif year not in missing:
+            missing.append(year)
+    if not records:
+        return SearchResponse(
+            query=request.query,
+            summary=f"A série documental de {plan.label} foi reconhecida, mas não há totais de unidade homologados para os anos solicitados.",
+            insufficient_evidence=True,
+            evidence=[],
+            warnings=[*warnings, *plan.warnings],
+            limitations=["Ausência documental não foi convertida em zero."],
+            interpretation=interpretation,
+        )
+
+    rows = db.execute(
+        select(BudgetRecord, Page, DocumentVersion, Document)
+        .join(Page, BudgetRecord.page_id == Page.id)
+        .join(DocumentVersion, BudgetRecord.document_version_id == DocumentVersion.id)
+        .join(Document, DocumentVersion.document_id == Document.id)
+        .where(BudgetRecord.id.in_([record.id for record in records]))
+        .order_by(BudgetRecord.year)
+    ).all()
+    rows = _sort_rows_by_requested_value(list(rows), request.query)
+    evidence: list[Evidence] = []
+    sources: list[SourceReference] = []
+    values: list[str] = []
+    for index, (record, page, version, document) in enumerate(rows, start=1):
+        values.append(
+            f"{record.year} (código {record.organization_code}): R$ {record.original_value} [{index}]"
+        )
+        evidence.append(
+            Evidence(
+                document=document.title,
+                year=record.year,
+                pdf_page=page.pdf_page_number,
+                printed_page=page.printed_page_label,
+                original_text=record.source_text,
+                filename=version.filename,
+                page_url=f"/documents/{version.id}/pages/{page.pdf_page_number}",
+            )
+        )
+        sources.append(
+            SourceReference(
+                id=index,
+                document=document.title,
+                year=record.year,
+                pdf_page=page.pdf_page_number,
+                printed_page=page.printed_page_label,
+                excerpt=record.source_text,
+                filename=version.filename,
+                pdf_url=f"/documents/{version.id}/pdf#page={page.pdf_page_number}",
+                official_url=_official_budget_url(document.year, document.official_url),
+            )
+        )
+    summary = f"Série documental de {plan.label}: " + "; ".join(values) + "."
+    if plan.code_changes:
+        summary += " Mudanças de código: " + "; ".join(
+            f"{year}: {old} → {new}" for year, old, new in plan.code_changes
+        ) + "."
+    if not plan.direct_comparison_allowed:
+        summary += " Os segmentos não formam uma série quantitativa contínua devido à mudança de regime orçamentário."
+    limitations = list(plan.warnings)
+    if missing:
+        limitations.append(
+            "Sem registro homologado para: " + ", ".join(str(year) for year in sorted(set(missing))) + "."
+        )
+    return SearchResponse(
+        query=request.query,
+        summary=summary,
+        insufficient_evidence=bool(missing),
+        evidence=evidence,
+        sources=sources,
+        warnings=warnings,
+        limitations=limitations,
         interpretation=interpretation,
     )
 
@@ -2190,11 +2732,37 @@ def search_documents(db: Session, request: SearchRequest) -> SearchResponse:
             warnings=warnings,
             interpretation=interpretation,
         )
+    historical_series_response = _historical_editorial_series_response(
+        db, request, parsed, interpretation, warnings
+    )
+    if historical_series_response is not None:
+        return historical_series_response
+    # A identificação inequívoca de uma unidade deve ocorrer antes da resolução
+    # de área, pois o nome de uma unidade pode conter o nome de um ministério.
+    institution_response = _institution_response(
+        db, request, interpretation, warnings
+    )
+    if institution_response is not None and institution_response.sources:
+        return institution_response
+    editorial_area_response = _editorial_area_total_response(
+        db, request, parsed, interpretation, warnings
+    )
+    if editorial_area_response is not None and (
+        editorial_area_response.sources
+        or institution_response is None
+        or "Escolha pelo contexto" not in (institution_response.summary or "")
+    ):
+        return editorial_area_response
+    if institution_response is not None and (
+        "Escolha pelo contexto" in (institution_response.summary or "")
+    ):
+        return institution_response
     program_code_response = _program_code_response(
         db, request, interpretation, warnings
     )
     if program_code_response is not None:
         return program_code_response
+
     institution_count_response = _education_institution_count_response(
         db, request, parsed, interpretation, warnings
     )
@@ -2230,9 +2798,6 @@ def search_documents(db: Session, request: SearchRequest) -> SearchResponse:
     )
     if structured_response is not None:
         return structured_response
-    institution_response = _institution_response(
-        db, request, interpretation, warnings
-    )
     if institution_response is not None:
         return institution_response
     terms = []

@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2019, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "50.712.549.840", "filename": "2019_volume4.pdf", "pdf_page": 640},
+    {"year": 2020, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "48.574.018.805", "filename": "2020_volume4.pdf", "pdf_page": 640},
+    {"year": 2021, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "48.980.142.548", "filename": "2021_volume4.pdf", "pdf_page": 608},
+    {"year": 2022, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "64.932.707.549", "filename": "2022_volume4.pdf", "pdf_page": 598},
+    {"year": 2023, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "66.938.839.303", "filename": "2023_volume4.pdf", "pdf_page": 637},
+    {"year": 2024, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "86.732.284.591", "filename": "2024_volume4.pdf", "pdf_page": 679},
+    {"year": 2025, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "119.146.045.688", "filename": "2025_volume4.pdf", "pdf_page": 650},
+    {"year": 2026, "code": "74000", "name": "Operações Oficiais de Crédito", "category": "orgao_fiscal_transversal", "original_value": "148.753.176.384", "filename": "2026_volume4.pdf", "pdf_page": 634}
+  ]
+}

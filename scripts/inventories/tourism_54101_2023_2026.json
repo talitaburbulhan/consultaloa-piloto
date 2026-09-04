@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "tourism",
+  "records": [
+    {
+      "year": 2023,
+      "code": "54101",
+      "name": "Ministério do Turismo - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "1.279.835.438",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 508
+    },
+    {
+      "year": 2024,
+      "code": "54101",
+      "name": "Ministério do Turismo - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "2.256.974.923",
+      "filename": "2024_volume4.pdf",
+      "pdf_page": 533
+    },
+    {
+      "year": 2025,
+      "code": "54101",
+      "name": "Ministério do Turismo - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "3.174.645.230",
+      "filename": "2025_volume4.pdf",
+      "pdf_page": 492
+    },
+    {
+      "year": 2026,
+      "code": "54101",
+      "name": "Ministério do Turismo - Administração Direta",
+      "category": "administracao_direta",
+      "original_value": "3.491.048.067",
+      "filename": "2026_volume4.pdf",
+      "pdf_page": 479
+    }
+  ]
+}

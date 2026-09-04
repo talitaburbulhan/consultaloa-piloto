@@ -1,0 +1,12 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2020, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - BB Turismo", "category": "empresa_estatal", "original_value": "1.009.000", "filename": "2020_volume6.pdf", "pdf_page": 48},
+    {"year": 2021, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "105.000", "filename": "2021_volume6.pdf", "pdf_page": 46},
+    {"year": 2022, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "55.000", "filename": "2022_volume6.pdf", "pdf_page": 45},
+    {"year": 2023, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "50.000", "filename": "2023_volume6.pdf", "pdf_page": 38},
+    {"year": 2024, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "110.000", "filename": "2024_volume6.pdf", "pdf_page": 38},
+    {"year": 2025, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "110.000", "filename": "2025_volume6.pdf", "pdf_page": 38},
+    {"year": 2026, "code": "25246", "name": "BBTUR - Viagens e Turismo Ltda. - Em Liquidação", "category": "empresa_estatal_em_liquidacao", "original_value": "110.000", "filename": "2026_volume6.pdf", "pdf_page": 38}
+  ]
+}

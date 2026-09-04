@@ -1,0 +1,8 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2021, "code": "74101", "name": "Recursos sob Supervisão da Secretaria do Tesouro Nacional - Ministério da Economia", "category": "unidade_orcamentaria", "original_value": "7.627.536.975", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74102", "name": "Recursos sob Supervisão do Ministério da Economia", "category": "unidade_orcamentaria", "original_value": "125.000.000", "filename": "2021_volume4.pdf", "pdf_page": 609},
+    {"year": 2021, "code": "74104", "name": "Recursos sob Supervisão do Ministério da Agricultura, Pecuária e Abastecimento", "category": "unidade_orcamentaria", "original_value": "586.855.891", "filename": "2021_volume4.pdf", "pdf_page": 609}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "parent_organization_code": "minas_energia",
+  "records": [
+    {"year": 2020, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "353.599.332", "filename": "2020_volume4.pdf", "pdf_page": 223},
+    {"year": 2021, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "133.267.397", "filename": "2021_volume4.pdf", "pdf_page": 191},
+    {"year": 2022, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "356.670.666", "filename": "2022_volume4.pdf", "pdf_page": 173},
+    {"year": 2023, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "392.552.838", "filename": "2023_volume4.pdf", "pdf_page": 167},
+    {"year": 2024, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "421.471.169", "filename": "2024_volume4.pdf", "pdf_page": 160},
+    {"year": 2025, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "494.503.789", "filename": "2025_volume4.pdf", "pdf_page": 146},
+    {"year": 2026, "code": "32398", "name": "Nuclebrás Equipamentos Pesados S.A. - NUCLEP", "category": "empresa_estatal", "original_value": "502.304.359", "filename": "2026_volume4.pdf", "pdf_page": 139}
+  ]
+}

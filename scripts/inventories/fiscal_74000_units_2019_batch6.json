@@ -1,0 +1,41 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {
+      "year": 2019,
+      "code": "74915",
+      "name": "Recursos sob Supervisão do Fundo Constitucional de Financiamento do Nordeste/FNE - Min Integração Nacional",
+      "category": "unidade_orcamentaria",
+      "original_value": "7.882.491.884",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 641
+    },
+    {
+      "year": 2019,
+      "code": "74916",
+      "name": "Recursos sob Supervisão do Fundo Nacional sobre Mudança do Clima/FNMC - Ministério do Meio Ambiente",
+      "category": "unidade_orcamentaria",
+      "original_value": "348.709.939",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 641
+    },
+    {
+      "year": 2019,
+      "code": "74917",
+      "name": "Recursos sob Supervisão do Fundo de Desenvolvimento da Amazônia/FDA - Min Integração Nacional",
+      "category": "unidade_orcamentaria",
+      "original_value": "395.502.456",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 641
+    },
+    {
+      "year": 2019,
+      "code": "74918",
+      "name": "Recursos sob Supervisão do Fundo de Desenvolvimento do Nordeste/FDNE - Min Integração Nacional",
+      "category": "unidade_orcamentaria",
+      "original_value": "650.268.577",
+      "filename": "2019_volume4.pdf",
+      "pdf_page": 641
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "76.767.813", "filename": "2019_volume4.pdf", "pdf_page": 493},
+    {"year": 2020, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "60.095.498", "filename": "2020_volume4.pdf", "pdf_page": 495},
+    {"year": 2021, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "45.428.290", "filename": "2021_volume4.pdf", "pdf_page": 464},
+    {"year": 2022, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "64.224.271", "filename": "2022_volume4.pdf", "pdf_page": 420},
+    {"year": 2023, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "78.010.178", "filename": "2023_volume4.pdf", "pdf_page": 488},
+    {"year": 2024, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "74.547.670", "filename": "2024_volume4.pdf", "pdf_page": 518},
+    {"year": 2025, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "76.007.323", "filename": "2025_volume4.pdf", "pdf_page": 478},
+    {"year": 2026, "code": "53203", "name": "Superintendência do Desenvolvimento do Nordeste - SUDENE", "category": "autarquia", "original_value": "78.830.051", "filename": "2026_volume4.pdf", "pdf_page": 465}
+  ]
+}

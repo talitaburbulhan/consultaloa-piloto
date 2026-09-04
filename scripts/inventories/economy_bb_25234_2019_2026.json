@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "2.742.459.550", "filename": "2019_volume6.pdf", "pdf_page": 52},
+    {"year": 2020, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "2.759.038.754", "filename": "2020_volume6.pdf", "pdf_page": 46},
+    {"year": 2021, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "3.302.708.667", "filename": "2021_volume6.pdf", "pdf_page": 44},
+    {"year": 2022, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "2.569.427.756", "filename": "2022_volume6.pdf", "pdf_page": 43},
+    {"year": 2023, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "4.014.501.758", "filename": "2023_volume6.pdf", "pdf_page": 36},
+    {"year": 2024, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "4.676.258.768", "filename": "2024_volume6.pdf", "pdf_page": 36},
+    {"year": 2025, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "5.856.445.349", "filename": "2025_volume6.pdf", "pdf_page": 36},
+    {"year": 2026, "code": "25234", "name": "Banco do Brasil S.A. - BB", "category": "empresa_estatal", "original_value": "7.231.252.327", "filename": "2026_volume6.pdf", "pdf_page": 36}
+  ]
+}

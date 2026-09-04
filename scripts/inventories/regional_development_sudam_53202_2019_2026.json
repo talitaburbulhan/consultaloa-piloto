@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "regional_development_cities",
+  "records": [
+    {"year": 2019, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "187.209.010", "filename": "2019_volume4.pdf", "pdf_page": 490},
+    {"year": 2020, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "309.526.134", "filename": "2020_volume4.pdf", "pdf_page": 490},
+    {"year": 2021, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "60.727.580", "filename": "2021_volume4.pdf", "pdf_page": 461},
+    {"year": 2022, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "147.269.764", "filename": "2022_volume4.pdf", "pdf_page": 446},
+    {"year": 2023, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "56.076.031", "filename": "2023_volume4.pdf", "pdf_page": 485},
+    {"year": 2024, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "64.728.537", "filename": "2024_volume4.pdf", "pdf_page": 515},
+    {"year": 2025, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "69.986.508", "filename": "2025_volume4.pdf", "pdf_page": 475},
+    {"year": 2026, "code": "53202", "name": "Superintendência do Desenvolvimento da Amazônia - SUDAM", "category": "autarquia", "original_value": "72.804.941", "filename": "2026_volume4.pdf", "pdf_page": 462}
+  ]
+}

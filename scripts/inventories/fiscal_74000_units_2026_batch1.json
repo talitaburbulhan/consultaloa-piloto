@@ -1,0 +1,9 @@
+{
+  "parent_organization_code": "74000",
+  "records": [
+    {"year": 2026, "code": "74203", "name": "Recursos sob Supervisão do Instituto Nacional de Colonização e Reforma Agrária/INCRA-MDA", "category": "unidade_orcamentaria", "original_value": "717.839.430", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74204", "name": "Recursos sob Supervisão da Caixa de Construções de Casas para o Pessoal da Marinha - CCCPM", "category": "unidade_orcamentaria", "original_value": "227.279.633", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74205", "name": "Recursos sob Supervisão da Caixa de Financiamento Imobiliário da Aeronáutica", "category": "unidade_orcamentaria", "original_value": "16.944.812", "filename": "2026_volume4.pdf", "pdf_page": 635},
+    {"year": 2026, "code": "74901", "name": "Recursos sob Supervisão do Fundo de Defesa da Economia Cafeeira/FUNCAFÉ - Ministério da Agricultura e Pecuária", "category": "unidade_orcamentaria", "original_value": "7.368.712.499", "filename": "2026_volume4.pdf", "pdf_page": 635}
+  ]
+}

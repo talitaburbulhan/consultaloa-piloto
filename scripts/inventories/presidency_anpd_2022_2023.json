@@ -1,0 +1,23 @@
+{
+  "parent_organization_code": "presidency_vice_presidency",
+  "records": [
+    {
+      "year": 2022,
+      "code": "20209",
+      "name": "Autoridade Nacional de Proteção de Dados - ANPD",
+      "category": "unidade_vinculada",
+      "original_value": "41.768.775",
+      "filename": "2022_volume4.pdf",
+      "pdf_page": 15
+    },
+    {
+      "year": 2023,
+      "code": "20209",
+      "name": "Autoridade Nacional de Proteção de Dados - ANPD",
+      "category": "unidade_vinculada",
+      "original_value": "41.085.932",
+      "filename": "2023_volume4.pdf",
+      "pdf_page": 15
+    }
+  ]
+}

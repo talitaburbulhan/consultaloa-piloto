@@ -1,0 +1,13 @@
+{
+  "parent_organization_code": "fazenda_economia_industria_comercio_empreendedorismo",
+  "records": [
+    {"year": 2019, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "237.092.667", "filename": "2019_volume4.pdf", "pdf_page": 106},
+    {"year": 2020, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "289.416.478", "filename": "2020_volume4.pdf", "pdf_page": 127},
+    {"year": 2021, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "259.077.616", "filename": "2021_volume4.pdf", "pdf_page": 98},
+    {"year": 2022, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "288.476.649", "filename": "2022_volume4.pdf", "pdf_page": 91},
+    {"year": 2023, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "342.694.570", "filename": "2023_volume4.pdf", "pdf_page": 93},
+    {"year": 2024, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "318.828.580", "filename": "2024_volume4.pdf", "pdf_page": 84},
+    {"year": 2025, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "611.786.589", "filename": "2025_volume4.pdf", "pdf_page": 74},
+    {"year": 2026, "code": "25208", "name": "Superintendência de Seguros Privados", "category": "autarquia_financeira", "original_value": "439.643.655", "filename": "2026_volume4.pdf", "pdf_page": 70}
+  ]
+}
