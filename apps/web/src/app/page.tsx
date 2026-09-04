@@ -125,12 +125,16 @@ function extractNumericRows(text: string): NumericSummaryRow[] {
 
   if (rows.length > 0) return rows;
 
+  const historicalLabel =
+    text.match(
+      /S[ée]rie documental de\s+(.+?):\s*(?=20\d{2}\s+\(c[óo]digo)/i,
+    )?.[1]?.trim() ?? "Série documental";
   const historicalPattern =
     /(20\d{2})\s+\(c[óo]digo\s+(\d+)\):\s*R\$\s*([\d.]+)(?:\s*\[(\d+)\])?/gi;
   let historicalMatch: RegExpExecArray | null;
   while ((historicalMatch = historicalPattern.exec(text)) !== null) {
     rows.push({
-      label: "Série documental",
+      label: historicalLabel,
       code: historicalMatch[2],
       year: Number(historicalMatch[1]),
       value: historicalMatch[3],
@@ -200,12 +204,14 @@ function NumericSummaryTable({
 
   const showInstitution =
     new Set(rows.map((row) => row.label)).size > 1 || rows[0].code !== null;
+  const showCode = rows.some((row) => row.code !== null);
   return (
     <div className="numericTableWrapper">
       <table className="numericTable">
         <thead>
           <tr>
             {showInstitution && <th>Instituição ou tema</th>}
+            {showCode && <th>Código</th>}
             <th>Ano</th>
             <th>Valor autorizado</th>
             <th>Fonte</th>
@@ -221,9 +227,9 @@ function NumericSummaryTable({
                 {showInstitution && (
                   <td>
                     <strong>{row.label}</strong>
-                    {row.code && <small>Código {row.code}</small>}
                   </td>
                 )}
+                {showCode && <td>{row.code ?? "—"}</td>}
                 <td>{row.year}</td>
                 <td className="numericValue">R$ {row.value}</td>
                 <td>
