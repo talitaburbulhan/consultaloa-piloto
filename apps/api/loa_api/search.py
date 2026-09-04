@@ -343,19 +343,21 @@ STRUCTURED_LIMITATIONS = {
 
 
 def _query_years(query: str, selected: list[int]) -> list[int]:
-    if selected:
-        return sorted(set(selected))
     explicit = sorted({int(year) for year in re.findall(r"\b20(?:19|2[0-6])\b", query)})
     normalized_query = normalize(query)
     range_match = re.search(
         r"\b(?:de|entre)\s+(20(?:19|2[0-6]))\s+(?:a|ate|e)\s+(20(?:19|2[0-6]))\b",
         normalized_query,
     )
-    if not range_match:
+    if range_match:
+        start, end = map(int, range_match.groups())
+        lower, upper = sorted((start, end))
+        return list(range(lower, upper + 1))
+    # A period written in the question expresses the user's most specific intent.
+    # UI selections are a fallback only when the natural-language query is silent.
+    if explicit:
         return explicit
-    start, end = map(int, range_match.groups())
-    lower, upper = sorted((start, end))
-    return list(range(lower, upper + 1))
+    return sorted(set(selected))
 
 
 def _value_sort_direction(query: str) -> str | None:

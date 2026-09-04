@@ -70,10 +70,15 @@ def test_minc_2023_does_not_fall_back_to_mec_or_program_value() -> None:
     with Session(engine) as db:
         response = search_documents(
             db,
-            SearchRequest(query="Qual foi o orçamento do MinC em 2023?"),
+            SearchRequest(
+                query="Qual foi o orçamento do MinC em 2023?",
+                years=list(range(2019, 2027)),
+            ),
         )
 
     assert "Não há um total exclusivo e homologado do Ministério da Cultura" in response.summary
+    assert "para 2023" in response.summary
+    assert "para 2019" not in response.summary
     assert "Ministério do Turismo em 2021–2023" in response.summary
     assert "Ministério da Educação" not in response.summary
     assert response.insufficient_evidence

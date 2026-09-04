@@ -488,6 +488,24 @@ def test_year_range_is_expanded_inclusively() -> None:
     ]
 
 
+def test_explicit_query_period_overrides_ui_year_selection() -> None:
+    all_ui_years = list(range(2019, 2027))
+
+    assert _query_years("Qual foi o orçamento do MinC em 2023?", all_ui_years) == [
+        2023
+    ]
+    assert _query_years("Mostre os dados de 2023 a 2026", all_ui_years) == [
+        2023,
+        2024,
+        2025,
+        2026,
+    ]
+    assert _query_years("Mostre o orçamento do MinC", [2022, 2024]) == [
+        2022,
+        2024,
+    ]
+
+
 def test_value_sort_direction_recognizes_user_phrasings() -> None:
     assert _value_sort_direction("Coloque em ordem crescente") == "ascending"
     assert _value_sort_direction("Mostre do menor para o maior") == "ascending"
