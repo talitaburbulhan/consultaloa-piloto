@@ -263,6 +263,71 @@ function NumericSummaryTable({
   );
 }
 
+function conciseTextForTable(text: string, rows: NumericSummaryRow[], intent?: string): string | null {
+  if (rows.length === 0) return text;
+
+  const variations = text.match(/Variações:\s*([\s\S]+)$/i)?.[1]?.trim();
+  if (variations) return `Variações: ${variations}`;
+
+  const codeChanges = text.match(/Mudanças de código:\s*([\s\S]+)$/i)?.[1]?.trim();
+  if (codeChanges) return `Mudanças de código: ${codeChanges}`;
+
+  const discontinuity = text.match(
+    /(Os segmentos não formam uma série quantitativa contínua[\s\S]*)$/i,
+  )?.[1]?.trim();
+  if (discontinuity) return discontinuity;
+
+  const documentedValuesMarker = text.search(/Os valores documentados são:/i);
+  if (documentedValuesMarker > 0) {
+    return text.slice(0, documentedValuesMarker).trim();
+  }
+
+  if (intent === "compare_maximum") {
+    return text.split(/\s+(?:Valores considerados|Série consultada|Séries institucionais):/i)[0].trim();
+  }
+
+  if (intent === "compare_change") {
+    const change = text.match(
+      /,\s*((?:um|uma)\s+(?:aumento|redução)\s+nominal de R\$\s*[\d.]+)\./i,
+    )?.[1];
+    if (change) {
+      const labels = [...new Set(rows.map((row) => row.label))];
+      return labels.length === 1 ? `${labels[0]}: ${change}.` : `${change}.`;
+    }
+  }
+
+  const missingEvidence = text.match(
+    /(Não encontrei [\s\S]+?(?:não foi realizada|fontes disponíveis)\.)$/i,
+  )?.[1]?.trim();
+  if (missingEvidence) return missingEvidence;
+
+  return null;
+}
+
+function AnswerSummary({
+  text,
+  sources,
+  intent,
+}: {
+  text: string;
+  sources: SourceReference[];
+  intent?: string;
+}) {
+  const rows = extractNumericRows(text);
+  const conciseText = conciseTextForTable(text, rows, intent);
+
+  return (
+    <div className="summary answer">
+      {conciseText && (
+        <p>
+          <SummaryWithCitations text={conciseText} sources={sources} />
+        </p>
+      )}
+      <NumericSummaryTable text={text} sources={sources} />
+    </div>
+  );
+}
+
 function UnitListTable({
   units,
   sources,
@@ -541,12 +606,11 @@ export default function Home() {
           ))}
 
           {result.summary && (
-            <div className="summary answer">
-              <p>
-                <SummaryWithCitations text={result.summary} sources={result.sources} />
-              </p>
-              <NumericSummaryTable text={result.summary} sources={result.sources} />
-            </div>
+            <AnswerSummary
+              intent={result.interpretation?.intent}
+              sources={result.sources}
+              text={result.summary}
+            />
           )}
 
           <UnitListTable units={result.listed_units ?? []} sources={result.sources} />
