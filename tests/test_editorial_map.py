@@ -280,6 +280,27 @@ def test_historical_alias_resolution_uses_longest_match() -> None:
     ) == ("fmm", "Fundo da Marinha Mercante")
 
 
+def test_defense_and_funai_editorial_plans_preserve_historical_codes() -> None:
+    defense = historical_comparison_plan("defesa_nacional", list(range(2019, 2027)))
+    assert [segment["organization_code"] for segment in defense.segments] == [
+        "2058",
+        "6012",
+        "6112",
+    ]
+    assert all(segment["code_field"] == "program_code" for segment in defense.segments)
+    assert all(segment["record_level"] == "total_programa" for segment in defense.segments)
+
+    funai = historical_comparison_plan("funai", list(range(2019, 2027)))
+    assert [segment["organization_code"] for segment in funai.segments] == [
+        "30202",
+        "84201",
+    ]
+    assert funai.code_changes == ((2024, "30202", "84201"),)
+    assert resolve_historical_entity_alias(
+        "Mostre a série da Fundação Nacional dos Povos Indígenas"
+    ) == ("funai", "FUNAI")
+
+
 def test_subject_rules_include_global_and_specific_safeguards() -> None:
     rules = active_rules_for("tourism")
     keys = {rule["rule_key"] for rule in rules}
@@ -380,6 +401,69 @@ def test_search_returns_historical_series_with_original_codes() -> None:
     assert "2020 (código 22201): R$ 2.000" in response.summary
     assert "2020: 20201 → 22201" in response.summary
     assert not response.insufficient_evidence
+    assert len(response.sources) == 2
+
+
+def test_search_returns_defense_program_series_from_program_codes() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        for index, (year, code, value) in enumerate(
+            [(2019, "2058", "11.000"), (2020, "6012", "12.000")], start=1
+        ):
+            document = Document(
+                year=year,
+                title=f"LOA {year}",
+                kind=DocumentKind.VOLUME,
+                official_url=None,
+            )
+            version = DocumentVersion(
+                document=document,
+                filename=f"{year}_volume2.pdf",
+                sha256=str(index + 20) * 64,
+                byte_size=100,
+                page_count=1,
+            )
+            page = Page(
+                version=version,
+                pdf_page_number=10,
+                printed_page_label="9",
+                original_text=f"{code} Defesa Nacional {value}",
+                page_sha256=str(index + 22) * 64,
+            )
+            db.add_all([document, version, page])
+            db.flush()
+            db.add(
+                make_record(
+                    year=year,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=None,
+                    organization_name=None,
+                    program_code=code,
+                    parent_organization_code="defesa",
+                    original_value=value,
+                    numeric_value=Decimal(value.replace(".", "")),
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 24) * 64,
+                )
+            )
+        db.flush()
+        seed_editorial_map(db)
+        backfill_budget_record_classification(db)
+        db.commit()
+
+        response = search_documents(
+            db,
+            SearchRequest(
+                query="Mostre a série histórica de Defesa Nacional de 2019 a 2020",
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert "2019 (código 2058): R$ 11.000" in response.summary
+    assert "2020 (código 6012): R$ 12.000" in response.summary
+    assert response.warnings == []
     assert len(response.sources) == 2
 
 

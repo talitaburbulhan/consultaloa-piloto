@@ -258,7 +258,7 @@ def test_institute_feedback_queries_return_individual_values_without_group_sum()
         collective = search_documents(
             db,
             SearchRequest(
-                query="Mostre os orçamentos de cada um dos institutos federais em 2022",
+                query="Mostre os orçamentos de cada um dos institutos federais em 2022 em ordem crescente",
                 interpretation_confirmed=True,
             ),
         )
@@ -275,6 +275,7 @@ def test_institute_feedback_queries_return_individual_values_without_group_sum()
         "500.000.000",
         "700.000.000",
     }
+    assert [item.code for item in collective.listed_units] == ["26404", "26408"]
     assert "Instituto Federal Baiano" in individual.summary
     assert "R$ 500.000.000" in individual.summary
     assert "1.200.000.000" not in individual.summary

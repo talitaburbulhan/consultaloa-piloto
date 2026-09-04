@@ -1624,9 +1624,13 @@ def _education_institution_list_response(
         evidence = []
         sources = []
         source_ids: dict[tuple[int, int], int] = {}
-        for record, page, version, document in sorted(
-            rows, key=lambda row: (row[0].year, row[0].organization_code)
-        ):
+        ordered_rows = _sort_rows_by_requested_value(list(rows), request.query)
+        if _value_sort_direction(request.query) is None:
+            ordered_rows = sorted(
+                ordered_rows,
+                key=lambda row: (row[0].year, row[0].organization_code),
+            )
+        for record, page, version, document in ordered_rows:
             source_key = (version.id, page.pdf_page_number)
             source_id = source_ids.get(source_key)
             if source_id is None:
@@ -2587,21 +2591,30 @@ def _historical_editorial_series_response(
             interpretation=interpretation,
         )
 
-    expected: list[tuple[int, str, str]] = []
+    expected: list[tuple[int, str, str, str, str]] = []
     for segment in plan.segments:
         for year in requested_years:
             if int(segment["start_year"]) <= year <= int(segment["end_year"]):
-                expected.append((year, str(segment["organization_code"]), segment["area_slug"]))
+                expected.append(
+                    (
+                        year,
+                        str(segment["organization_code"]),
+                        segment["area_slug"],
+                        segment.get("code_field", "organization_code"),
+                        segment.get("record_level", "subtotal_unidade"),
+                    )
+                )
     records: list[BudgetRecord] = []
     missing = list(plan.missing_years)
-    for year, code, area_slug in expected:
+    for year, code, area_slug, code_field, record_level in expected:
+        code_column = getattr(BudgetRecord, code_field)
         matches = list(
             db.scalars(
                 select(BudgetRecord).where(
                     BudgetRecord.year == year,
-                    BudgetRecord.organization_code == code,
+                    code_column == code,
                     BudgetRecord.area_slug == area_slug,
-                    BudgetRecord.record_level == "subtotal_unidade",
+                    BudgetRecord.record_level == record_level,
                     BudgetRecord.evidence_status == "homologated",
                 )
             )
@@ -2644,8 +2657,9 @@ def _historical_editorial_series_response(
     sources: list[SourceReference] = []
     values: list[str] = []
     for index, (record, page, version, document) in enumerate(rows, start=1):
+        record_code = record.organization_code or record.program_code or "sem código"
         values.append(
-            f"{record.year} (código {record.organization_code}): R$ {record.original_value} [{index}]"
+            f"{record.year} (código {record_code}): R$ {record.original_value} [{index}]"
         )
         evidence.append(
             Evidence(

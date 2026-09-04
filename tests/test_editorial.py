@@ -11,6 +11,12 @@ def test_explicit_loa_year_is_not_ambiguous() -> None:
     assert ambiguity_warnings("Quanto foi destinado na LOA 2024?") == []
 
 
+def test_year_ranges_are_not_ambiguous() -> None:
+    assert ambiguity_warnings("Mostre os dados de 2019 a 2026") == []
+    assert ambiguity_warnings("Compare entre 2023 e 2026") == []
+    assert ambiguity_warnings("Mostre a série 2019–2026") == []
+
+
 def test_execution_question_is_flagged() -> None:
     warnings = ambiguity_warnings("Quanto foi efetivamente pago?")
     assert any("execução" in warning for warning in warnings)

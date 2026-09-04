@@ -137,9 +137,11 @@ protected_code_overrides:
   "74902": educacao
 
 historical_segments:
-  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "2058", start_year: 2019, end_year: 2019, comparison_group: defesa_nacional}
-  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6012", start_year: 2020, end_year: 2023, comparison_group: defesa_nacional}
-  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6112", start_year: 2024, end_year: 2026, comparison_group: defesa_nacional}
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "2058", code_field: program_code, record_level: total_programa, start_year: 2019, end_year: 2019, comparison_group: defesa_nacional}
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6012", code_field: program_code, record_level: total_programa, start_year: 2020, end_year: 2023, comparison_group: defesa_nacional}
+  - {entity_slug: defesa_nacional, area_slug: defesa, organization_code: "6112", code_field: program_code, record_level: total_programa, start_year: 2024, end_year: 2026, comparison_group: defesa_nacional}
+  - {entity_slug: funai_justica, area_slug: justica_seguranca_publica, organization_code: "30202", start_year: 2019, end_year: 2023, comparison_group: funai}
+  - {entity_slug: funai_povos_indigenas, area_slug: indigenous_peoples, organization_code: "84201", start_year: 2024, end_year: 2026, comparison_group: funai}
   - {entity_slug: ebc, area_slug: presidency_vice_presidency, organization_code: "20415", start_year: 2019, end_year: 2020, comparison_group: ebc}
   - {entity_slug: ebc, area_slug: communications, organization_code: "41261", start_year: 2021, end_year: 2023, comparison_group: ebc}
   - {entity_slug: ebc, area_slug: presidency_vice_presidency, organization_code: "20415", start_year: 2024, end_year: 2026, comparison_group: ebc}
@@ -187,6 +189,8 @@ historical_segments:
   - {entity_slug: esporte_autonomo, area_slug: sport, organization_code: "51101", start_year: 2024, end_year: 2026, comparison_group: esporte_autonomo}
 
 historical_entities:
+  defesa_nacional: {label: Defesa Nacional, aliases: [Defesa Nacional, programa Defesa Nacional]}
+  funai: {label: FUNAI, aliases: [FUNAI, Fundação Nacional do Índio, Fundação Nacional dos Povos Indígenas]}
   incra: {label: INCRA, aliases: [INCRA]}
   conab: {label: CONAB, aliases: [CONAB]}
   bndes: {label: BNDES, aliases: [BNDES]}
