@@ -519,6 +519,76 @@ def test_area_context_disambiguates_identical_unit_names_without_code() -> None:
     assert "R$ 100" not in response.summary
 
 
+def test_area_unit_ranking_is_global_ordered_and_excludes_other_levels() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2024, title="LOA 2024", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2024_volume4.pdf",
+            sha256="c" * 64,
+            byte_size=100,
+            page_count=3,
+        )
+        definitions = (
+            ("24101", "Ministério da Ciência - Administração Direta", 100, "subtotal_unidade"),
+            ("24201", "Conselho Nacional de Desenvolvimento Científico", 300, "subtotal_unidade"),
+            ("24000", "Ministério da Ciência", 999, "total_orgao"),
+        )
+        for index, (code, name, value, level) in enumerate(definitions, start=1):
+            page = Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} {name} Total {value}",
+                page_sha256=str(index + 2) * 64,
+            )
+            db.add(page)
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=2024,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name=name,
+                    area_slug="ciencia_tecnologia",
+                    record_level=level,
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 3) * 64,
+                )
+            )
+        db.commit()
+
+        descending = search_documents(
+            db,
+            SearchRequest(
+                query="Quais unidades de Ciência e Tecnologia tiveram os maiores orçamentos em 2024?",
+                interpretation_confirmed=True,
+            ),
+        )
+        ascending = search_documents(
+            db,
+            SearchRequest(
+                query="Ordene as unidades de Ciência e Tecnologia em ordem crescente em 2024",
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert [unit.code for unit in descending.listed_units] == ["24201", "24101"]
+    assert [unit.code for unit in ascending.listed_units] == ["24101", "24201"]
+    assert "24000" not in {unit.code for unit in descending.listed_units}
+    assert "maior para o menor" in descending.summary
+    assert "menor para o maior" in ascending.summary
+
+
 def test_health_unit_group_wordings_are_recognized() -> None:
     expected = [
         ("Quantas unidades vinculadas ao Ministério da Saúde existem?", "count_institutions"),

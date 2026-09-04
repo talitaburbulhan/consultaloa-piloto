@@ -2517,6 +2517,156 @@ def _structured_program_response(
     )
 
 
+def _area_member_ranking_response(
+    db: Session,
+    request: SearchRequest,
+    interpretation: QueryInterpretation,
+    warnings: list[str],
+) -> SearchResponse | None:
+    """Rank homologated units inside any editorial area without aggregating levels."""
+    resolved = resolve_area_alias(request.query)
+    if resolved is None:
+        return None
+    area_slug, area_label = resolved
+    normalized_query = normalize(request.query)
+    member_terms = {
+        "agencia", "autarquia", "fundo", "instituicao", "instituicoes",
+        "orgao", "orgaos", "unidade", "unidades",
+    }
+    asks_for_members = bool(member_terms.intersection(normalized_query.split()))
+    asks_for_ranking = any(
+        term in normalized_query
+        for term in (
+            "maior", "maiores", "menor", "menores", "ranking",
+            "ordem crescente", "ordem decrescente", "ordene", "ordenar",
+        )
+    )
+    if not asks_for_members or not asks_for_ranking:
+        return None
+
+    years = _query_years(request.query, request.years) or list(range(2019, 2027))
+    rows = db.execute(
+        select(BudgetRecord, Page, DocumentVersion, Document)
+        .join(Page, BudgetRecord.page_id == Page.id)
+        .join(DocumentVersion, BudgetRecord.document_version_id == DocumentVersion.id)
+        .join(Document, DocumentVersion.document_id == Document.id)
+        .where(
+            BudgetRecord.year.in_(years),
+            BudgetRecord.area_slug == area_slug,
+            BudgetRecord.evidence_status == "homologated",
+            BudgetRecord.record_level == "subtotal_unidade",
+            BudgetRecord.organization_code.is_not(None),
+        )
+        .order_by(BudgetRecord.year, BudgetRecord.organization_code)
+    ).all()
+    if not rows:
+        return None
+
+    grouped: dict[tuple[int, str], list] = {}
+    for row in rows:
+        grouped.setdefault((row[0].year, row[0].organization_code), []).append(row)
+
+    safe_rows = []
+    conflicting_items = []
+    for (year, code), candidates in grouped.items():
+        values = {candidate[0].numeric_value for candidate in candidates}
+        if len(values) != 1:
+            conflicting_items.append(f"{code}/{year}")
+            continue
+        safe_rows.append(candidates[0])
+
+    direction = _value_sort_direction(request.query)
+    if direction is None:
+        direction = "ascending" if any(
+            term in normalized_query for term in ("menor", "menores")
+        ) else "descending"
+    reverse = direction == "descending"
+    ranked_rows = []
+    for year in years:
+        year_rows = [row for row in safe_rows if row[0].year == year]
+        year_rows.sort(
+            key=lambda row: (row[0].numeric_value, row[0].organization_code),
+            reverse=reverse,
+        )
+        ranked_rows.extend(year_rows[: request.limit])
+    if not ranked_rows:
+        return None
+
+    evidence = []
+    sources = []
+    listed_units = []
+    source_ids: dict[tuple[int, int], int] = {}
+    for record, page, version, document in ranked_rows:
+        source_key = (version.id, page.pdf_page_number)
+        source_id = source_ids.get(source_key)
+        if source_id is None:
+            source_id = len(sources) + 1
+            source_ids[source_key] = source_id
+            evidence.append(
+                Evidence(
+                    document=document.title,
+                    year=record.year,
+                    pdf_page=page.pdf_page_number,
+                    printed_page=page.printed_page_label,
+                    original_text=record.source_text,
+                    filename=version.filename,
+                    page_url=f"/documents/{version.id}/pages/{page.pdf_page_number}",
+                )
+            )
+            sources.append(
+                SourceReference(
+                    id=source_id,
+                    document=document.title,
+                    year=record.year,
+                    pdf_page=page.pdf_page_number,
+                    printed_page=page.printed_page_label,
+                    excerpt=record.source_text,
+                    filename=version.filename,
+                    pdf_url=f"/documents/{version.id}/pdf#page={page.pdf_page_number}",
+                    official_url=_official_budget_url(document.year, document.official_url),
+                )
+            )
+        listed_units.append(
+            ListedUnit(
+                name=_institution_name(record) or f"Unidade {record.organization_code}",
+                code=record.organization_code,
+                category=record.institution_category or f"unidade de {area_label}",
+                years=[record.year],
+                year=record.year,
+                original_value=record.original_value,
+                source_id=source_id,
+            )
+        )
+
+    order_label = "maior para o menor" if reverse else "menor para o maior"
+    scope = str(years[0]) if len(years) == 1 else f"{min(years)} a {max(years)}"
+    limitations = [
+        "O ranking usa somente subtotais de unidades homologados; totais de órgão, programas, ações e programações supervisionadas foram excluídos.",
+        "Unidades distintas não foram somadas e cada código aparece uma única vez por exercício.",
+        "Os valores são autorizações da LOA, não despesas efetivamente pagas.",
+    ]
+    if conflicting_items:
+        limitations.append(
+            "Registros conflitantes excluídos do ranking: "
+            + ", ".join(conflicting_items)
+            + "."
+        )
+    return SearchResponse(
+        query=request.query,
+        summary=(
+            f"Ranking das unidades da área {area_label} em {scope}. "
+            f"A tabela está ordenada do {order_label}."
+        ),
+        insufficient_evidence=bool(conflicting_items),
+        evidence=evidence,
+        sources=sources,
+        listed_units=listed_units,
+        warnings=warnings,
+        limitations=limitations,
+        interpretation=interpretation,
+    )
+
+
 def _editorial_area_total_response(
     db: Session,
     request: SearchRequest,
@@ -2876,6 +3026,11 @@ def search_documents(db: Session, request: SearchRequest) -> SearchResponse:
     )
     if institution_response is not None and institution_response.sources:
         return institution_response
+    area_member_ranking_response = _area_member_ranking_response(
+        db, request, interpretation, warnings
+    )
+    if area_member_ranking_response is not None:
+        return area_member_ranking_response
     editorial_area_response = _editorial_area_total_response(
         db, request, parsed, interpretation, warnings
     )
