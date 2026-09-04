@@ -79,12 +79,15 @@ main { min-height: 100vh; }
   margin: 18px 0 26px;
 }
 
-.intro {
-  color: var(--muted);
+.hero .pageTitle {
+  color: var(--ink);
   font-family: Georgia, serif;
-  font-size: 21px;
-  line-height: 1.45;
-  max-width: 670px;
+  font-size: clamp(48px, 6.5vw, 82px);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: 1.02;
+  margin: 0;
+  max-width: 980px;
 }
 
 .pilotCoverage {
@@ -107,7 +110,84 @@ main { min-height: 100vh; }
 .coverageColumns ul { margin: 9px 0 0; padding-left: 19px; }
 .coverageColumns li { line-height: 1.45; margin: 5px 0; }
 .coverageStatus { color: var(--muted); font-size: 12px; }
-.feedbackReport { color: var(--green); font-size: 13px; font-weight: 700; }
+.feedbackReport {
+  background: var(--green);
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 15px;
+  text-decoration: none;
+}
+
+.areaCatalog {
+  border-top: 1px solid var(--ink);
+  margin-top: 54px;
+  padding-top: 22px;
+}
+.areaCatalogIntro h3 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  margin: 8px 0 10px;
+}
+.areaCatalogIntro > p:last-child {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 22px;
+  max-width: 760px;
+}
+.areaCatalogList { border-bottom: 1px solid var(--line); }
+.areaCatalogItem { border-top: 1px solid var(--line); }
+.areaCatalogItem summary {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  gap: 12px;
+  grid-template-columns: 18px 1fr auto;
+  list-style: none;
+  padding: 16px 4px;
+}
+.areaCatalogItem summary::-webkit-details-marker { display: none; }
+.areaCatalogItem summary::before {
+  color: var(--green);
+  content: "›";
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform .15s ease;
+}
+.areaCatalogItem[open] summary::before { transform: rotate(90deg); }
+.areaCatalogItem summary:hover span,
+.areaCatalogItem summary:focus-visible span { color: var(--green); }
+.areaCatalogItem summary:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.areaCatalogItem summary small {
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+}
+.areaUnitTableWrapper { overflow-x: auto; padding: 0 0 18px 30px; }
+.areaUnitTable {
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 760px;
+  width: 100%;
+}
+.areaUnitTable th {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .07em;
+  padding: 9px 11px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.areaUnitTable td { border-top: 1px solid var(--line); padding: 9px 11px; vertical-align: top; }
+.areaUnitTable td:nth-child(2), .areaUnitTable td:nth-child(3) { white-space: nowrap; }
 
 .search {
   border-top: 1px solid var(--ink);
@@ -260,6 +340,7 @@ fieldset { border: 0; margin: 26px 0 0; padding: 0; }
   background: #fffdf7;
   border-top: 1px solid var(--ink);
   padding: 48px max(4vw, 24px) 70px;
+  scroll-margin-top: 16px;
 }
 
 .interpretation {
@@ -287,15 +368,6 @@ fieldset { border: 0; margin: 26px 0 0; padding: 0; }
 }
 .resultHeader h3 { font-family: Georgia, serif; font-size: 35px; margin: 8px 0 0; }
 .separation { color: var(--muted); font-size: 12px; }
-.resultActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 auto 28px;
-  max-width: 1120px;
-}
-.resultActions button { padding: 11px 16px; }
-.resultActions a { align-self: center; color: var(--green); font-size: 12px; }
 .sourceReferences { margin: auto; max-width: 1120px; }
 .sourceReferences > h3 { font-family: Georgia, serif; font-size: 24px; margin: 0 0 14px; }
 .sourceCard { border-top: 1px solid var(--line); padding: 18px 0; scroll-margin-top: 20px; }
@@ -361,6 +433,7 @@ blockquote {
 .feedbackSubmit { margin-top: 12px; padding: 12px 18px; }
 .feedbackMessage { color: var(--green); font-weight: 700; }
 footer {
+  align-items: center;
   border-top: 1px solid var(--ink);
   color: var(--muted);
   display: flex;
@@ -375,6 +448,9 @@ footer {
   .masthead, .resultHeader, footer { align-items: flex-start; flex-direction: column; gap: 10px; }
   .hero { padding-top: 56px; }
   .coverageColumns { grid-template-columns: 1fr; }
+  .areaCatalogItem summary { grid-template-columns: 18px 1fr; }
+  .areaCatalogItem summary small { grid-column: 2; }
+  .areaUnitTableWrapper { padding-left: 0; }
   .searchRow { flex-direction: column; }
   button { padding: 16px; }
   .sourceHeading { align-items: start; grid-template-columns: 34px 1fr; }

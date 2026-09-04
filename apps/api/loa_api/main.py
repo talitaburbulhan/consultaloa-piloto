@@ -28,6 +28,8 @@ from .models import (
     SavedQuery,
 )
 from .schemas import (
+    CatalogArea,
+    CatalogUnit,
     DocumentSummary,
     ComparisonRequest,
     ComparisonResponse,
@@ -40,6 +42,7 @@ from .schemas import (
     FeedbackCreateRequest,
     FeedbackResponse,
 )
+from .editorial_map import load_editorial_map
 from .security import CurrentUser, current_user
 from .search import (
     pilot_comparison_allowed,
@@ -162,6 +165,69 @@ def corpus_status(
         pending_review_pages=pending,
         homologation_complete=pending == 0,
     )
+
+
+@app.get("/catalog/areas", response_model=list[CatalogArea])
+def area_catalog(
+    db: Session = Depends(get_db), user: CurrentUser = Depends(current_user)
+) -> list[CatalogArea]:
+    """Return the complete homologated unit inventory grouped by editorial area."""
+    rows = db.execute(
+        select(
+            BudgetRecord.area_slug,
+            BudgetRecord.organization_code,
+            BudgetRecord.organization_name,
+            BudgetRecord.year,
+            BudgetRecord.record_level,
+        )
+        .where(
+            BudgetRecord.evidence_status == "homologated",
+            BudgetRecord.area_slug.is_not(None),
+            BudgetRecord.organization_code.is_not(None),
+            BudgetRecord.organization_name.is_not(None),
+            BudgetRecord.record_level.in_(
+                ("subtotal_unidade", "total_orgao", "programacao_supervisionada")
+            ),
+        )
+        .distinct()
+    ).all()
+    grouped: dict[str, dict[tuple[str, str, str], set[int]]] = {}
+    for area_slug, code, name, year, record_level in rows:
+        key = (code, name, record_level)
+        grouped.setdefault(area_slug, {}).setdefault(key, set()).add(year)
+
+    area_definitions = load_editorial_map()["areas"]
+    record_labels = {
+        "subtotal_unidade": "Unidade",
+        "total_orgao": "Total de órgão",
+        "programacao_supervisionada": "Programação supervisionada",
+    }
+    display_fixes = {
+        "Comando da Aeron?utica": "Comando da Aeronáutica",
+        "Minist?rio da Defesa": "Ministério da Defesa",
+        "Minist?rio da Defesa - Administra??o Direta": "Ministério da Defesa - Administração Direta",
+    }
+    result = []
+    for slug, units in grouped.items():
+        label = area_definitions.get(slug, {}).get("label", slug.replace("_", " ").title())
+        result.append(
+            CatalogArea(
+                slug=slug,
+                label=label,
+                units=[
+                    CatalogUnit(
+                        code=code,
+                        name=display_fixes.get(name, name),
+                        years=sorted(years),
+                        record_type=record_labels.get(record_level, record_level),
+                    )
+                    for (code, name, record_level), years in sorted(
+                        units.items(), key=lambda item: (item[0][1], item[0][0])
+                    )
+                ],
+            )
+        )
+    return sorted(result, key=lambda area: area.label)
 
 
 @app.post("/saved-queries", response_model=SavedQueryResponse)

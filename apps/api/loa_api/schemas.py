@@ -118,6 +118,19 @@ class CurrentUserResponse(BaseModel):
     is_reviewer: bool
 
 
+class CatalogUnit(BaseModel):
+    code: str
+    name: str
+    years: list[int]
+    record_type: str
+
+
+class CatalogArea(BaseModel):
+    slug: str
+    label: str
+    units: list[CatalogUnit]
+
+
 class FeedbackCreateRequest(BaseModel):
     query: str = Field(min_length=2, max_length=500)
     years: list[int] = Field(default_factory=list)

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 type Evidence = {
   document: string;
@@ -63,6 +63,19 @@ type CorpusStatus = {
   blank_verified_pages: number;
   pending_review_pages: number;
   homologation_complete: boolean;
+};
+
+type CatalogUnit = {
+  code: string;
+  name: string;
+  years: number[];
+  record_type: string;
+};
+
+type CatalogArea = {
+  slug: string;
+  label: string;
+  units: CatalogUnit[];
 };
 
 type FeedbackVerdict = "correct" | "incomplete" | "incorrect";
@@ -304,13 +317,14 @@ function UnitListTable({
 }
 
 export default function Home() {
+  const resultsRef = useRef<HTMLElement | null>(null);
   const [query, setQuery] = useState("");
   const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [result, setResult] = useState<SearchResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [permalink, setPermalink] = useState("");
   const [corpus, setCorpus] = useState<CorpusStatus | null>(null);
+  const [areaCatalog, setAreaCatalog] = useState<CatalogArea[]>([]);
   const [isReviewer, setIsReviewer] = useState(false);
   const [feedbackVerdict, setFeedbackVerdict] = useState<FeedbackVerdict | null>(null);
   const [feedbackComment, setFeedbackComment] = useState("");
@@ -326,7 +340,17 @@ export default function Home() {
       .then((response) => (response.ok ? response.json() : null))
       .then((user) => setIsReviewer(Boolean(user?.is_reviewer)))
       .catch(() => setIsReviewer(false));
+    fetch(`${API_URL}/catalog/areas`)
+      .then((response) => (response.ok ? response.json() : []))
+      .then(setAreaCatalog)
+      .catch(() => setAreaCatalog([]));
   }, []);
+
+  useEffect(() => {
+    if (result) {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [result]);
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -363,44 +387,6 @@ export default function Home() {
     setSelectedYears((current) =>
       current.includes(year) ? current.filter((item) => item !== year) : [...current, year],
     );
-  }
-
-  async function saveQuery() {
-    const response = await fetch(`${API_URL}/saved-queries`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        search: {
-          query,
-          years: selectedYears,
-          limit: 20,
-          interpretation_confirmed: true,
-        },
-      }),
-    });
-    if (!response.ok) return setError("Não foi possível criar o link permanente.");
-    const saved = await response.json();
-    setPermalink(`${API_URL}/saved-queries/${saved.public_id}`);
-  }
-
-  async function exportPdf() {
-    const response = await fetch(`${API_URL}/search/export.pdf`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query,
-        years: selectedYears,
-        limit: 20,
-        interpretation_confirmed: true,
-      }),
-    });
-    if (!response.ok) return setError("Não foi possível gerar o relatório.");
-    const url = URL.createObjectURL(await response.blob());
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "consulta-loa.pdf";
-    anchor.click();
-    URL.revokeObjectURL(url);
   }
 
   async function sendFeedback() {
@@ -455,36 +441,9 @@ export default function Home() {
       )}
 
       <section className="hero">
-        <p className="kicker">Pesquisa com evidências</p>
-        <h2>Encontre o dado.<br />Confira a página.</h2>
-        <p className="intro">
-          Consulte todas as áreas homologadas das Leis Orçamentárias Anuais sem perder o
-          caminho até o documento original.
-        </p>
-
-        <section className="pilotCoverage" aria-label="Cobertura da consulta">
-          <div>
-            <p className="eyebrow">Cobertura da consulta</p>
-            <p>
-              Estão disponíveis para consultas e comparações os registros homologados de
-              todas as áreas da LOA federal entre 2019 e 2026.
-            </p>
-            <p>
-              Cada resultado numérico mantém o vínculo com o documento e a página de origem.
-              Ausências documentais, mudanças de código e séries que não podem ser somadas são
-              indicadas explicitamente na resposta.
-            </p>
-            <p>
-              O feedback dos usuários continua disponível para revisão editorial e
-              aperfeiçoamento da aplicação.
-            </p>
-          </div>
-          {isReviewer && (
-            <a className="feedbackReport" href={`${API_URL}/feedback/report.csv`}>
-              Baixar relatório de feedback
-            </a>
-          )}
-        </section>
+        <h2 className="pageTitle">
+          Consulte informações da LOA federal de 2019 a 2026.
+        </h2>
 
         <form onSubmit={submit} className="search">
           <label htmlFor="query">O que você precisa verificar?</label>
@@ -495,7 +454,6 @@ export default function Home() {
               onChange={(event) => {
                 setQuery(event.target.value);
                 setResult(null);
-                setPermalink("");
               }}
               placeholder="Ex.: Compare o orçamento da UFBA e da UFPR em 2024"
               minLength={2}
@@ -520,25 +478,64 @@ export default function Home() {
             <p>Nenhum ano selecionado: a resposta considera todo o período de 2019 a 2026.</p>
           </fieldset>
         </form>
+
+        {areaCatalog.length > 0 && (
+          <section className="areaCatalog" aria-labelledby="area-catalog-title">
+            <div className="areaCatalogIntro">
+              <h3 id="area-catalog-title">Sumário</h3>
+              <p>
+                Consulte abaixo as áreas da LOA e clique na seta para ver os órgãos, unidades
+                e programas relacionados a cada uma. Alguns itens aparecem mais de uma vez
+                porque seus códigos de identificação mudaram ao longo dos anos.
+              </p>
+            </div>
+            <div className="areaCatalogList">
+              {areaCatalog.map((area) => (
+                <details className="areaCatalogItem" key={area.slug}>
+                  <summary>
+                    <span>{area.label}</span>
+                    <small>{area.units.length} registros documentais</small>
+                  </summary>
+                  <div className="areaUnitTableWrapper">
+                    <table className="areaUnitTable">
+                      <thead>
+                        <tr>
+                          <th>Unidade ou programação</th>
+                          <th>Código</th>
+                          <th>Período</th>
+                          <th>Natureza</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {area.units.map((unit) => (
+                          <tr key={`${unit.code}-${unit.name}-${unit.record_type}`}>
+                            <td>{unit.name}</td>
+                            <td>{unit.code}</td>
+                            <td>{unit.years.join(", ")}</td>
+                            <td>{unit.record_type}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
+
       </section>
 
       {error && <p className="error" role="alert">{error}</p>}
 
       {result && (
-        <section className="results" aria-live="polite">
+        <section ref={resultsRef} className="results" aria-live="polite">
           <div className="resultHeader">
             <div>
-              <p className="eyebrow">Resposta</p>
-              <h3>Resposta resumida</h3>
+              <h3>Resposta</h3>
             </div>
             <p className="separation">Cada referência leva à página do documento original.</p>
           </div>
-          <div className="resultActions">
-            <button type="button" onClick={saveQuery}>Criar link permanente</button>
-            <button type="button" onClick={exportPdf}>Exportar PDF</button>
-            {permalink && <a href={permalink} target="_blank" rel="noreferrer">{permalink}</a>}
-          </div>
-
           {result.warnings.map((warning) => (
             <p className="warning" key={warning}>{warning}</p>
           ))}
@@ -640,6 +637,11 @@ export default function Home() {
       <footer>
         <p>Fonte exclusiva nesta versão: documentos oficiais indexados no acervo local.</p>
         <p>A conclusão editorial pertence ao jornalista.</p>
+        {isReviewer && (
+          <a className="feedbackReport" href={`${API_URL}/feedback/report.csv`}>
+            Baixar relatório de feedback
+          </a>
+        )}
       </footer>
     </main>
   );
