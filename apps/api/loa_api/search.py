@@ -1,5 +1,6 @@
 import json
 import re
+from difflib import SequenceMatcher
 
 from sqlalchemy import Select, or_, select
 from sqlalchemy.orm import Session
@@ -766,7 +767,74 @@ def _institution_name(record: BudgetRecord) -> str | None:
 def _institution_aliases(name: str, code: str) -> set[str]:
     normalized_name = normalize(name)
     aliases = {normalized_name, *INSTITUTION_CODE_ALIASES.get(code, set())}
+
+    # Os documentos frequentemente acrescentam qualificadores administrativos ao
+    # nome pelo qual a instituição é conhecida pelo público. Essas variantes são
+    # geradas para todo o catálogo, sem depender de exceções por área.
+    without_administrative_suffix = re.sub(
+        r"\s+-\s+(?:administracao|adm)\.?\s+direta$", "", normalized_name
+    ).strip()
+    if without_administrative_suffix != normalized_name:
+        aliases.add(without_administrative_suffix)
+
+    # Siglas documentais em caixa alta ou depois de barra também podem ser usadas
+    # diretamente na consulta (FUNAI, INCRA, CNPq, FUNGETUR etc.).
+    acronym_candidates = re.findall(
+        r"(?<![A-Za-zÀ-ÿ0-9])[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Z0-9ÁÉÍÓÚÂÊÔÃÕÇ-]{1,11}(?![A-Za-zÀ-ÿ0-9])",
+        name,
+    )
+    acronym_candidates.extend(
+        candidate
+        for candidate in re.findall(r"(?:\(|/)\s*([A-Za-zÀ-ÿ0-9-]{2,12})", name)
+        if sum(character.isupper() for character in candidate) >= 2
+    )
+    aliases.update(normalize(acronym) for acronym in acronym_candidates)
     return {alias for alias in aliases if len(alias) >= 2}
+
+
+_FUZZY_QUERY_WORDS = {
+    "a",
+    "as",
+    "da",
+    "das",
+    "de",
+    "do",
+    "dos",
+    "e",
+    "em",
+    "foi",
+    "loa",
+    "na",
+    "nas",
+    "no",
+    "nos",
+    "o",
+    "orcamento",
+    "os",
+    "qual",
+    "quanto",
+    "um",
+    "uma",
+}
+
+
+def _fuzzy_alias_score(alias: str, normalized_query: str) -> float:
+    """Score a small spelling variation without turning broad themes into entities."""
+    alias_tokens = [
+        token for token in alias.split() if token not in _FUZZY_QUERY_WORDS
+    ]
+    query_tokens = [
+        token for token in normalized_query.split() if token not in _FUZZY_QUERY_WORDS
+    ]
+    if len(alias_tokens) < 2 or len(query_tokens) < 2:
+        return 0.0
+    alias_text = " ".join(alias_tokens)
+    best = 0.0
+    for window_size in {len(alias_tokens), len(alias_tokens) + 1}:
+        for start in range(max(0, len(query_tokens) - window_size + 1)):
+            candidate = " ".join(query_tokens[start : start + window_size])
+            best = max(best, SequenceMatcher(None, alias_text, candidate).ratio())
+    return best
 
 
 def _alias_spans(alias: str, normalized_query: str) -> set[tuple[int, int]]:
@@ -971,6 +1039,7 @@ def _institution_response(
     normalized_query = normalize(request.query)
     candidates: dict[str, tuple[str, list]] = {}
     spans_by_code: dict[str, set[tuple[int, int]]] = {}
+    fuzzy_candidates: dict[str, tuple[float, str, list]] = {}
     explicit_codes = set()
     recognized_aliases = set()
     for row in rows:
@@ -994,6 +1063,16 @@ def _institution_response(
         matching_aliases = [
             alias for alias in aliases if _alias_spans(alias, normalized_query)
         ]
+        fuzzy_score = max(
+            (_fuzzy_alias_score(alias, normalized_query) for alias in aliases),
+            default=0.0,
+        )
+        if not explicit_code and not matching_aliases and fuzzy_score >= 0.9:
+            current = fuzzy_candidates.get(record.organization_code)
+            if current is None:
+                fuzzy_candidates[record.organization_code] = (fuzzy_score, name, [row])
+            else:
+                current[2].append(row)
         if not explicit_code and not matching_aliases:
             continue
         if explicit_code:
@@ -1004,6 +1083,13 @@ def _institution_response(
             candidates[code] = (name, [])
         candidates[code][1].append(row)
         spans_by_code.setdefault(code, set()).update(matching_spans)
+    if not candidates and fuzzy_candidates:
+        best_score = max(candidate[0] for candidate in fuzzy_candidates.values())
+        candidates = {
+            code: (name, candidate_rows)
+            for code, (score, name, candidate_rows) in fuzzy_candidates.items()
+            if score >= best_score - 0.02
+        }
     if explicit_codes:
         candidates = {
             code: candidate

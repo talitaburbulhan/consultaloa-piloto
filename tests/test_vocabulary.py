@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from loa_api.database import Base
 from loa_api.models import BudgetRecord, Document, DocumentKind, DocumentVersion, Page
 from loa_api.schemas import SearchRequest
-from loa_api.search import search_documents
+from loa_api.search import _fuzzy_alias_score, _institution_aliases, search_documents
 from loa_api.vocabulary import interpret_query
 
 
@@ -14,6 +14,31 @@ def test_everyday_bolsa_familia_question_is_normalized() -> None:
     assert result["entity"] == "bolsa_familia"
     assert result["technical_concept"] == "dotacao_autorizada"
     assert "maior valor" in result["normalized_query"]
+
+
+def test_institution_aliases_are_generated_from_documentary_names() -> None:
+    tourism_aliases = _institution_aliases(
+        "Ministério do Turismo - Administração Direta", "54101"
+    )
+    research_aliases = _institution_aliases(
+        "Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq)",
+        "24201",
+    )
+    supervised_aliases = _institution_aliases(
+        "Recursos sob Supervisão do Fundo Geral de Turismo/FUNGETUR - Ministério do Turismo",
+        "74908",
+    )
+
+    assert "ministerio do turismo" in tourism_aliases
+    assert "cnpq" in research_aliases
+    assert "fungetur" in supervised_aliases
+
+
+def test_institution_fuzzy_match_accepts_typo_but_rejects_unrelated_name() -> None:
+    query = "qual foi o orcamento do mininsterio do turismo"
+
+    assert _fuzzy_alias_score("ministerio do turismo", query) >= 0.9
+    assert _fuzzy_alias_score("ministerio da educacao", query) < 0.9
 
 
 def test_revenue_word_for_program_requires_confirmation() -> None:
