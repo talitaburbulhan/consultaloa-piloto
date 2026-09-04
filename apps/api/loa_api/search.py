@@ -2437,7 +2437,15 @@ def _editorial_area_total_response(
     warnings: list[str],
 ) -> SearchResponse | None:
     """Answer new multi-area queries only from canonical editorial totals."""
-    if parsed["entity"] is not None or not parsed["requires_structured_values"]:
+    # Ministry aliases such as MinC name an institutional perimeter, not the
+    # similarly named thematic program. Route them through canonical area totals
+    # so that a shared ministry is never replaced by a program value or by the
+    # sum of its component units.
+    area_total_entities = {"ministerio_cultura"}
+    if (
+        parsed["entity"] is not None
+        and parsed["entity"] not in area_total_entities
+    ) or not parsed["requires_structured_values"]:
         return None
     resolved = resolve_area_alias(request.query)
     if resolved is None:
@@ -2458,6 +2466,28 @@ def _editorial_area_total_response(
             interpretation=interpretation,
         )
     if not records:
+        if parsed["entity"] == "ministerio_cultura" and any(
+            2020 <= year <= 2023 for year in expected_years
+        ):
+            years_text = ", ".join(str(year) for year in expected_years)
+            return SearchResponse(
+                query=request.query,
+                summary=(
+                    f"Não há um total exclusivo e homologado do Ministério da Cultura "
+                    f"para {years_text}. Nesse período, as políticas culturais estavam "
+                    "inseridas em estruturas ministeriais compartilhadas — no Ministério "
+                    "do Turismo em 2021–2023 — e o total integral desses órgãos não pode "
+                    "ser atribuído à Cultura."
+                ),
+                insufficient_evidence=True,
+                evidence=[],
+                warnings=warnings,
+                limitations=[
+                    "As unidades culturais permanecem disponíveis individualmente, com seus códigos e valores próprios.",
+                    "A aplicação não soma unidades nem usa o total de um programa como substituto do orçamento ministerial.",
+                ],
+                interpretation=interpretation,
+            )
         return SearchResponse(
             query=request.query,
             summary=(

@@ -172,9 +172,22 @@ entities:
     ambiguous_scope: true
   cultura:
     label: Cultura
-    aliases: [cultura, ministério da cultura, ministerio da cultura]
-    search_terms: [Ministério da Cultura, Cultura]
+    aliases: [cultura]
+    search_terms: [Cultura]
     ambiguous_scope: true
+  ministerio_cultura:
+    label: Ministério da Cultura
+    aliases:
+      - ministério da cultura
+      - ministerio da cultura
+      - minc
+      - órgão 42000
+      - orgao 42000
+      - orçamento do minc
+      - orcamento do minc
+      - orçamento do ministério da cultura
+      - orcamento do ministerio da cultura
+    search_terms: [Ministério da Cultura, MinC, órgão 42000]
   pac:
     label: Programa de Aceleração do Crescimento
     aliases: [pac, programa de aceleração do crescimento]

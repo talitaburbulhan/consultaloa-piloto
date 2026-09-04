@@ -18,7 +18,7 @@ areas:
     aliases: [defesa, forças armadas]
   cultura:
     label: Cultura
-    aliases: [cultura, Ministério da Cultura]
+    aliases: [cultura, Ministério da Cultura, MinC, órgão 42000]
   meio_ambiente:
     label: Meio Ambiente
     aliases: [meio ambiente, MMA]

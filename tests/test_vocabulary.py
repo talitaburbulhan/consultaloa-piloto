@@ -55,6 +55,31 @@ def test_value_authorized_wording_is_a_budget_question() -> None:
     assert result["requires_structured_values"]
 
 
+def test_minc_is_ministry_of_culture_and_never_mec() -> None:
+    result = interpret_query("Qual foi o orçamento do MinC em 2023?")
+
+    assert result["intent"] == "authorized_amount"
+    assert result["entity"] == "ministerio_cultura"
+    assert result["entity_label"] == "Ministério da Cultura"
+    assert not result["requires_confirmation"]
+
+
+def test_minc_2023_does_not_fall_back_to_mec_or_program_value() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        response = search_documents(
+            db,
+            SearchRequest(query="Qual foi o orçamento do MinC em 2023?"),
+        )
+
+    assert "Não há um total exclusivo e homologado do Ministério da Cultura" in response.summary
+    assert "Ministério do Turismo em 2021–2023" in response.summary
+    assert "Ministério da Educação" not in response.summary
+    assert response.insufficient_evidence
+    assert response.sources == []
+
+
 def test_colloquial_fnde_names_are_recognized() -> None:
     queries = [
         "Qual foi o orçamento do Fundo Nacional da Educação?",
