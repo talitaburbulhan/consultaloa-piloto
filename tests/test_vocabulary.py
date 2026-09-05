@@ -589,6 +589,146 @@ def test_area_unit_ranking_is_global_ordered_and_excludes_other_levels() -> None
     assert "menor para o maior" in ascending.summary
 
 
+def test_area_member_listing_is_global_and_uses_catalog_levels() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2024, title="LOA 2024", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2024_volume4.pdf",
+            sha256="d" * 64,
+            byte_size=100,
+            page_count=3,
+        )
+        definitions = (
+            ("44000", "Ministério do Meio Ambiente", "total_orgao"),
+            ("44201", "Instituto Brasileiro do Meio Ambiente", "subtotal_unidade"),
+            ("44999", "Programação ambiental supervisionada", "programacao_supervisionada"),
+        )
+        for index, (code, name, level) in enumerate(definitions, start=1):
+            page = Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} {name}",
+                page_sha256=str(index + 4) * 64,
+            )
+            db.add(page)
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=2024,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name=name,
+                    area_slug="meio_ambiente",
+                    record_level=level,
+                    evidence_status="homologated",
+                    original_value="100",
+                    numeric_value=100,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 5) * 64,
+                )
+            )
+        db.commit()
+
+        response = search_documents(
+            db,
+            SearchRequest(
+                query="Quais órgãos e unidades fazem parte da área de Meio Ambiente?",
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert {unit.code for unit in response.listed_units} == {"44000", "44201"}
+    assert {unit.category for unit in response.listed_units} == {
+        "Total de órgão", "Unidade"
+    }
+    assert "44999" not in {unit.code for unit in response.listed_units}
+    assert "mesmo inventário homologado exibido no Sumário" in response.limitations[0]
+
+
+def test_comparison_preserves_explicit_institutions_from_different_areas() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2026, title="LOA 2026", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2026_volume4.pdf",
+            sha256="e" * 64,
+            byte_size=100,
+            page_count=2,
+        )
+        definitions = (
+            (
+                "24205",
+                "Agência Espacial Brasileira - AEB",
+                "ciencia_tecnologia",
+                200,
+            ),
+            (
+                "51101",
+                "Ministério do Esporte - Administração Direta",
+                "esporte",
+                300,
+            ),
+        )
+        for index, (code, name, area_slug, value) in enumerate(definitions, start=1):
+            page = Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} {name} Total {value}",
+                page_sha256=str(index + 7) * 64,
+            )
+            db.add(page)
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=2026,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name=name,
+                    area_slug=area_slug,
+                    record_level="subtotal_unidade",
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 8) * 64,
+                )
+            )
+        db.commit()
+
+        response = search_documents(
+            db,
+            SearchRequest(
+                query=(
+                    "Compare os orçamentos da Agência Espacial Brasileira - AEB "
+                    "e do Ministério do Esporte"
+                ),
+                years=[2026],
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert len(response.sources) == 2
+    assert "Agência Espacial Brasileira" in response.summary
+    assert "Ministério do Esporte" in response.summary
+    assert "R$ 200" in response.summary
+    assert "R$ 300" in response.summary
+
+
 def test_health_unit_group_wordings_are_recognized() -> None:
     expected = [
         ("Quantas unidades vinculadas ao Ministério da Saúde existem?", "count_institutions"),

@@ -1099,7 +1099,20 @@ def _institution_response(
     else:
         _drop_nested_institution_matches(candidates, spans_by_code)
         resolved_area = resolve_area_alias(request.query)
-        if resolved_area:
+        # An area name can also be part of an explicitly named institution
+        # (for example, "Ministério do Esporte").  In a comparison between
+        # institutions from different areas, applying that area to the whole
+        # query would silently discard the other institutions.  Distinct,
+        # non-overlapping mentions are therefore resolved independently.
+        candidate_codes = list(candidates)
+        has_distinct_institution_mentions = any(
+            first_end <= second_start or second_end <= first_start
+            for index, first_code in enumerate(candidate_codes)
+            for second_code in candidate_codes[index + 1 :]
+            for first_start, first_end in spans_by_code.get(first_code, set())
+            for second_start, second_end in spans_by_code.get(second_code, set())
+        )
+        if resolved_area and not has_distinct_institution_mentions:
             area_slug = resolved_area[0]
             area_candidates = {
                 code: candidate
@@ -2667,6 +2680,136 @@ def _area_member_ranking_response(
     )
 
 
+def _area_member_list_response(
+    db: Session,
+    request: SearchRequest,
+    parsed: dict,
+    interpretation: QueryInterpretation,
+    warnings: list[str],
+) -> SearchResponse | None:
+    """List the homologated organizations and units shown in the area catalog."""
+    if parsed["intent"] != "list_institutions":
+        return None
+    resolved = resolve_area_alias(request.query)
+    if resolved is None:
+        return None
+    area_slug, area_label = resolved
+    normalized_query = normalize(request.query)
+    member_terms = {
+        "agencia", "agencias", "autarquia", "autarquias", "fundo", "fundos",
+        "instituicao", "instituicoes", "orgao", "orgaos", "unidade", "unidades",
+    }
+    if not member_terms.intersection(normalized_query.split()):
+        return None
+
+    years = _query_years(request.query, request.years) or list(range(2019, 2027))
+    rows = db.execute(
+        select(BudgetRecord, Page, DocumentVersion, Document)
+        .join(Page, BudgetRecord.page_id == Page.id)
+        .join(DocumentVersion, BudgetRecord.document_version_id == DocumentVersion.id)
+        .join(Document, DocumentVersion.document_id == Document.id)
+        .where(
+            BudgetRecord.year.in_(years),
+            BudgetRecord.area_slug == area_slug,
+            BudgetRecord.evidence_status == "homologated",
+            BudgetRecord.record_level.in_(("subtotal_unidade", "total_orgao")),
+            BudgetRecord.organization_code.is_not(None),
+            BudgetRecord.organization_name.is_not(None),
+        )
+        .order_by(
+            BudgetRecord.organization_name,
+            BudgetRecord.organization_code,
+            BudgetRecord.year.desc(),
+        )
+    ).all()
+    if not rows:
+        return None
+
+    # This is the same documentary identity used by /catalog/areas.  Keeping the
+    # level in the key prevents an organization total and one of its units from
+    # being silently merged, while code changes remain separate catalog entries.
+    grouped: dict[tuple[str, str, str], list] = {}
+    for row in rows:
+        record = row[0]
+        key = (
+            record.organization_code,
+            record.organization_name,
+            record.record_level,
+        )
+        grouped.setdefault(key, []).append(row)
+
+    record_labels = {
+        "subtotal_unidade": "Unidade",
+        "total_orgao": "Total de órgão",
+    }
+    evidence = []
+    sources = []
+    listed_units = []
+    source_ids: dict[tuple[int, int], int] = {}
+    for (code, name, record_level), candidates in sorted(
+        grouped.items(), key=lambda item: (normalize(item[0][1]), item[0][0], item[0][2])
+    ):
+        representative = max(candidates, key=lambda row: row[0].year)
+        record, page, version, document = representative
+        source_key = (version.id, page.pdf_page_number)
+        source_id = source_ids.get(source_key)
+        if source_id is None:
+            source_id = len(sources) + 1
+            source_ids[source_key] = source_id
+            evidence.append(
+                Evidence(
+                    document=document.title,
+                    year=document.year,
+                    pdf_page=page.pdf_page_number,
+                    printed_page=page.printed_page_label,
+                    original_text=record.source_text,
+                    filename=version.filename,
+                    page_url=f"/documents/{version.id}/pages/{page.pdf_page_number}",
+                )
+            )
+            sources.append(
+                SourceReference(
+                    id=source_id,
+                    document=document.title,
+                    year=document.year,
+                    pdf_page=page.pdf_page_number,
+                    printed_page=page.printed_page_label,
+                    excerpt=record.source_text,
+                    filename=version.filename,
+                    pdf_url=f"/documents/{version.id}/pdf#page={page.pdf_page_number}",
+                    official_url=_official_budget_url(document.year, document.official_url),
+                )
+            )
+        listed_units.append(
+            ListedUnit(
+                name=_institution_name(record) or name,
+                code=code,
+                category=record_labels.get(record_level, record_level),
+                years=sorted({candidate[0].year for candidate in candidates}),
+                source_id=source_id,
+            )
+        )
+
+    return SearchResponse(
+        query=request.query,
+        summary=(
+            f"A área {area_label} reúne {len(listed_units)} registros documentais "
+            "de órgãos e unidades nos exercícios selecionados."
+        ),
+        insufficient_evidence=False,
+        evidence=evidence,
+        sources=sources,
+        listed_units=listed_units,
+        warnings=warnings,
+        limitations=[
+            "A lista usa o mesmo inventário homologado exibido no Sumário.",
+            "Mudanças de código ou de natureza documental permanecem em registros separados.",
+            "A listagem não soma valores e não transforma unidades em totais de área.",
+        ],
+        interpretation=interpretation,
+    )
+
+
 def _editorial_area_total_response(
     db: Session,
     request: SearchRequest,
@@ -3031,6 +3174,11 @@ def search_documents(db: Session, request: SearchRequest) -> SearchResponse:
     )
     if area_member_ranking_response is not None:
         return area_member_ranking_response
+    area_member_list_response = _area_member_list_response(
+        db, request, parsed, interpretation, warnings
+    )
+    if area_member_list_response is not None:
+        return area_member_list_response
     editorial_area_response = _editorial_area_total_response(
         db, request, parsed, interpretation, warnings
     )
