@@ -2851,18 +2851,37 @@ def _editorial_area_total_response(
     # similarly named thematic program. Route them through canonical area totals
     # so that a shared ministry is never replaced by a program value or by the
     # sum of its component units.
-    area_total_entities = {"ministerio_cultura"}
+    area_total_entities = {"ministerio_cultura", "ministerio_cidadania"}
     if (
         parsed["entity"] is not None
         and parsed["entity"] not in area_total_entities
     ) or not parsed["requires_structured_values"]:
         return None
+    requested_years = _query_years(request.query, request.years)
+    expected_years = requested_years or list(range(2019, 2027))
+    if parsed["entity"] == "ministerio_cidadania":
+        years_text = ", ".join(str(year) for year in expected_years)
+        return SearchResponse(
+            query=request.query,
+            summary=(
+                "O Ministério da Cidadania foi reconhecido, mas o acervo estruturado "
+                f"ainda não possui um total ministerial exclusivo e homologado para {years_text}. "
+                "Por segurança, a aplicação não soma as unidades vinculadas nem usa o "
+                "orçamento de outro ministério como substituto."
+            ),
+            insufficient_evidence=True,
+            evidence=[],
+            warnings=warnings,
+            limitations=[
+                "O nome não é tratado como Ministério da Saúde nem como Ministério dos Direitos Humanos e da Cidadania.",
+                "A série só poderá ser apresentada após a homologação dos totais documentais correspondentes.",
+            ],
+            interpretation=interpretation,
+        )
     resolved = resolve_area_alias(request.query)
     if resolved is None:
         return None
     area_slug, area_label = resolved
-    requested_years = _query_years(request.query, request.years)
-    expected_years = requested_years or list(range(2019, 2027))
     try:
         records, missing = canonical_area_totals(db, area_slug, expected_years)
     except ValueError as error:

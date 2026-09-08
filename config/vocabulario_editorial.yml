@@ -30,6 +30,23 @@ entities:
     search_terms:
       - Ministério da Saúde
       - órgão 36000
+  cidadania:
+    label: Cidadania
+    aliases: [cidadania]
+    search_terms:
+      - Cidadania
+      - Ministério da Cidadania
+      - Ministério dos Direitos Humanos e da Cidadania
+    ambiguous_scope: true
+  ministerio_cidadania:
+    label: Ministério da Cidadania
+    aliases:
+      - ministério da cidadania
+      - ministerio da cidadania
+      - orçamento do ministério da cidadania
+      - orcamento do ministerio da cidadania
+    search_terms:
+      - Ministério da Cidadania
   frgps:
     label: Fundo do Regime Geral de Previdência Social
     aliases:

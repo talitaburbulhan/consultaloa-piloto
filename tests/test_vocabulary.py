@@ -81,6 +81,43 @@ def test_ministry_of_health_is_not_treated_as_ambiguous_health_area() -> None:
     assert not result["requires_confirmation"]
 
 
+def test_bare_cidadania_requires_scope_confirmation() -> None:
+    result = interpret_query("Qual foi o orçamento da Cidadania?")
+
+    assert result["intent"] == "authorized_amount"
+    assert result["entity"] == "cidadania"
+    assert result["entity_label"] == "Cidadania"
+    assert result["requires_confirmation"]
+    assert "órgão" in result["confirmation_reason"]
+
+
+def test_ministry_of_citizenship_is_not_confused_with_health() -> None:
+    result = interpret_query("Qual foi o orçamento do Ministério da Cidadania em 2021?")
+
+    assert result["intent"] == "authorized_amount"
+    assert result["entity"] == "ministerio_cidadania"
+    assert result["entity_label"] == "Ministério da Cidadania"
+    assert not result["requires_confirmation"]
+
+
+def test_ministry_of_citizenship_has_safe_missing_total_response() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        response = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o orçamento do Ministério da Cidadania em 2021?"
+            ),
+        )
+
+    assert "Ministério da Cidadania foi reconhecido" in response.summary
+    assert "para 2021" in response.summary
+    assert "Ministério da Saúde" not in response.summary
+    assert response.insufficient_evidence
+    assert response.sources == []
+
+
 def test_ministry_of_health_returns_total_without_confirmation() -> None:
     engine = create_engine("sqlite://")
     Base.metadata.create_all(engine)
