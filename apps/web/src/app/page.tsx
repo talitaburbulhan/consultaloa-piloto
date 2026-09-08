@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 
 type Evidence = {
   document: string;
@@ -390,26 +390,57 @@ export default function Home() {
   const [error, setError] = useState("");
   const [corpus, setCorpus] = useState<CorpusStatus | null>(null);
   const [areaCatalog, setAreaCatalog] = useState<CatalogArea[]>([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState(false);
   const [isReviewer, setIsReviewer] = useState(false);
   const [feedbackVerdict, setFeedbackVerdict] = useState<FeedbackVerdict | null>(null);
   const [feedbackComment, setFeedbackComment] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [sendingFeedback, setSendingFeedback] = useState(false);
 
+  const loadAreaCatalog = useCallback(async () => {
+    setCatalogLoading(true);
+    setCatalogError(false);
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      try {
+        const response = await fetch(`${API_URL}/catalog/areas`, {
+          cache: "no-store",
+        });
+        if (!response.ok) throw new Error("Falha ao carregar o catálogo.");
+        const catalog = (await response.json()) as CatalogArea[];
+        if (!Array.isArray(catalog) || catalog.length === 0) {
+          throw new Error("O catálogo retornou vazio.");
+        }
+        setAreaCatalog(catalog);
+        setCatalogLoading(false);
+        return;
+      } catch {
+        if (attempt < 3) {
+          await new Promise((resolve) =>
+            window.setTimeout(resolve, 600 * 2 ** attempt),
+          );
+        }
+      }
+    }
+    setAreaCatalog([]);
+    setCatalogLoading(false);
+    setCatalogError(true);
+  }, []);
+
   useEffect(() => {
     fetch(`${API_URL}/corpus/status`)
       .then((response) => (response.ok ? response.json() : null))
       .then(setCorpus)
       .catch(() => setCorpus(null));
+    // Complete the initial Access/session check before requesting the larger
+    // catalog. This avoids losing the only catalog request during login or a
+    // cold start of the API service.
     fetch(`${API_URL}/me`)
       .then((response) => (response.ok ? response.json() : null))
       .then((user) => setIsReviewer(Boolean(user?.is_reviewer)))
-      .catch(() => setIsReviewer(false));
-    fetch(`${API_URL}/catalog/areas`)
-      .then((response) => (response.ok ? response.json() : []))
-      .then(setAreaCatalog)
-      .catch(() => setAreaCatalog([]));
-  }, []);
+      .catch(() => setIsReviewer(false))
+      .finally(() => void loadAreaCatalog());
+  }, [loadAreaCatalog]);
 
   useEffect(() => {
     if (result) {
@@ -544,16 +575,27 @@ export default function Home() {
           </fieldset>
         </form>
 
-        {areaCatalog.length > 0 && (
-          <section className="areaCatalog" aria-labelledby="area-catalog-title">
-            <div className="areaCatalogIntro">
-              <h3 id="area-catalog-title">Sumário</h3>
-              <p>
-                Consulte abaixo as áreas da LOA e clique na seta para ver os órgãos, unidades
-                e programas relacionados a cada uma. Alguns itens aparecem mais de uma vez
-                porque seus códigos de identificação mudaram ao longo dos anos.
-              </p>
+        <section className="areaCatalog" aria-labelledby="area-catalog-title">
+          <div className="areaCatalogIntro">
+            <h3 id="area-catalog-title">Sumário</h3>
+            <p>
+              Consulte abaixo as áreas da LOA e clique na seta para ver os órgãos, unidades
+              e programas relacionados a cada uma. Alguns itens aparecem mais de uma vez
+              porque seus códigos de identificação mudaram ao longo dos anos.
+            </p>
+          </div>
+          {catalogLoading && (
+            <p className="catalogStatus" role="status">Carregando Sumário…</p>
+          )}
+          {catalogError && !catalogLoading && (
+            <div className="catalogStatus" role="alert">
+              <p>Não foi possível carregar o Sumário.</p>
+              <button type="button" onClick={() => void loadAreaCatalog()}>
+                Tentar novamente
+              </button>
             </div>
+          )}
+          {areaCatalog.length > 0 && !catalogLoading && (
             <div className="areaCatalogList">
               {areaCatalog.map((area) => (
                 <details className="areaCatalogItem" key={area.slug}>
@@ -586,8 +628,8 @@ export default function Home() {
                 </details>
               ))}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
       </section>
 

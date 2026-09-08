@@ -137,6 +137,14 @@ main { min-height: 100vh; }
   margin: 0 0 22px;
   max-width: 760px;
 }
+.catalogStatus {
+  margin: 24px 0 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.catalogStatus p { margin: 0 0 12px; }
+.catalogStatus button { padding: 10px 14px; }
 .areaCatalogList { border-bottom: 1px solid var(--line); }
 .areaCatalogItem { border-top: 1px solid var(--line); }
 .areaCatalogItem summary {
