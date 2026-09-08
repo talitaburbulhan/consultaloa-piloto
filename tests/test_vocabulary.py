@@ -806,6 +806,83 @@ def test_historical_entity_does_not_intercept_multi_institution_comparison() -> 
     assert len(response.sources) == 2
 
 
+def test_historical_series_answers_maximum_year_across_code_change() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document_2023 = Document(
+            year=2023, title="LOA 2023", kind=DocumentKind.LOA, official_url=None
+        )
+        document_2024 = Document(
+            year=2024, title="LOA 2024", kind=DocumentKind.LOA, official_url=None
+        )
+        definitions = (
+            (document_2023, "39251", 2023, 200, "2023_volume4.pdf", "a"),
+            (document_2024, "68201", 2024, 300, "2024_volume4.pdf", "b"),
+        )
+        for index, (document, code, year, value, filename, marker) in enumerate(
+            definitions, start=1
+        ):
+            version = DocumentVersion(
+                document=document,
+                filename=filename,
+                sha256=marker * 64,
+                byte_size=100,
+                page_count=1,
+            )
+            page = Page(
+                version=version,
+                pdf_page_number=1,
+                printed_page_label="1",
+                original_text=f"{code} ANTAQ Total {value}",
+                page_sha256=str(index + 13) * 64,
+            )
+            db.add_all([document, version, page])
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=year,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name="Agência Nacional de Transportes Aquaviários - ANTAQ",
+                    area_slug="transport_infrastructure",
+                    record_level="subtotal_unidade",
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 14) * 64,
+                )
+            )
+        db.commit()
+
+        maximum = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o ano com maior orçamento da ANTAQ?",
+                years=[2023, 2024],
+                interpretation_confirmed=True,
+            ),
+        )
+        minimum = search_documents(
+            db,
+            SearchRequest(
+                query="Qual foi o ano com menor orçamento da ANTAQ?",
+                years=[2023, 2024],
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert "maior orçamento autorizado de ANTAQ ocorreu em 2024" in maximum.summary
+    assert "R$ 300 (código 68201)" in maximum.summary
+    assert "menor orçamento autorizado de ANTAQ ocorreu em 2023" in minimum.summary
+    assert "R$ 200 (código 39251)" in minimum.summary
+    assert "Mudanças de código: 2024: 39251 → 68201" in maximum.summary
+    assert len(maximum.sources) == 2
+
+
 def test_health_unit_group_wordings_are_recognized() -> None:
     expected = [
         ("Quantas unidades vinculadas ao Ministério da Saúde existem?", "count_institutions"),

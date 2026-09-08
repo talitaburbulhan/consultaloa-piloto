@@ -3173,7 +3173,40 @@ def _historical_editorial_series_response(
                 official_url=_official_budget_url(document.year, document.official_url),
             )
         )
-    summary = f"Série documental de {plan.label}: " + "; ".join(values) + "."
+    series_summary = f"Série documental de {plan.label}: " + "; ".join(values) + "."
+    asks_for_minimum = any(
+        phrase in normalized_query
+        for phrase in (
+            "menor orcamento",
+            "menor valor",
+            "recebeu menos",
+            "menos recursos",
+            "menos dinheiro",
+        )
+    )
+    asks_for_maximum = parsed["intent"] == "compare_maximum" and not asks_for_minimum
+    if plan.direct_comparison_allowed and (asks_for_maximum or asks_for_minimum):
+        extreme_index, extreme_row = (
+            min if asks_for_minimum else max
+        )(
+            enumerate(rows, start=1),
+            key=lambda item: item[1][0].numeric_value,
+        )
+        extreme_record = extreme_row[0]
+        extreme_code = (
+            extreme_record.organization_code
+            or extreme_record.program_code
+            or "sem código"
+        )
+        adjective = "menor" if asks_for_minimum else "maior"
+        summary = (
+            f"O {adjective} orçamento autorizado de {plan.label} ocorreu em "
+            f"{extreme_record.year}: R$ {extreme_record.original_value} "
+            f"(código {extreme_code}) [{extreme_index}]. "
+            + series_summary
+        )
+    else:
+        summary = series_summary
     if plan.code_changes:
         summary += " Mudanças de código: " + "; ".join(
             f"{year}: {old} → {new}" for year, old, new in plan.code_changes
