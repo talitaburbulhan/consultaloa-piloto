@@ -18,6 +18,18 @@ entities:
     aliases: [saúde, saude, sus, sistema único de saúde]
     search_terms: [Saúde, Sistema Único de Saúde, SUS]
     ambiguous_scope: true
+  ministerio_saude:
+    label: Ministério da Saúde
+    aliases:
+      - ministério da saúde
+      - ministerio da saude
+      - órgão 36000
+      - orgao 36000
+      - orçamento do ministério da saúde
+      - orcamento do ministerio da saude
+    search_terms:
+      - Ministério da Saúde
+      - órgão 36000
   frgps:
     label: Fundo do Regime Geral de Previdência Social
     aliases:

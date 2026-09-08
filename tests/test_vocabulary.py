@@ -72,6 +72,68 @@ def test_missing_article_still_recognizes_budget_question() -> None:
     assert result["entity"] == "ministerio_educacao"
 
 
+def test_ministry_of_health_is_not_treated_as_ambiguous_health_area() -> None:
+    result = interpret_query("Qual foi o orçamento do Ministério da Saúde?")
+
+    assert result["intent"] == "authorized_amount"
+    assert result["entity"] == "ministerio_saude"
+    assert result["entity_label"] == "Ministério da Saúde"
+    assert not result["requires_confirmation"]
+
+
+def test_ministry_of_health_returns_total_without_confirmation() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2024, title="LOA 2024", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2024_volume4.pdf",
+            sha256="1" * 64,
+            byte_size=100,
+            page_count=1,
+        )
+        page = Page(
+            version=version,
+            pdf_page_number=1,
+            printed_page_label="1",
+            original_text="36000 Ministério da Saúde Total 500",
+            page_sha256="2" * 64,
+        )
+        db.add_all([document, version, page])
+        db.flush()
+        db.add(
+            BudgetRecord(
+                year=2024,
+                document_version_id=version.id,
+                page_id=page.id,
+                organization_code="36000",
+                organization_name="Ministério da Saúde",
+                area_slug="saude",
+                record_level="total_orgao",
+                evidence_status="homologated",
+                original_value="500",
+                numeric_value=500,
+                unit="R$ 1,00",
+                source_text=page.original_text,
+                deduplication_key="3" * 64,
+            )
+        )
+        db.commit()
+
+        response = search_documents(
+            db,
+            SearchRequest(query="Qual foi o orçamento do Ministério da Saúde em 2024?"),
+        )
+
+    assert "Ministério da Saúde" in response.summary
+    assert "R$ 500" in response.summary
+    assert response.sources
+    assert not response.interpretation.requires_confirmation
+
+
 def test_value_authorized_wording_is_a_budget_question() -> None:
     result = interpret_query("Qual foi o valor autorizado na LOA para Cultura?")
 
