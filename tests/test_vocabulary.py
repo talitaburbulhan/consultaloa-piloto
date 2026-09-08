@@ -729,6 +729,83 @@ def test_comparison_preserves_explicit_institutions_from_different_areas() -> No
     assert "R$ 300" in response.summary
 
 
+def test_historical_entity_does_not_intercept_multi_institution_comparison() -> None:
+    engine = create_engine("sqlite://")
+    Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        document = Document(
+            year=2019, title="LOA 2019", kind=DocumentKind.LOA, official_url=None
+        )
+        version = DocumentVersion(
+            document=document,
+            filename="2019_volume4.pdf",
+            sha256="f" * 64,
+            byte_size=100,
+            page_count=3,
+        )
+        definitions = (
+            (
+                "22211", "Companhia Nacional de Abastecimento - CONAB",
+                "agricultura_desenvolvimento_agrario_pesca", "subtotal_unidade", 400,
+            ),
+            (
+                "24211", "Agência Nacional de Telecomunicações - ANATEL",
+                "ciencia_tecnologia", "subtotal_unidade", 200,
+            ),
+            (
+                "93190", "Recursos sob supervisão da ANATEL",
+                "ciencia_tecnologia", "programacao_supervisionada", 900,
+            ),
+        )
+        for index, (code, name, area_slug, level, value) in enumerate(
+            definitions, start=1
+        ):
+            page = Page(
+                version=version,
+                pdf_page_number=index,
+                printed_page_label=str(index),
+                original_text=f"{code} {name} Total {value}",
+                page_sha256=str(index + 10) * 64,
+            )
+            db.add(page)
+            db.flush()
+            db.add(
+                BudgetRecord(
+                    year=2019,
+                    document_version_id=version.id,
+                    page_id=page.id,
+                    organization_code=code,
+                    organization_name=name,
+                    area_slug=area_slug,
+                    record_level=level,
+                    evidence_status="homologated",
+                    original_value=str(value),
+                    numeric_value=value,
+                    unit="R$ 1,00",
+                    source_text=page.original_text,
+                    deduplication_key=str(index + 11) * 64,
+                )
+            )
+        db.commit()
+
+        response = search_documents(
+            db,
+            SearchRequest(
+                query="Compare o orçamento da CONAB com o da ANATEL",
+                years=[2019],
+                interpretation_confirmed=True,
+            ),
+        )
+
+    assert "Companhia Nacional de Abastecimento" in response.summary
+    assert "Agência Nacional de Telecomunicações" in response.summary
+    assert "R$ 400" in response.summary
+    assert "R$ 200" in response.summary
+    assert "93190" not in response.summary
+    assert "R$ 900" not in response.summary
+    assert len(response.sources) == 2
+
+
 def test_health_unit_group_wordings_are_recognized() -> None:
     expected = [
         ("Quantas unidades vinculadas ao Ministério da Saúde existem?", "count_institutions"),

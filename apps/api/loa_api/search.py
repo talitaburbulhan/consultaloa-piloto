@@ -894,6 +894,20 @@ def _multiple_institutions_response(
     ]
     all_complete = not unresolved_acronyms
     all_selected_rows = []
+    covered_years_by_name: dict[str, set[int]] = {}
+    display_name_by_key: dict[str, str] = {}
+    for _, (name, rows) in candidates.items():
+        name_key = normalize(name)
+        display_name_by_key.setdefault(name_key, name)
+        covered_years_by_name.setdefault(name_key, set()).update(
+            row[0].year for row in rows
+        )
+    logical_missing_years = {
+        name_key: sorted(set(years) - covered_years)
+        for name_key, covered_years in covered_years_by_name.items()
+    }
+    if any(logical_missing_years.values()):
+        all_complete = False
     for code, (name, rows) in candidates.items():
         rows_by_year: dict[int, list] = {}
         for row in rows:
@@ -908,8 +922,7 @@ def _multiple_institutions_response(
             elif year_rows:
                 selected_rows.append(year_rows[0])
         selected_rows = _sort_rows_by_requested_value(selected_rows, request.query)
-        missing_years = sorted(set(years) - {row[0].year for row in selected_rows})
-        if missing_years or conflicting_years:
+        if conflicting_years:
             all_complete = False
         values = []
         for record, page, version, document in selected_rows:
@@ -949,14 +962,6 @@ def _multiple_institutions_response(
             if values
             else f"{name} (código {code}): nenhum total validado"
         )
-        if missing_years:
-            description += (
-                f"; sem total validado em {', '.join(map(str, missing_years))}"
-            )
-            limitations.append(
-                f"{name}: exercícios sem total validado: "
-                f"{', '.join(map(str, missing_years))}."
-            )
         if conflicting_years:
             description += (
                 f"; totais conflitantes em {', '.join(map(str, conflicting_years))}"
@@ -966,6 +971,13 @@ def _multiple_institutions_response(
                 f"{', '.join(map(str, conflicting_years))}."
             )
         institution_series.append(description + ".")
+
+    for name_key, missing_years in logical_missing_years.items():
+        if missing_years:
+            limitations.append(
+                f"{display_name_by_key[name_key]}: exercícios sem total validado: "
+                f"{', '.join(map(str, missing_years))}."
+            )
 
     summary = "Séries institucionais: " + " ".join(institution_series)
     if interpretation.intent == "compare_maximum" and all_complete:
@@ -990,7 +1002,7 @@ def _multiple_institutions_response(
             direction = "aumento" if difference >= 0 else "redução"
             formatted = f"{abs(difference):,.0f}".replace(",", ".")
             changes.append(
-                f"{name}: {direction} nominal de R$ {formatted} "
+                f"{name} (código {code}): {direction} nominal de R$ {formatted} "
                 f"entre {first.year} e {last.year}"
             )
         if changes:
@@ -1025,18 +1037,35 @@ def _institution_response(
     # Sem filtro ou ano escrito na pergunta, a resposta institucional cobre
     # automaticamente todo o período documental desta versão da aplicação.
     years = _query_years(request.query, request.years) or list(range(2019, 2027))
+    normalized_query = normalize(request.query)
+    conditions = [
+        BudgetRecord.year.in_(years),
+        BudgetRecord.organization_code.is_not(None),
+    ]
+    asks_for_supervised_programming = any(
+        phrase in normalized_query
+        for phrase in (
+            "programacao supervisionada",
+            "programacoes supervisionadas",
+            "recursos sob supervisao",
+            "sob supervisao",
+        )
+    )
+    if not asks_for_supervised_programming:
+        conditions.append(
+            or_(
+                BudgetRecord.record_level.is_(None),
+                BudgetRecord.record_level != "programacao_supervisionada",
+            )
+        )
     rows = db.execute(
         select(BudgetRecord, Page, DocumentVersion, Document)
         .join(Page, BudgetRecord.page_id == Page.id)
         .join(DocumentVersion, BudgetRecord.document_version_id == DocumentVersion.id)
         .join(Document, DocumentVersion.document_id == Document.id)
-        .where(
-            BudgetRecord.year.in_(years),
-            BudgetRecord.organization_code.is_not(None),
-        )
+        .where(*conditions)
         .order_by(BudgetRecord.organization_code, BudgetRecord.year)
     ).all()
-    normalized_query = normalize(request.query)
     candidates: dict[str, tuple[str, list]] = {}
     spans_by_code: dict[str, set[tuple[int, int]]] = {}
     fuzzy_candidates: dict[str, tuple[float, str, list]] = {}
@@ -2969,6 +2998,47 @@ def _editorial_area_total_response(
     )
 
 
+def _has_multiple_explicit_institution_mentions(
+    db: Session, query: str, years: list[int]
+) -> bool:
+    """Detect separate institution mentions before an entity-specific route wins."""
+    normalized_query = normalize(query)
+    rows = db.execute(
+        select(
+            BudgetRecord.organization_code,
+            BudgetRecord.organization_name,
+        )
+        .where(
+            BudgetRecord.year.in_(years),
+            BudgetRecord.organization_code.is_not(None),
+            BudgetRecord.organization_name.is_not(None),
+        )
+        .distinct()
+    ).all()
+    candidates: dict[str, tuple[str, list]] = {}
+    spans_by_code: dict[str, set[tuple[int, int]]] = {}
+    for code, name in rows:
+        matching_spans = {
+            span
+            for alias in _institution_aliases(name, code)
+            for span in _alias_spans(alias, normalized_query)
+        }
+        if not matching_spans:
+            continue
+        candidates.setdefault(code, (name, []))
+        spans_by_code.setdefault(code, set()).update(matching_spans)
+
+    _drop_nested_institution_matches(candidates, spans_by_code)
+    candidate_codes = list(candidates)
+    return any(
+        first_end <= second_start or second_end <= first_start
+        for index, first_code in enumerate(candidate_codes)
+        for second_code in candidate_codes[index + 1 :]
+        for first_start, first_end in spans_by_code.get(first_code, set())
+        for second_start, second_end in spans_by_code.get(second_code, set())
+    )
+
+
 def _historical_editorial_series_response(
     db: Session,
     request: SearchRequest,
@@ -2989,6 +3059,13 @@ def _historical_editorial_series_response(
         return None
     entity_slug, _ = resolved
     requested_years = _query_years(request.query, request.years) or list(range(2019, 2027))
+    # A historical rule describes one institution. It must not intercept a
+    # comparison that explicitly names another institution elsewhere in the
+    # question; the multi-institution resolver will preserve each code series.
+    if _has_multiple_explicit_institution_mentions(
+        db, request.query, requested_years
+    ):
+        return None
     try:
         plan = historical_comparison_plan(entity_slug, requested_years)
     except ValueError as error:
