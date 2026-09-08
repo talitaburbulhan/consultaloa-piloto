@@ -18,8 +18,10 @@ RUN pip install --no-cache-dir .
 # O pacote instalado busca o vocabulário em /usr/local/lib/config.
 COPY config/ /usr/local/lib/config/
 COPY --from=web_build /web/.next/standalone ./web
-COPY pilot-seed/loa-homologada-render.zip /tmp/loa-homologada.zip
-RUN python -c "import zipfile; zipfile.ZipFile('/tmp/loa-homologada.zip').extractall('/app/loa-data')" && rm /tmp/loa-homologada.zip
+COPY pilot-seed/loa-homologada-render.zip.part-* /tmp/loa-bundle-parts/
+RUN cat /tmp/loa-bundle-parts/loa-homologada-render.zip.part-* > /tmp/loa-homologada.zip \
+    && python -c "import zipfile; zipfile.ZipFile('/tmp/loa-homologada.zip').extractall('/app/loa-data')" \
+    && rm -rf /tmp/loa-bundle-parts /tmp/loa-homologada.zip
 COPY scripts/start_render_free.sh ./scripts/start_render_free.sh
 COPY scripts/render_proxy.mjs ./scripts/render_proxy.mjs
 RUN chmod +x ./scripts/start_render_free.sh

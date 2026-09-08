@@ -16,7 +16,7 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-from pypdf import PdfReader, PdfWriter
+from pypdf import PdfReader
 
 
 RELEASE_DATABASE = "loa.db"
@@ -155,29 +155,19 @@ def _prepare_database(source_db: Path, target_db: Path) -> dict:
     return stats
 
 
-def _write_sparse_pdf(source: Path, target: Path, retained_pages: list[int]) -> None:
-    """Keep cited pages at their original one-based PDF positions.
-
-    Non-cited pages up to the last cited page become small blank placeholders,
-    so existing ``#page=N`` links continue to point to the documentary page.
-    """
+def _copy_complete_pdf(source: Path, target: Path, retained_pages: list[int]) -> int:
+    """Copy the complete primary source and validate all cited page positions."""
     reader = PdfReader(source)
-    retained = set(retained_pages)
-    if not retained or min(retained) < 1 or max(retained) > len(reader.pages):
+    if (
+        not retained_pages
+        or min(retained_pages) < 1
+        or max(retained_pages) > len(reader.pages)
+    ):
         raise RuntimeError(
             f"Numeração de página inválida em {source.name}: {retained_pages[:5]}"
         )
-    writer = PdfWriter()
-    first = reader.pages[0]
-    default_width = float(first.mediabox.width)
-    default_height = float(first.mediabox.height)
-    for page_number in range(1, max(retained) + 1):
-        if page_number in retained:
-            writer.add_page(reader.pages[page_number - 1])
-        else:
-            writer.add_blank_page(width=default_width, height=default_height)
-    with target.open("wb") as stream:
-        writer.write(stream)
+    shutil.copy2(source, target)
+    return len(reader.pages)
 
 
 def build_bundle(source_db: Path, source_pdfs: Path, output: Path) -> dict:
@@ -206,7 +196,9 @@ def build_bundle(source_db: Path, source_pdfs: Path, output: Path) -> dict:
                 raise RuntimeError(f"PDF homologado obrigatório não encontrado: {source_pdf}")
             copied = data_dir / filename
             retained_pages = document_pages[filename]
-            _write_sparse_pdf(source_pdf, copied, retained_pages)
+            complete_page_count = _copy_complete_pdf(
+                source_pdf, copied, retained_pages
+            )
             pdf_entries.append(
                 {
                     "filename": filename,
@@ -215,12 +207,12 @@ def build_bundle(source_db: Path, source_pdfs: Path, output: Path) -> dict:
                     "source_bytes": source_pdf.stat().st_size,
                     "source_sha256": sha256(source_pdf),
                     "retained_pages": retained_pages,
-                    "last_retained_page": max(retained_pages),
+                    "page_count": complete_page_count,
                 }
             )
 
         manifest = {
-            "format": "consulta-loa-homologated-bundle-v1",
+            "format": "consulta-loa-homologated-bundle-v2-complete-pdfs",
             "database": {
                 "filename": RELEASE_DATABASE,
                 "bytes": target_db.stat().st_size,
@@ -279,21 +271,27 @@ def validate_bundle(archive_path: Path, source_pdfs: Path | None = None) -> dict
             pdf = target / "dados" / item["filename"]
             if not pdf.is_file() or sha256(pdf) != item["sha256"]:
                 raise RuntimeError(f"PDF ausente ou divergente: {item['filename']}")
-            sparse_reader = PdfReader(pdf)
-            if len(sparse_reader.pages) != item["last_retained_page"]:
-                raise RuntimeError(f"Numeração esparsa divergente: {item['filename']}")
+            complete_reader = PdfReader(pdf)
+            if len(complete_reader.pages) != item["page_count"]:
+                raise RuntimeError(f"Quantidade de páginas divergente: {item['filename']}")
             if source_pdfs is not None:
                 original = source_pdfs / item["filename"]
                 if not original.is_file() or sha256(original) != item["source_sha256"]:
                     raise RuntimeError(f"Origem ausente ou divergente: {item['filename']}")
+                if sha256(pdf) != sha256(original):
+                    raise RuntimeError(f"PDF integral divergente: {item['filename']}")
                 source_reader = PdfReader(original)
+                if len(source_reader.pages) != len(complete_reader.pages):
+                    raise RuntimeError(
+                        f"PDF integral perdeu páginas: {item['filename']}"
+                    )
                 for page_number in item["retained_pages"]:
                     source_page = source_reader.pages[page_number - 1]
-                    sparse_page = sparse_reader.pages[page_number - 1]
+                    complete_page = complete_reader.pages[page_number - 1]
                     source_content = source_page.get_contents()
-                    sparse_content = sparse_page.get_contents()
+                    complete_content = complete_page.get_contents()
                     if (source_content.get_data() if source_content else b"") != (
-                        sparse_content.get_data() if sparse_content else b""
+                        complete_content.get_data() if complete_content else b""
                     ):
                         raise RuntimeError(
                             f"Conteúdo divergente em {item['filename']} página {page_number}"
