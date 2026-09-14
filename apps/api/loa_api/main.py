@@ -43,7 +43,7 @@ from .schemas import (
     FeedbackResponse,
 )
 from .editorial_map import load_editorial_map
-from .security import CurrentUser, current_user
+from .security import CurrentUser, current_user, reviewer_user
 from .search import (
     pilot_comparison_allowed,
     pilot_out_of_scope,
@@ -352,10 +352,8 @@ def create_feedback(
 @app.get("/feedback/report.csv")
 def feedback_report(
     feedback_db: Session = Depends(get_feedback_db),
-    user: CurrentUser = Depends(current_user),
+    user: CurrentUser = Depends(reviewer_user),
 ) -> Response:
-    if not user.is_reviewer:
-        raise HTTPException(403, "Relatório disponível somente para a revisora responsável")
     rows = feedback_db.scalars(select(Feedback).order_by(Feedback.created_at.desc())).all()
     output = io.StringIO()
     writer = csv.writer(output)

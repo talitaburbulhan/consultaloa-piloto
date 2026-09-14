@@ -9,7 +9,7 @@ services:
       - key: ENVIRONMENT
         value: production
       - key: AUTH_REQUIRED
-        value: "true"
+        value: "false"
       - key: PILOT_EDUCATION_ONLY
         value: "false"
       - key: CORS_ORIGINS
@@ -23,9 +23,9 @@ services:
       - key: REVIEWER_EMAILS
         sync: false
       - key: CLOUDFLARE_ACCESS_TEAM_DOMAIN
-        value: https://access-not-configured.invalid
+        sync: false
       - key: CLOUDFLARE_ACCESS_AUDIENCE
-        value: pending-configuration
+        sync: false
 databases:
   - name: consulta-loa-feedback
     plan: free

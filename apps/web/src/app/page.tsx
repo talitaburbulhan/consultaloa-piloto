@@ -392,7 +392,6 @@ export default function Home() {
   const [areaCatalog, setAreaCatalog] = useState<CatalogArea[]>([]);
   const [catalogLoading, setCatalogLoading] = useState(true);
   const [catalogError, setCatalogError] = useState(false);
-  const [isReviewer, setIsReviewer] = useState(false);
   const [feedbackVerdict, setFeedbackVerdict] = useState<FeedbackVerdict | null>(null);
   const [feedbackComment, setFeedbackComment] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -432,14 +431,7 @@ export default function Home() {
       .then((response) => (response.ok ? response.json() : null))
       .then(setCorpus)
       .catch(() => setCorpus(null));
-    // Complete the initial Access/session check before requesting the larger
-    // catalog. This avoids losing the only catalog request during login or a
-    // cold start of the API service.
-    fetch(`${API_URL}/me`)
-      .then((response) => (response.ok ? response.json() : null))
-      .then((user) => setIsReviewer(Boolean(user?.is_reviewer)))
-      .catch(() => setIsReviewer(false))
-      .finally(() => void loadAreaCatalog());
+    void loadAreaCatalog();
   }, [loadAreaCatalog]);
 
   useEffect(() => {
@@ -743,11 +735,13 @@ export default function Home() {
       <footer>
         <p>Fonte exclusiva nesta versão: documentos oficiais indexados no acervo local.</p>
         <p>A conclusão editorial pertence ao jornalista.</p>
-        {isReviewer && (
-          <a className="feedbackReport" href={`${API_URL}/feedback/report.csv`}>
-            Baixar relatório de feedback
-          </a>
-        )}
+        <a
+          className="feedbackReport"
+          href={`${API_URL}/feedback/report.csv`}
+          title="Acesso restrito à revisora responsável"
+        >
+          Baixar relatório de feedback (acesso restrito)
+        </a>
       </footer>
     </main>
   );
